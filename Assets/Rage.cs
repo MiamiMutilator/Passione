@@ -27,6 +27,18 @@ public class Rage : MonoBehaviour
             StopCoroutine(RageDown());
             StartCoroutine(RageUp());
         }
+
+        //rage buffs
+        if (enraged == true)
+        {
+            //punches do more damage
+            //different punch animations
+        }
+        else if (enraged == false)
+        {
+            //punches return to normal damage
+            //punch animations return to previous normal animations
+        }
     }
 
     private IEnumerator RageDown()
