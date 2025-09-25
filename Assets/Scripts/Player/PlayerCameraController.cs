@@ -4,20 +4,26 @@ using UnityEngine.InputSystem;
 
 public class PlayerCameraController : MonoBehaviour
 {
+    public InputActionReference lookAction;
     [SerializeField] private Transform player;
     [SerializeField] private MouseSensitivity mouseSensitivity;
     [SerializeField] private CameraAngle cameraAngle;
 
-    private Vector2 lookInput;
     private CameraRotation cameraRotation;
 
-    public void Look(InputAction.CallbackContext context)
+    private void OnEnable()
     {
-        lookInput = context.ReadValue<Vector2>();
+        lookAction.action.Enable();
+    }
+    private void OnDisable()
+    {
+        lookAction.action.Disable();
     }
 
     private void Update()
     {
+        Vector2 lookInput = lookAction.action.ReadValue<Vector2>();
+
         cameraRotation.Yaw += lookInput.x * mouseSensitivity.horizontal * BoolToInt(mouseSensitivity.invertHorizontal) * Time.deltaTime;
         cameraRotation.Pitch += lookInput.y * mouseSensitivity.vertical * BoolToInt(mouseSensitivity.invertVertical) * Time.deltaTime;
         cameraRotation.Pitch = Mathf.Clamp(cameraRotation.Pitch, cameraAngle.min, cameraAngle.max);

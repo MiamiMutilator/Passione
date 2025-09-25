@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,30 +9,50 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotationSpeed = 500f;
     public Camera playerCamera;
+    public InputActionReference moveAction;
 
-    private CharacterController _characterController;
+    private CharacterController characterController;
     private Vector2 moveInput;
     private Vector3 moveDirection;
     [HideInInspector] public Vector3 lastDirection;
 
     [Header("Dash")]
-    [Range(0, 10)]
-    public float dashVelocity;
+    [Range(0, 20)]
+    public float dashVelocity = 2f;
+    public InputActionReference dashAction;
 
     private IAction dash;
 
+    private void OnEnable()
+    {
+        moveAction.action.Enable();
+        dashAction.action.started += Dash;
+    }
+    private void OnDisable()
+    {
+        moveAction.action.Disable();
+        dashAction.action.started -= Dash;
+    }
+
     private void Awake()
     {
-        _characterController = GetComponent<CharacterController>();
-        dash = new Dash(this, GetComponent<CharacterController>(), dashVelocity);
+        characterController = GetComponent<CharacterController>();
+        dash = new Dash(this, characterController, dashVelocity);
 
         if (!gameObject.CompareTag("Player")) Debug.LogWarning($"Give the Player tag to {gameObject.name}!");
     }
 
     private void Update()
     {
+        ReadMoveInput();
         ApplyRotation();
         ApplyMovement();
+    }
+
+    void ReadMoveInput()
+    {
+        moveInput = moveAction.action.ReadValue<Vector2>();
+        moveDirection = new Vector3(moveInput.x, 0.0f, moveInput.y);
     }
 
     private void ApplyRotation()
@@ -46,23 +67,12 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        _characterController.Move(moveSpeed * Time.deltaTime * moveDirection);
+        characterController.Move(moveSpeed * Time.deltaTime * moveDirection);
         lastDirection = moveDirection;
-    }
-
-    public void Move(InputAction.CallbackContext context)
-    {
-        // Tied to "Move" InputActionMap
-        moveInput = context.ReadValue<Vector2>();
-        moveDirection = new Vector3(moveInput.x, 0.0f, moveInput.y);
-
-        //Debug.Log("Move called with value " + _input);
-        //Debug.Log("Direction set to " + _direction);
     }
 
     public void Dash(InputAction.CallbackContext context)
     {
-        // Tied to "Dash" InputActionMap
         //print("Dash called with value " + context.action.triggered);
         if (context.action.triggered) dash.OnActivation();
     }

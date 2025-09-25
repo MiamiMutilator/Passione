@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2252f196d6a68024095ce16d7f27e842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   player: {fileID: 2643115183621521956}
   mouseSensitivity:
     horizontal: 10
@@ -287,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -356,7 +357,19 @@ MonoBehaviour:
     m_ActionId: b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba
     m_ActionName: 'Player/Next[/Keyboard/2,/XInputControllerWindows/dpad/right]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8033357727186760322}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Dash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 641cd816-40e6-41b4-8c3d-04687c349290
     m_ActionName: 'Player/Sprint[/Keyboard/leftShift,/XInputControllerWindows/leftStickPress]'
   - m_PersistentCalls:
@@ -444,6 +457,10 @@ MonoBehaviour:
   moveSpeed: 5
   rotationSpeed: 500
   playerCamera: {fileID: 1287892965639580066}
+  moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  lastDirection: {x: 0, y: 0, z: 0}
+  dashVelocity: 10
+  dashAction: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &3998035177492620065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,3 +473,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8b0196bc2739b45b7273847f13f0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RageMeter: 100
+  enraged: 0
