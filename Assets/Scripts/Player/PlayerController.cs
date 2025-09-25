@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,21 +18,23 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public Vector3 lastDirection;
 
     [Header("Dash")]
-    [Range(0, 20)]
     public float dashVelocity = 2f;
+    public float dashDuration = 0.1f;
     public InputActionReference dashAction;
 
     private IAction dash;
+    private bool dashing = false; // Dash is currently active
+    private float timer = 0f;
 
     private void OnEnable()
     {
         moveAction.action.Enable();
-        dashAction.action.started += Dash;
+        dashAction.action.Enable();
     }
     private void OnDisable()
     {
         moveAction.action.Disable();
-        dashAction.action.started -= Dash;
+        dashAction.action.Disable();
     }
 
     private void Awake()
@@ -47,6 +50,7 @@ public class PlayerController : MonoBehaviour
         ReadMoveInput();
         ApplyRotation();
         ApplyMovement();
+        ApplyDash();
     }
 
     void ReadMoveInput()
@@ -71,9 +75,26 @@ public class PlayerController : MonoBehaviour
         lastDirection = moveDirection;
     }
 
-    public void Dash(InputAction.CallbackContext context)
+    private void ApplyDash()
     {
-        //print("Dash called with value " + context.action.triggered);
-        if (context.action.triggered) dash.OnActivation();
+        if (!dashing && dashAction.action.triggered)
+        {
+            // Start Dashing when input and can dash
+            dashing = true;
+            timer = 0;
+        }
+
+        if (dashing && timer < dashDuration)
+        {
+            // Smoothly dash for the duration
+            timer += Time.deltaTime;
+            dash.OnActivation();
+        }
+        else if (dashing)
+        {
+            // Dash reached duration
+            timer = 0;
+            dashing = false;
+        }
     }
 }

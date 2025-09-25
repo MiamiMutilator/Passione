@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,10 +22,8 @@ public class Dash : IAction
     public void OnActivation()
     {
         lastMoveDirection = player.lastDirection;
+        Vector3 targetMovement = lastMoveDirection * dashVelocity;
 
-        Vector3 movement = lastMoveDirection * dashVelocity;
-        controller.Move(movement);
-
-        //Debug.Log("Dash vector: " + movement);
+        controller.Move(targetMovement * Time.deltaTime);
     }
 }
