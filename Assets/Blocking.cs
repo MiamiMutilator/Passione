@@ -1,9 +1,12 @@
 using UnityEngine;
+using System.Collections;
 
 public class Blocking : MonoBehaviour
 {
     public bool isBlockingHead;
     public bool isBlockingBody;
+    public bool isInKOState;
+    public int health = 100;
 
     private Renderer rend;
 
@@ -16,6 +19,12 @@ public class Blocking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if health == 0, KO state bool is activated and KO coroutine is activated
+        if (health <= 0)
+        {
+            StartCoroutine(KOTimer());
+        }
+
         if (isBlockingBody)
         {
             rend.material.color = Color.red;
@@ -23,6 +32,10 @@ public class Blocking : MonoBehaviour
         if (isBlockingHead)
         {
             rend.material.color = Color.blue;
+        }
+        if (isInKOState)
+        {
+            rend.material.color = Color.yellow;
         }
 
     }
@@ -52,5 +65,20 @@ public class Blocking : MonoBehaviour
             }
         }
 
+        if (collision.gameObject.CompareTag("BodyJab") && isInKOState == true || collision.gameObject.CompareTag("HeadHook") && isInKOState == true)
+        {
+            //increased knockback punch done through the punch script if it collides with a KO'd enemy
+        }
+
+        
+
+    }
+
+    private IEnumerator KOTimer()
+    {
+        isInKOState = true;
+        yield return new WaitForSeconds(5);
+        health = 100;
+        isInKOState = false;
     }
 }
