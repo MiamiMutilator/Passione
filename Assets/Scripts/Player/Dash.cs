@@ -3,7 +3,7 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Dash : IAction
+public class Dash : IActivateable
 {
     private readonly PlayerController player;
     private readonly float dashVelocity;
