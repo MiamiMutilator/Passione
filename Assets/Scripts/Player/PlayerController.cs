@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public float dashDuration = 0.1f;
     public InputActionReference dashAction;
 
-    private IAction dash;
+    private IActivateable dash;
     private bool dashing = false; // Dash is currently active
     private float timer = 0f;
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IAction
+public interface IActivateable
 {
     void OnActivation();
 }
