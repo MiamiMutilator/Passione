@@ -301,6 +301,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 707205947801518748, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: m_TagString
+      value: HeadHook
+      objectReference: {fileID: 0}
+    - target: {fileID: 2287383104758368513, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: m_TagString
+      value: BodyJab
+      objectReference: {fileID: 0}
     - target: {fileID: 2456276787219158868, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: m_Name
       value: Player
@@ -352,6 +360,10 @@ PrefabInstance:
     - target: {fileID: 3998035177492620065, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: RageMeter
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5875208807322295658, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard&Mouse
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -536,6 +548,10 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1922865972}
+    - target: {fileID: 3339963963741309823, guid: 2ace7e1d4be3faa46b6bcac25b523444, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7633525573968415836, guid: 2ace7e1d4be3faa46b6bcac25b523444, type: 3}
       propertyPath: m_Name
       value: Enemy
