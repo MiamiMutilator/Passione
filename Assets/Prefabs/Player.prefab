@@ -256,8 +256,8 @@ MonoBehaviour:
   lookAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   player: {fileID: 2643115183621521956}
   mouseSensitivity:
-    horizontal: 10
-    vertical: 10
+    horizontal: 50
+    vertical: 50
     invertHorizontal: 1
     invertVertical: 0
   cameraAngle:
@@ -693,23 +693,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cad771d44eb7f45907c00c41d6dc95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftJabAction: {fileID: 0}
+  leftJabAction: {fileID: 8194790677430557180, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   leftDamage: 1
-  leftHitbox: {fileID: 0}
+  leftHitbox: {fileID: 8572402774751774585}
   leftHitboxDuration: 1
   leftAnimator: {fileID: 0}
-  leftWeakpointTag: 
-  rightHookAction: {fileID: 0}
+  leftWeakpointTag: EnemyBody
+  rightHookAction: {fileID: -7803995681073658105, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rightDamage: 3
-  rightHitbox: {fileID: 0}
+  rightHitbox: {fileID: 8606096089889183384}
   rightHitboxDuration: 1
   rightAnimator: {fileID: 0}
-  rightWeakpointTag: 
+  rightWeakpointTag: EnemyHead
   weakpointMult: 2
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  initialKnockback: {x: 0, y: 0, z: -1}
+  initialKnockback: {x: 0, y: 0, z: -5}
 --- !u!1 &8159127982729788209
 GameObject:
   m_ObjectHideFlags: 0
