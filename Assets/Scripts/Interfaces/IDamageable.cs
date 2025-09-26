@@ -4,5 +4,5 @@ public interface IDamageable
 {
     int Health { set; get; }
     bool Targetable { set; get; }
-    void OnHit(GameObject source, int damage);
+    void OnHit(IAttack source, int damage);
 }
