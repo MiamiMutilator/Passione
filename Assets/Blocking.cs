@@ -84,7 +84,7 @@ public class Blocking : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject);
+                health -= 1;
             }
         }
         if (other.gameObject.CompareTag("HeadHook"))
@@ -95,9 +95,15 @@ public class Blocking : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject);
+                health -= 3;
             }
         }
+        if (other.gameObject.CompareTag("BodyJab") && isInKOState == true || other.gameObject.CompareTag("HeadHook") && isInKOState == true)
+        {
+            Destroy(gameObject);
+            //increased knockback punch done through the punch script if it collides with a KO'd enemy
+        }
+
     }
 
     private IEnumerator KOTimer()

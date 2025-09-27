@@ -981,6 +981,10 @@ PrefabInstance:
       propertyPath: mouseSensitivity.horizontal
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 5875208807322295658, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard&Mouse
+      objectReference: {fileID: 0}
     - target: {fileID: 8904977615255522092, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: leftHitbox
       value: 

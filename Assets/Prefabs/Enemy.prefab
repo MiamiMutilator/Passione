@@ -128,7 +128,7 @@ MonoBehaviour:
   isBlockingHead: 0
   isBlockingBody: 0
   isInKOState: 0
-  health: 100
+  health: 5
 --- !u!195 &7794696005016998009
 NavMeshAgent:
   m_ObjectHideFlags: 0
