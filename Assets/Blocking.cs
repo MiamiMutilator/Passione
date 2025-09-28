@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 
 public class Blocking : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class Blocking : MonoBehaviour
     public int health = 100;
 
     private Renderer rend;
+
+    //Enemy AI
+    public NavMeshAgent enemy;
+    public Transform Player;
+    public float distanceKeptAway = 2f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,6 +43,22 @@ public class Blocking : MonoBehaviour
         {
             rend.material.color = Color.yellow;
         }
+
+        //pathing and AI
+        if (isInKOState == false)
+        {
+            float distance = Vector3.Distance(Player.position, transform.position);
+
+            if (distance > distanceKeptAway)
+            {
+                enemy.SetDestination(Player.position);
+            }
+            else
+            {
+                enemy.ResetPath();
+            }
+        }
+        
 
     }
 
