@@ -15,6 +15,7 @@ public class Blocking : MonoBehaviour
     public NavMeshAgent enemy;
     public Transform Player;
     public float distanceKeptAway = 2f;
+    public float awarenessDistance = 5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,11 +45,11 @@ public class Blocking : MonoBehaviour
             rend.material.color = Color.yellow;
         }
 
-        //pathing and AI
-        if (isInKOState == false)
-        {
-            float distance = Vector3.Distance(Player.position, transform.position);
 
+        //pathing and AI
+        float distance = Vector3.Distance(Player.position, transform.position);
+        if (isInKOState == false && distance < awarenessDistance)
+        {
             if (distance > distanceKeptAway)
             {
                 enemy.SetDestination(Player.position);
@@ -106,7 +107,7 @@ public class Blocking : MonoBehaviour
             }
             else
             {
-                health -= 1;
+                health -= 1; //switch to call to punch scripts damage
             }
         }
         if (other.gameObject.CompareTag("HeadHook"))
@@ -117,7 +118,7 @@ public class Blocking : MonoBehaviour
             }
             else
             {
-                health -= 3;
+                health -= 3; //switch to call to punch scripts damage
             }
         }
         if (other.gameObject.CompareTag("BodyJab") && isInKOState == true || other.gameObject.CompareTag("HeadHook") && isInKOState == true)
