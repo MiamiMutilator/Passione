@@ -24,14 +24,13 @@ public class PunchHitbox : MonoBehaviour
                 if (hurtbox.gameObject.CompareTag(weakpointTag))
                 {
                     finalDamage = (int)(damage * weakpointMult);
-                    finalKnockback = knockback * weakpointMult;
                 }
                 else
                 {
                     finalDamage = damage;
-                    finalKnockback = knockback;
                 }
-
+                
+                finalKnockback = knockback * finalDamage;
                 hurtbox.OnHitWithKnockback(finalDamage, finalKnockback);
                 attack.OnSuccessfulHit();
             }
