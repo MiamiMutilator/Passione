@@ -11,6 +11,12 @@ public class PlayerCameraController : MonoBehaviour
 
     private CameraRotation cameraRotation;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     private void OnEnable()
     {
         lookAction.action.Enable();
