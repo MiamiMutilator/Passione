@@ -15,12 +15,4 @@ public class LeftJab : Punch
 
         // punch animation
     }
-
-    public override void OnSuccessfulHit()
-    {
-        base.OnSuccessfulHit();
-
-        // logic for increasing rage
-        // anything else happening when a punch connects
-    }
 }

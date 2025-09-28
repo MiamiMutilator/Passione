@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Linq;
+using UnityEngine.Analytics;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -9,6 +9,8 @@ using UnityEditor;
 
 public class PunchHandler : MonoBehaviour
 {
+    #region Variables
+    #region Left Arm
     [Header("Left Jab")]
     public InputActionReference leftJabAction;
     public int leftDamage = 1;
@@ -17,9 +19,9 @@ public class PunchHandler : MonoBehaviour
     public Animator leftAnimator;
     [StringPicker(options = new string[] { "EnemyHead", "EnemyBody" })]
     public string leftWeakpointTag; // Tag of the weakpoint hurtbox
-
     private Punch leftJab;
-
+    #endregion
+    #region Right Arm
     [Header("Right Hook")]
     public InputActionReference rightHookAction;
     public int rightDamage = 3;
@@ -28,15 +30,21 @@ public class PunchHandler : MonoBehaviour
     public Animator rightAnimator;
     [StringPicker(options = new string[] { "EnemyHead", "EnemyBody" })]
     public string rightWeakpointTag; // Tag of the weakpoint hurtbox
-
     private Punch rightHook;
-
+    #endregion
     [Header("General")]
     public float weakpointMult = 2f; // Damage increase when hitting a certain hurtbox
     public LayerMask targetLayer; // Damageable layer
     public Vector3 initialKnockback = Vector3.back;
+    [Tooltip("The amount of time after a punch before the combo resets to 0")]
+    public float comboResetTimer = 0.5f;
+    public int maxCombo = 3;
 
     private bool isPunching;
+    [HideInInspector] public int combo = 0;
+    private bool timerActive;
+    private float currentComboTimer;
+    #endregion
 
     private void OnEnable()
     {
@@ -80,10 +88,29 @@ public class PunchHandler : MonoBehaviour
         InitializeHitbox(isLeft);
         hitbox.enabled = true;
 
+        if (!timerActive)
+        {
+            currentComboTimer = 0;
+            StartCoroutine(ComboTimer());
+        }
+
         yield return new WaitForSeconds(duration);
 
         hitbox.enabled = false;
         isPunching = false;
+    }
+
+    IEnumerator ComboTimer()
+    {
+        timerActive = true;
+        while ((currentComboTimer < comboResetTimer) && timerActive)
+        {
+            currentComboTimer += Time.deltaTime;
+            yield return null;
+        }
+
+        timerActive = false;
+        ResetCombo();
     }
 
     void InitializeHitbox(bool isLeft)
@@ -91,22 +118,52 @@ public class PunchHandler : MonoBehaviour
         if (isLeft)
         {
             PunchHitbox hitboxScript = leftHitbox.gameObject.GetComponent<PunchHitbox>();
-            hitboxScript.damage = leftDamage;
+            hitboxScript.baseDamage = leftDamage + combo;
             hitboxScript.weakpointMult = weakpointMult;
             hitboxScript.targetLayer = targetLayer;
             hitboxScript.weakpointTag = leftWeakpointTag;
-            hitboxScript.knockback = initialKnockback;
+            hitboxScript.baseKnockback = initialKnockback;
             hitboxScript.attack = leftJab;
         }
         else
         {
             PunchHitbox hitboxScript = rightHitbox.gameObject.GetComponent<PunchHitbox>();
-            hitboxScript.damage = rightDamage;
+            hitboxScript.baseDamage = rightDamage + combo;
             hitboxScript.weakpointMult = weakpointMult;
             hitboxScript.targetLayer = targetLayer;
             hitboxScript.weakpointTag = rightWeakpointTag;
-            hitboxScript.knockback = initialKnockback;
+            hitboxScript.baseKnockback = initialKnockback;
             hitboxScript.attack = rightHook;
+        }
+    }
+
+    public void IncrementCombo()
+    {
+        combo++;
+        if(combo > maxCombo) combo = maxCombo;
+    }
+
+    public void ResetCombo()
+    {
+        combo = 0;
+        currentComboTimer = 0;
+    }
+
+    public void RegisterHit()
+    {
+        if (!timerActive)
+        {
+            StartCoroutine(ComboTimer());
+        }
+
+        if (currentComboTimer < comboResetTimer)
+        {
+            currentComboTimer = 0;
+            IncrementCombo();
+        }
+        else
+        {
+            ResetCombo();
         }
     }
 }
