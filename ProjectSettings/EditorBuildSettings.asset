@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 5535328f245653b4ea7ac2737894dc13
   - enabled: 1
+    path: Assets/Scenes/FPSTest.unity
+    guid: e21488b2b355a8441bd94c20f9a24b22
+  - enabled: 0
     path: Assets/Scenes/UI Test.unity
     guid: d3de47cea1ad4594cbf74e3d988d0760
   - enabled: 0
