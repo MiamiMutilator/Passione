@@ -7,14 +7,14 @@ public class Blocking : MonoBehaviour
     public bool isBlockingHead;
     public bool isBlockingBody;
     public bool isInKOState;
-    public int health = 100;
+    public int health = 5;
 
     public int actionChosen;
     public int actionTimer;
     public bool isInAction;
 
 
-    private Renderer rend;
+    private Animator animator;
 
     //Enemy AI
     public NavMeshAgent enemy;
@@ -27,7 +27,7 @@ public class Blocking : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rend = GetComponent<Renderer>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -39,18 +39,9 @@ public class Blocking : MonoBehaviour
             StartCoroutine(KOTimer());
         }
 
-        if (isBlockingBody)
-        {
-            rend.material.color = Color.red;
-        }
-        if (isBlockingHead)
-        {
-            rend.material.color = Color.blue;
-        }
-        if (isInKOState)
-        {
-            rend.material.color = Color.yellow;
-        }
+        animator.SetBool("isBlockingBody", isBlockingBody);
+        animator.SetBool("isBlockingHead", isBlockingHead);
+        animator.SetBool("isKO", isInKOState);
 
 
 
@@ -61,14 +52,17 @@ public class Blocking : MonoBehaviour
             if (distance > awarenessDistance)
             {
                 enemy.ResetPath();
+                animator.SetBool("isWalking", false);
             }
             else if (distance > fightingDistance)
             {
                 enemy.SetDestination(Player.position);
+                animator.SetBool("isWalking", true);
             }
             else 
             {
                 enemy.ResetPath();
+                animator.SetBool("isWalking", false);
                 if (!isInAction)
                 {
                     actionChosen = Random.Range(0, 2);
@@ -149,9 +143,13 @@ public class Blocking : MonoBehaviour
     private IEnumerator KOTimer()
     {
         isInKOState = true;
+        animator.SetBool("isKO", true);
+        isBlockingBody = false;
+        isBlockingHead = false;
         yield return new WaitForSeconds(5);
         health = 5;
         isInKOState = false;
+        animator.SetBool("isKO", false);
     }
 
     private IEnumerator actionTaken()
@@ -161,17 +159,21 @@ public class Blocking : MonoBehaviour
             case 0:
                 actionTimer = Random.Range(2, 7);
                 isBlockingBody = true;
+                animator.SetBool("isBlockingBody", true);
                 isInAction = true;
                 yield return new WaitForSeconds(actionTimer);
                 isBlockingBody = false;
+                animator.SetBool("isBlockingBody", false);
                 isInAction = false;
                 break;
             case 1:
                 actionTimer = Random.Range(2, 7);
                 isBlockingHead = true;
+                animator.SetBool("isBlockingHead", true);
                 isInAction = true;
                 yield return new WaitForSeconds(actionTimer);
                 isBlockingHead = false;
+                animator.SetBool("isBlockingHead", false);
                 isInAction = false;
                 break;
 
