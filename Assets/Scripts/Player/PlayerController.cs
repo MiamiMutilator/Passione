@@ -19,10 +19,16 @@ public class PlayerController : MonoBehaviour
 
     [Header("Dash")]
     public float dashVelocity = 2f;
+    [Tooltip("Duration in seconds")]
     public float dashDuration = 0.1f;
+    [Tooltip("Duration in seconds")]
+    public float timeSlowDuration = 1.5f;
+    [Tooltip("What the time scale gets set to when Time Slow activates. 1 is normal speed, 0 is paused")]
+    public float slowedTimeScale = 0.5f;
     public InputActionReference dashAction;
 
     private IActivateable dash;
+    private TimeSlow timeSlow;
     private bool dashing = false; // Dash is currently active
     private float timer = 0f;
 
@@ -41,6 +47,7 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         dash = new Dash(this, characterController, dashVelocity);
+        timeSlow = new TimeSlow(slowedTimeScale, timeSlowDuration);
 
         if (!gameObject.CompareTag("Player")) Debug.LogWarning($"Give the Player tag to {gameObject.name}!");
     }
@@ -82,6 +89,8 @@ public class PlayerController : MonoBehaviour
             // Start Dashing when input and can dash
             dashing = true;
             timer = 0;
+            timeSlow.OnActivation();
+            Invoke(nameof(DeactivateTimeSlow), 1 + (1/timeSlowDuration));
         }
 
         if (dashing && timer < dashDuration)
@@ -96,5 +105,10 @@ public class PlayerController : MonoBehaviour
             timer = 0;
             dashing = false;
         }
+    }
+
+    void DeactivateTimeSlow()
+    {
+        timeSlow.Deactivate();
     }
 }
