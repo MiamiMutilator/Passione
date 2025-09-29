@@ -150,7 +150,7 @@ public class Blocking : MonoBehaviour
     {
         isInKOState = true;
         yield return new WaitForSeconds(5);
-        health = 100;
+        health = 5;
         isInKOState = false;
     }
 
