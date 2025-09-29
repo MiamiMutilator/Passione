@@ -9,13 +9,20 @@ public class Blocking : MonoBehaviour
     public bool isInKOState;
     public int health = 100;
 
+    public int actionChosen;
+    public int actionTimer;
+    public bool isInAction;
+
+
     private Renderer rend;
 
     //Enemy AI
     public NavMeshAgent enemy;
     public Transform Player;
     public float distanceKeptAway = 2f;
+    public float fightingDistance = 3f; // kept at distanceKeptAway + 1
     public float awarenessDistance = 5f;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,20 +53,30 @@ public class Blocking : MonoBehaviour
         }
 
 
+
         //pathing and AI
         float distance = Vector3.Distance(Player.position, transform.position);
-        if (isInKOState == false && distance < awarenessDistance)
+        if (!isInKOState)
         {
-            if (distance > distanceKeptAway)
-            {
-                enemy.SetDestination(Player.position);
-            }
-            else
+            if (distance > awarenessDistance)
             {
                 enemy.ResetPath();
             }
+            else if (distance > fightingDistance)
+            {
+                enemy.SetDestination(Player.position);
+            }
+            else 
+            {
+                enemy.ResetPath();
+                if (!isInAction)
+                {
+                    actionChosen = Random.Range(0, 2);
+                    StartCoroutine(actionTaken());
+                }
+            }
         }
-        
+
 
     }
 
@@ -135,5 +152,29 @@ public class Blocking : MonoBehaviour
         yield return new WaitForSeconds(5);
         health = 100;
         isInKOState = false;
+    }
+
+    private IEnumerator actionTaken()
+    {
+        switch (actionChosen)
+        {
+            case 0:
+                actionTimer = Random.Range(2, 7);
+                isBlockingBody = true;
+                isInAction = true;
+                yield return new WaitForSeconds(actionTimer);
+                isBlockingBody = false;
+                isInAction = false;
+                break;
+            case 1:
+                actionTimer = Random.Range(2, 7);
+                isBlockingHead = true;
+                isInAction = true;
+                yield return new WaitForSeconds(actionTimer);
+                isBlockingHead = false;
+                isInAction = false;
+                break;
+
+        }
     }
 }

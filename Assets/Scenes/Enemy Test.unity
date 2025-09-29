@@ -596,6 +596,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5777650490246104497, guid: 2ace7e1d4be3faa46b6bcac25b523444, type: 3}
+      propertyPath: fightingDistance
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777650490246104497, guid: 2ace7e1d4be3faa46b6bcac25b523444, type: 3}
       propertyPath: awarenessDistance
       value: 15
       objectReference: {fileID: 0}
