@@ -3232,57 +3232,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5770129105213270480, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
-      propertyPath: mouseSensitivity.vertical
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5770129105213270480, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
-      propertyPath: mouseSensitivity.horizontal
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904977615255522092, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
-      propertyPath: leftHitbox
-      value: 
-      objectReference: {fileID: 7728868686681551042}
-    - target: {fileID: 8904977615255522092, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
-      propertyPath: rightHitbox
-      value: 
-      objectReference: {fileID: 7728868686681551041}
-    - target: {fileID: 8904977615255522092, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
-      propertyPath: leftJabAction
-      value: 
-      objectReference: {fileID: 8194790677430557180, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-    - target: {fileID: 8904977615255522092, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
-      propertyPath: rightHookAction
-      value: 
-      objectReference: {fileID: -7803995681073658105, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-    - target: {fileID: 8904977615255522092, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
-      propertyPath: leftWeakpointTag
-      value: EnemyBody
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904977615255522092, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
-      propertyPath: rightWeakpointTag
-      value: EnemyHead
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904977615255522092, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
-      propertyPath: initialKnockback.z
-      value: -5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
---- !u!65 &7728868686681551041 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 8606096089889183384, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
-  m_PrefabInstance: {fileID: 7728868686681551040}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &7728868686681551042 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 8572402774751774585, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
-  m_PrefabInstance: {fileID: 7728868686681551040}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

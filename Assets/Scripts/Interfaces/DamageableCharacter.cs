@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class DamageableCharacter : MonoBehaviour, IDamageable
+public class DamageableCharacter : MonoBehaviour, IDamageable, IKnockback
 {
     public int Health
     {

@@ -94,13 +94,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f399cabc1420ea4db3c6600e9d65705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  baseDamage: 0
   weakpointMult: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
   weakpointTag: 
-  knockback: {x: 0, y: 0, z: 0}
+  baseKnockback: {x: 0, y: 0, z: 0}
 --- !u!1 &1600401533600727141
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,13 +357,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f399cabc1420ea4db3c6600e9d65705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  baseDamage: 0
   weakpointMult: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
   weakpointTag: 
-  knockback: {x: 0, y: 0, z: 0}
+  baseKnockback: {x: 0, y: 0, z: 0}
 --- !u!1 &2456276787219158868
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +618,7 @@ MonoBehaviour:
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -666,6 +666,8 @@ MonoBehaviour:
   lastDirection: {x: 0, y: 0, z: 0}
   dashVelocity: 10
   dashDuration: 0.1
+  timeSlowDuration: 1.5
+  slowedTimeScale: 0.5
   dashAction: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &3998035177492620065
 MonoBehaviour:
@@ -710,6 +712,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   initialKnockback: {x: 0, y: 0, z: -5}
+  comboResetTimer: 0.5
+  maxCombo: 3
+  combo: 0
 --- !u!1 &8159127982729788209
 GameObject:
   m_ObjectHideFlags: 0

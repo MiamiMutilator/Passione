@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PunchHitbox : MonoBehaviour
 {
-    [HideInInspector] public int damage;
+    [HideInInspector] public int baseDamage;
     [HideInInspector] public float weakpointMult;
     [HideInInspector] public LayerMask targetLayer;
     [HideInInspector] public string weakpointTag;
     [HideInInspector] public IAttack attack;
-    [HideInInspector] public Vector3 knockback;
+    [HideInInspector] public Vector3 baseKnockback;
 
     private int finalDamage;
     private Vector3 finalKnockback;
@@ -23,15 +23,14 @@ public class PunchHitbox : MonoBehaviour
                 // If hitbox collided with designated weakpoint (i.e Left Jab colliding with body) deal more damage and increased knockback
                 if (hurtbox.gameObject.CompareTag(weakpointTag))
                 {
-                    finalDamage = (int)(damage * weakpointMult);
-                    finalKnockback = knockback * weakpointMult;
+                    finalDamage = (int)(baseDamage * weakpointMult);
                 }
                 else
                 {
-                    finalDamage = damage;
-                    finalKnockback = knockback;
+                    finalDamage = baseDamage;
                 }
-
+                
+                finalKnockback = baseKnockback * finalDamage;
                 hurtbox.OnHitWithKnockback(finalDamage, finalKnockback);
                 attack.OnSuccessfulHit();
             }
