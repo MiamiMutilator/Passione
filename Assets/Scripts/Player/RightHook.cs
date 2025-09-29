@@ -13,6 +13,11 @@ public class RightHook : Punch
     {
         base.OnActivation();
 
-        // punch animation
+        Animator anim = Originator.GetComponent<Animator>();
+
+        if (anim)
+        {
+            anim.SetTrigger("RightPunch");
+        }
     }
 }

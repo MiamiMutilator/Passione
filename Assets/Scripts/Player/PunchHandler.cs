@@ -44,6 +44,7 @@ public class PunchHandler : MonoBehaviour
     [HideInInspector] public int combo = 0;
     private bool timerActive;
     private float currentComboTimer;
+    private Animator anim;
     #endregion
 
     private void OnEnable()
@@ -64,10 +65,16 @@ public class PunchHandler : MonoBehaviour
 
         leftHitbox.enabled = false;
         rightHitbox.enabled = false;
+
+        anim = GetComponent<Animator>();
+        if (!anim) Debug.LogWarning("Give Animator component to Player");
+        else anim.SetBool("isIdle", true);
     }
 
     private void Update()
     {
+        anim.SetBool("isIdle", !isPunching);
+
         if (!isPunching && leftJabAction.action.triggered)
         {
             leftJab.OnActivation(); // Punch script handles animation and successful hit logic
