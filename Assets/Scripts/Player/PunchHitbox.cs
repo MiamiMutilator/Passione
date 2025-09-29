@@ -29,7 +29,7 @@ public class PunchHitbox : MonoBehaviour
                 {
                     finalDamage = baseDamage;
                 }
-                
+
                 finalKnockback = baseKnockback * finalDamage;
                 hurtbox.OnHitWithKnockback(finalDamage, finalKnockback);
                 attack.OnSuccessfulHit();
@@ -38,6 +38,13 @@ public class PunchHitbox : MonoBehaviour
             {
                 Debug.Log(gameObject + " Targetability: " + hurtbox.targetable + " Layer: " + hurtbox.gameObject.layer);
             }
+        }
+        else if (collision.gameObject.TryGetComponent<IKnockback>(out var obj))
+        {
+            // Apply knockback
+
+            finalKnockback = baseKnockback * baseDamage;
+            obj.OnHitWithKnockback(baseDamage, finalKnockback);
         }
     }
 }
