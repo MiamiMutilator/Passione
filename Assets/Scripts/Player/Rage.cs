@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Rage : MonoBehaviour
 {
     public int RageMeter = 100;
     public bool enraged;
+    public Slider passionSlider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,6 +41,7 @@ public class Rage : MonoBehaviour
             //punches return to normal damage
             //punch animations return to previous normal animations
         }
+        passionSlider.value = RageMeter;
     }
 
     private IEnumerator RageDown()
