@@ -13,11 +13,9 @@ public class LeftJab : Punch
     {
         base.OnActivation();
 
-        Animator anim = Originator.GetComponent<Animator>();
-
-        if (anim)
+        if (armAnimator)
         {
-            anim.SetTrigger("LeftPunch");
+            armAnimator.SetTrigger("LeftPunch");
         }
     }
 }

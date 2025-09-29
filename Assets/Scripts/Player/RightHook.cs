@@ -13,11 +13,9 @@ public class RightHook : Punch
     {
         base.OnActivation();
 
-        Animator anim = Originator.GetComponent<Animator>();
-
-        if (anim)
+        if (armAnimator)
         {
-            anim.SetTrigger("RightPunch");
+            armAnimator.SetTrigger("RightPunch");
         }
     }
 }

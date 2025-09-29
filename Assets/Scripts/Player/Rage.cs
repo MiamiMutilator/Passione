@@ -41,7 +41,7 @@ public class Rage : MonoBehaviour
             //punches return to normal damage
             //punch animations return to previous normal animations
         }
-        passionSlider.value = RageMeter;
+        if(passionSlider) passionSlider.value = RageMeter;
     }
 
     private IEnumerator RageDown()

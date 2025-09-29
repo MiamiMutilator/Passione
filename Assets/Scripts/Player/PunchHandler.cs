@@ -16,7 +16,6 @@ public class PunchHandler : MonoBehaviour
     public int leftDamage = 1;
     public Collider leftHitbox;
     public float leftHitboxDuration = 1f; // how long the hitbox lasts after activation
-    public Animator leftAnimator;
     [StringPicker(options = new string[] { "EnemyHead", "EnemyBody" })]
     public string leftWeakpointTag; // Tag of the weakpoint hurtbox
     private Punch leftJab;
@@ -27,7 +26,6 @@ public class PunchHandler : MonoBehaviour
     public int rightDamage = 3;
     public Collider rightHitbox;
     public float rightHitboxDuration = 1f; // how long the hitbox lasts after activation
-    public Animator rightAnimator;
     [StringPicker(options = new string[] { "EnemyHead", "EnemyBody" })]
     public string rightWeakpointTag; // Tag of the weakpoint hurtbox
     private Punch rightHook;
@@ -39,12 +37,13 @@ public class PunchHandler : MonoBehaviour
     [Tooltip("The amount of time after a punch before the combo resets to 0")]
     public float comboResetTimer = 0.5f;
     public int maxCombo = 3;
+    public Animator armAnimator;
 
     private bool isPunching;
     [HideInInspector] public int combo = 0;
     private bool timerActive;
     private float currentComboTimer;
-    private Animator anim;
+    
     #endregion
 
     private void OnEnable()
@@ -60,20 +59,19 @@ public class PunchHandler : MonoBehaviour
 
     private void Start()
     {
-        leftJab = new LeftJab(gameObject, leftDamage, leftAnimator);
-        rightHook = new RightHook(gameObject, rightDamage, rightAnimator);
+        leftJab = new LeftJab(gameObject, leftDamage, armAnimator);
+        rightHook = new RightHook(gameObject, rightDamage, armAnimator);
 
         leftHitbox.enabled = false;
         rightHitbox.enabled = false;
 
-        anim = GetComponent<Animator>();
-        if (!anim) Debug.LogWarning("Give Animator component to Player");
-        else anim.SetBool("isIdle", true);
+        if (!armAnimator) Debug.LogWarning("Arm Animator is null");
+        else armAnimator.SetBool("isIdle", true);
     }
 
     private void Update()
     {
-        anim.SetBool("isIdle", !isPunching);
+        armAnimator.SetBool("isIdle", !isPunching);
 
         if (!isPunching && leftJabAction.action.triggered)
         {
