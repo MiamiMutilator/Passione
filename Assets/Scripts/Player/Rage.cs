@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -6,17 +7,21 @@ public class Rage : MonoBehaviour
 {
     public int RageMeter = 100;
     public bool enraged;
+    public InputActionReference rageInput;
     public Slider passionSlider;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void OnEnable()
     {
-        
+        rageInput.action.Enable();
+    }
+    private void OnDisable()
+    {
+        rageInput.action.Disable();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) && RageMeter == 100)
+        if (rageInput.action.triggered && RageMeter == 100)
         {
             Debug.Log("Enraged!");
             enraged = true;
