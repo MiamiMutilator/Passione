@@ -13,8 +13,12 @@ public class Blocking : MonoBehaviour
     public int actionTimer;
     public bool isInAction;
 
+    private bool recentlyHit = false;
+    public float hitCooldown = 1f;
+
 
     private Animator animator;
+    private Coroutine currentAction;
 
     //Enemy AI
     public NavMeshAgent enemy;
@@ -58,6 +62,7 @@ public class Blocking : MonoBehaviour
             {
                 enemy.SetDestination(Player.position);
                 animator.SetBool("isWalking", true);
+                
             }
             else 
             {
@@ -67,6 +72,11 @@ public class Blocking : MonoBehaviour
                 {
                     actionChosen = Random.Range(0, 2);
                     StartCoroutine(actionTaken());
+
+                    if (currentAction != null)
+                        StopCoroutine(currentAction);
+
+                    currentAction = StartCoroutine(actionTaken());
                 }
             }
         }
@@ -74,62 +84,22 @@ public class Blocking : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("BodyJab"))
-        {
-            if (isBlockingBody == true)
-            {
-                //no damage
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
-        if (collision.gameObject.CompareTag("HeadHook"))
-        {
-            if (isBlockingHead)
-            {
-                //no damage
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
-
-
-
-        if (collision.gameObject.CompareTag("BodyJab") && isInKOState == true || collision.gameObject.CompareTag("HeadHook") && isInKOState == true)
-        {
-            //increased knockback punch done through the punch script if it collides with a KO'd enemy
-        }
-    }
-
-
     private void OnTriggerEnter(Collider other)
     {
+        if (recentlyHit) return;
+
         if (other.gameObject.CompareTag("BodyJab"))
         {
-            if (isBlockingBody == true)
+            if (!isBlockingBody)
             {
-                //no damage
-            }
-            else
-            {
-                health -= 1; //switch to call to punch scripts damage
+                TakeDamage(1);
             }
         }
-        if (other.gameObject.CompareTag("HeadHook"))
+        else if (other.gameObject.CompareTag("HeadHook"))
         {
-            if (isBlockingHead)
+            if (!isBlockingHead)
             {
-                //no damage
-            }
-            else
-            {
-                health -= 3; //switch to call to punch scripts damage
+                TakeDamage(3);
             }
         }
         if (other.gameObject.CompareTag("BodyJab") && isInKOState == true || other.gameObject.CompareTag("HeadHook") && isInKOState == true)
@@ -142,8 +112,8 @@ public class Blocking : MonoBehaviour
 
     private IEnumerator KOTimer()
     {
-        isInKOState = true;
         animator.SetBool("isKO", true);
+        isInKOState = true;
         isBlockingBody = false;
         isBlockingHead = false;
         yield return new WaitForSeconds(5);
@@ -154,29 +124,47 @@ public class Blocking : MonoBehaviour
 
     private IEnumerator actionTaken()
     {
+        isBlockingHead = false;
+        isBlockingBody = false;
+        isInAction = false;
+        animator.SetBool("isBlockingBody", false);
+        animator.SetBool("isBlockingHead", false);
+        isInAction = true;
         switch (actionChosen)
         {
-            case 0:
+            case 0: // Block body
                 actionTimer = Random.Range(2, 7);
                 isBlockingBody = true;
                 animator.SetBool("isBlockingBody", true);
-                isInAction = true;
                 yield return new WaitForSeconds(actionTimer);
                 isBlockingBody = false;
                 animator.SetBool("isBlockingBody", false);
-                isInAction = false;
                 break;
-            case 1:
+
+            case 1: // Block head
                 actionTimer = Random.Range(2, 7);
                 isBlockingHead = true;
                 animator.SetBool("isBlockingHead", true);
-                isInAction = true;
                 yield return new WaitForSeconds(actionTimer);
                 isBlockingHead = false;
                 animator.SetBool("isBlockingHead", false);
-                isInAction = false;
                 break;
-
         }
+        yield return new WaitForSeconds(0.5f);
+        isInAction = false;
+
+    }
+
+    private IEnumerator DamageCooldown()
+    {
+        recentlyHit = true;
+        yield return new WaitForSeconds(hitCooldown);
+        recentlyHit = false;
+    }
+
+    private void TakeDamage(int amount)
+    {
+        health -= amount;
+        StartCoroutine(DamageCooldown());
     }
 }

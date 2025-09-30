@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6e070882e872ad048a321b422aee41d0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6e070882e872ad048a321b422aee41d0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6e070882e872ad048a321b422aee41d0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6e070882e872ad048a321b422aee41d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.863501
       objectReference: {fileID: 0}
@@ -93,10 +105,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.91920257
   m_Height: 4.5766687
   m_Direction: 1
-  m_Center: {x: 0, y: 1.7883344, z: 0}
+  m_Center: {x: 0.017541647, y: 1.7883343, z: 0}
 --- !u!114 &7341725988781909995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +128,7 @@ MonoBehaviour:
   actionChosen: 0
   actionTimer: 0
   isInAction: 0
+  hitCooldown: 1
   enemy: {fileID: 4291400348246813949}
   Player: {fileID: 0}
   distanceKeptAway: 3
