@@ -1346,7 +1346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a2ff1ead8d3734d963dd76cdaa1420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
+  playerHealth: {fileID: 7728868686681551041}
   heartImage: {fileID: 448458698}
   heartSprites:
   - {fileID: 21300000, guid: 46ff9d510b930714f9b7a709111523d6, type: 3}
@@ -3162,6 +3162,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+--- !u!114 &7728868686681551041 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6304140026036379539, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+  m_PrefabInstance: {fileID: 7728868686681551040}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4159be16711d05e419faa4eea783f94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
