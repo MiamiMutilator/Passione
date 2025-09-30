@@ -20,6 +20,9 @@ public class Blocking : MonoBehaviour
     private Animator animator;
     private Coroutine currentAction;
 
+    //vfx
+    public GameObject stunnedVFX;
+
     //Enemy AI
     public NavMeshAgent enemy;
     public Transform Player;
@@ -47,8 +50,6 @@ public class Blocking : MonoBehaviour
         animator.SetBool("isBlockingHead", isBlockingHead);
         animator.SetBool("isKO", isInKOState);
 
-
-
         //pathing and AI
         float distance = Vector3.Distance(Player.position, transform.position);
         if (!isInKOState)
@@ -60,6 +61,14 @@ public class Blocking : MonoBehaviour
             }
             else if (distance > fightingDistance)
             {
+                if (isBlockingBody || isBlockingHead)
+                {
+                    isBlockingBody = false;
+                    isBlockingHead = false;
+                    isInAction = false;
+                    animator.SetBool("isBlockingBody", false);
+                    animator.SetBool("isBlockingHead", false);
+                }
                 enemy.SetDestination(Player.position);
                 animator.SetBool("isWalking", true);
                 
@@ -80,8 +89,6 @@ public class Blocking : MonoBehaviour
                 }
             }
         }
-
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -112,6 +119,7 @@ public class Blocking : MonoBehaviour
 
     private IEnumerator KOTimer()
     {
+        stunnedVFX.SetActive(true);
         animator.SetBool("isKO", true);
         isInKOState = true;
         isBlockingBody = false;
@@ -120,6 +128,7 @@ public class Blocking : MonoBehaviour
         health = 5;
         isInKOState = false;
         animator.SetBool("isKO", false);
+        stunnedVFX.SetActive(false);
     }
 
     private IEnumerator actionTaken()
