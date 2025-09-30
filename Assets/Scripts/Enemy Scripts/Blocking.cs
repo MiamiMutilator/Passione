@@ -30,11 +30,15 @@ public class Blocking : MonoBehaviour
     public float fightingDistance = 3f; // kept at distanceKeptAway + 1
     public float awarenessDistance = 5f;
 
+    //rage
+    public Rage playerRage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        playerRage = FindObjectOfType<Rage>();
     }
 
     // Update is called once per frame
@@ -97,14 +101,14 @@ public class Blocking : MonoBehaviour
 
         if (other.gameObject.CompareTag("BodyJab"))
         {
-            if (!isBlockingBody)
+            if (!isBlockingHead || (playerRage.enraged))
             {
                 TakeDamage(1);
             }
         }
         else if (other.gameObject.CompareTag("HeadHook"))
         {
-            if (!isBlockingHead)
+            if (!isBlockingHead || (playerRage.enraged))
             {
                 TakeDamage(3);
             }
