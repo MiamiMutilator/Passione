@@ -11,6 +11,6 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("FPSTest");
+        SceneManager.LoadScene("Prototype Level");
     }
 }
