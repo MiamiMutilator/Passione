@@ -30,7 +30,7 @@ public class HeartUI : MonoBehaviour
     {
         if (playerHealth == null) return;
 
-        // Scale health (0..maxHealth) into 0..4
+        // Scale health (0 maxHealth) into 0 4
         int index = Mathf.RoundToInt(
             (playerHealth.Health / (float)playerHealth.maxHealth) * (heartSprites.Length - 1)
         );
