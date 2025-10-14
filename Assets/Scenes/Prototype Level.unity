@@ -3043,6 +3043,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3998035177492620065, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: passionSlider
+      value: 
+      objectReference: {fileID: 1438556393}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
