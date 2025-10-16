@@ -26,12 +26,12 @@ public class PlayerController : MonoBehaviour
     [Tooltip("What the time scale gets set to when Time Slow activates. 1 is normal speed, 0 is paused")]
     public float slowedTimeScale = 0.5f;
     public InputActionReference dashAction;
+    public float TimeScale { get; private set; }
 
     private IActivateable dash;
     private TimeSlow timeSlow;
     private bool dashing = false; // Dash is currently active
     private float timer = 0f;
-    private float trueTimeScale;
 
     // TO REMOVE
     #region TEMPORARY
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         if (toggleActive)
         {
-            slowTimer += Time.deltaTime * trueTimeScale;
+            slowTimer += Time.deltaTime * TimeScale;
             CheckTime<float>(slowTimer);
 
             if (slowTimer > timeSlowDuration)
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         dash = new Dash(this, characterController, dashVelocity);
         timeSlow = new TimeSlow(slowedTimeScale);
-        trueTimeScale = Time.timeScale;
+        TimeScale = Time.timeScale;
 
         if (!gameObject.CompareTag("Player")) Debug.LogWarning($"Give the Player tag to {gameObject.name}!");
     }
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // If Time Slow is activated, counteract it with the reciprocal of the slowedTimeScale
-    void UpdateTimeScale() => trueTimeScale = timeSlow.Activated ? 1 / slowedTimeScale : Time.timeScale; 
+    void UpdateTimeScale() => TimeScale = timeSlow.Activated ? 1 / slowedTimeScale : Time.timeScale; 
     
 
     void ReadMoveInput()
@@ -132,12 +132,12 @@ public class PlayerController : MonoBehaviour
         moveDirection = Quaternion.Euler(0.0f, playerCamera.transform.eulerAngles.y, 0.0f) * new Vector3(moveInput.x, 0.0f, moveInput.y);
         var targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime * trueTimeScale);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime * TimeScale);
     }
 
     private void ApplyMovement()
     {
-        characterController.Move(moveSpeed * Time.deltaTime * trueTimeScale * moveDirection);
+        characterController.Move(moveSpeed * Time.deltaTime * TimeScale * moveDirection);
         lastDirection = moveDirection;
     }
 
@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
         if (dashing && timer < dashDuration)
         {
             // Smoothly dash for the duration
-            timer += Time.deltaTime * trueTimeScale;
+            timer += Time.deltaTime * TimeScale;
             dash.OnActivation();
         }
         else if (dashing)
