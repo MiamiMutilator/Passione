@@ -40,9 +40,11 @@ public class PunchHandler : MonoBehaviour
     public Animator armAnimator;
 
     private bool isPunching;
+    private float baseAnimatorSpeed;
     [HideInInspector] public int combo = 0;
     private bool timerActive;
     private float currentComboTimer;
+    private PlayerController controller;
     
     #endregion
 
@@ -59,6 +61,8 @@ public class PunchHandler : MonoBehaviour
 
     private void Start()
     {
+        controller = GetComponent<PlayerController>();
+
         leftJab = new LeftJab(gameObject, leftDamage, armAnimator);
         rightHook = new RightHook(gameObject, rightDamage, armAnimator);
 
@@ -66,26 +70,17 @@ public class PunchHandler : MonoBehaviour
         rightHitbox.enabled = false;
 
         if (!armAnimator) Debug.LogWarning("Arm Animator is null");
-        else armAnimator.SetBool("isIdle", true);
+        else
+        {
+            armAnimator.SetBool("isIdle", true);
+            baseAnimatorSpeed = 1;
+        }
     }
 
     private void Update()
     {
-        armAnimator.SetBool("isIdle", !isPunching);
-
-        if (!isPunching && leftJabAction.action.triggered)
-        {
-            leftJab.OnActivation(); // Punch script handles animation and successful hit logic
-            isPunching = true;
-            StartCoroutine(Punch(leftHitbox, leftHitboxDuration, true)); // Handle Hitbox activation
-        }
-
-        if (!isPunching && rightHookAction.action.triggered)
-        {
-            rightHook.OnActivation(); // Punch script handles animation and successful hit logic
-            isPunching = true;
-            StartCoroutine(Punch(rightHitbox, rightHitboxDuration, false)); // Handle Hitbox activation
-        }
+        AdjustAnimator();
+        CheckPunching();
     }
 
     IEnumerator Punch(Collider hitbox, float duration, bool isLeft)
@@ -99,7 +94,7 @@ public class PunchHandler : MonoBehaviour
             StartCoroutine(ComboTimer());
         }
 
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(duration / controller.TimeScale);
 
         hitbox.enabled = false;
         isPunching = false;
@@ -110,12 +105,37 @@ public class PunchHandler : MonoBehaviour
         timerActive = true;
         while ((currentComboTimer < comboResetTimer) && timerActive)
         {
-            currentComboTimer += Time.deltaTime;
+            currentComboTimer += Time.deltaTime * controller.TimeScale;
             yield return null;
         }
 
         timerActive = false;
         ResetCombo();
+    }
+
+    void AdjustAnimator()
+    {
+        if (armAnimator == null) return;
+
+        armAnimator.SetBool("isIdle", !isPunching);
+        armAnimator.speed = baseAnimatorSpeed * controller.TimeScale;
+    }
+
+    void CheckPunching()
+    {
+        if (!isPunching && leftJabAction.action.triggered)
+        {
+            leftJab.OnActivation(); // Punch script handles animation and successful hit logic
+            isPunching = true;
+            StartCoroutine(Punch(leftHitbox, leftHitboxDuration, true)); // Handle Hitbox activation
+        }
+
+        if (!isPunching && rightHookAction.action.triggered)
+        {
+            rightHook.OnActivation(); // Punch script handles animation and successful hit logic
+            isPunching = true;
+            StartCoroutine(Punch(rightHitbox, rightHitboxDuration, false)); // Handle Hitbox activation
+        }
     }
 
     void InitializeHitbox(bool isLeft)
