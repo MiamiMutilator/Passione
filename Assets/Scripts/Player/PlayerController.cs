@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("What the time scale gets set to when Time Slow activates. 1 is normal speed, 0 is paused")]
     public float slowedTimeScale = 0.5f;
     public InputActionReference dashAction;
-    public float TimeScale { get; private set; }
+    public float TimeScale { get; set; }
 
     private IActivateable dash;
     private TimeSlow timeSlow;
@@ -86,12 +86,14 @@ public class PlayerController : MonoBehaviour
     {
         moveAction.action.Enable();
         dashAction.action.Enable();
+
         toggle.action.Enable(); // To Remove
     }
     private void OnDisable()
     {
         moveAction.action.Disable();
         dashAction.action.Disable();
+
         toggle.action.Disable(); // To Remove
     }
 
@@ -107,7 +109,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        ToggleTimeSlow();
+        ToggleTimeSlow(); // Testing Purposes
+
         UpdateTimeScale();
         ReadMoveInput();
         ApplyRotation();

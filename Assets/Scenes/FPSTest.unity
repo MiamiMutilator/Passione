@@ -247,7 +247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &81832342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2738,7 +2738,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584669535}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db3046c8483a51247960ea86cfee9110, type: 3}
   m_Name: 
@@ -3166,6 +3166,10 @@ PrefabInstance:
       propertyPath: passionSlider
       value: 
       objectReference: {fileID: 1625725974}
+    - target: {fileID: 8033357727186760322, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: toggle
+      value: 
+      objectReference: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

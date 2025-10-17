@@ -61,6 +61,8 @@ public class PunchHandler : MonoBehaviour
 
     private void Start()
     {
+        controller = GetComponent<PlayerController>();
+
         leftJab = new LeftJab(gameObject, leftDamage, armAnimator);
         rightHook = new RightHook(gameObject, rightDamage, armAnimator);
 
@@ -71,7 +73,7 @@ public class PunchHandler : MonoBehaviour
         else
         {
             armAnimator.SetBool("isIdle", true);
-            baseAnimatorSpeed = armAnimator.speed;
+            baseAnimatorSpeed = 1;
         }
     }
 
@@ -113,6 +115,8 @@ public class PunchHandler : MonoBehaviour
 
     void AdjustAnimator()
     {
+        if (armAnimator == null) return;
+
         armAnimator.SetBool("isIdle", !isPunching);
         armAnimator.speed = baseAnimatorSpeed * controller.TimeScale;
     }
