@@ -45,13 +45,13 @@ public class PlayerController : MonoBehaviour
         if (toggleActive)
         {
             slowTimer += Time.deltaTime * TimeScale;
-            CheckTime<float>(slowTimer);
+            //CheckTime<float>(slowTimer);
 
             if (slowTimer > timeSlowDuration)
             {
                 DeactivateTimeSlow();
                 toggleActive = false;
-                print("Timer lasted " + (Time.time - startSlowTime) + " seconds compared to the timeSlowDuration " + timeSlowDuration);
+                //print("Timer lasted " + (Time.time - startSlowTime) + " seconds compared to the timeSlowDuration " + timeSlowDuration);
             }
         }
 
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!toggleActive)
             {
-                Debug.Log("Time Slow Activated");
+                //Debug.Log("Time Slow Activated");
                 toggleActive = true;
                 ActivateTimeSlow();
                 slowTimer = 0;
