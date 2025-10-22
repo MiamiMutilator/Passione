@@ -261,6 +261,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   weakpointTag: 
+  blockedTag: 
   baseKnockback: {x: 0, y: 0, z: 0}
 --- !u!1 &2456276787219158868
 GameObject:
@@ -620,11 +621,13 @@ MonoBehaviour:
   leftHitbox: {fileID: 8572402774751774585}
   leftHitboxDuration: 1
   leftWeakpointTag: EnemyBody
+  leftBlockTag: BodyBlock
   rightHookAction: {fileID: -7803995681073658105, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rightDamage: 3
   rightHitbox: {fileID: 2188372657333629929}
   rightHitboxDuration: 1
   rightWeakpointTag: EnemyHead
+  rightBlockTag: HeadBlock
   weakpointMult: 2
   targetLayer:
     serializedVersion: 2
@@ -734,6 +737,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   weakpointTag: 
+  blockedTag: 
   baseKnockback: {x: 0, y: 0, z: 0}
 --- !u!1001 &7355432325084361735
 PrefabInstance:

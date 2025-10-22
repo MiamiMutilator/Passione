@@ -6,6 +6,7 @@ public class PunchHitbox : MonoBehaviour
     [HideInInspector] public float weakpointMult;
     [HideInInspector] public LayerMask targetLayer;
     [HideInInspector] public string weakpointTag;
+    [HideInInspector] public string blockedTag;
     [HideInInspector] public IAttack attack;
     [HideInInspector] public Vector3 baseKnockback;
 
@@ -20,6 +21,13 @@ public class PunchHitbox : MonoBehaviour
             // If damageable, check if it is a valid target
             if (hurtbox.targetable && ((targetLayer & 1 << hurtbox.gameObject.layer) == 1 << hurtbox.gameObject.layer))
             {
+                // If hitbox collided with block, disable hitbox
+                if (hurtbox.gameObject.CompareTag(blockedTag))
+                {
+                    GetComponent<Collider>().enabled = false;
+                    return;
+                }
+
                 // If hitbox collided with designated weakpoint (i.e Left Jab colliding with body) deal more damage and increased knockback
                 if (hurtbox.gameObject.CompareTag(weakpointTag))
                 {

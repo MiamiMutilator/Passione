@@ -18,6 +18,7 @@ public class PunchHandler : MonoBehaviour
     public float leftHitboxDuration = 1f; // how long the hitbox lasts after activation
     [StringPicker(options = new string[] { "EnemyHead", "EnemyBody" })]
     public string leftWeakpointTag; // Tag of the weakpoint hurtbox
+    public string leftBlockTag; // Tag of the enemy blocking hurtbox
     private Punch leftJab;
     #endregion
     #region Right Arm
@@ -28,6 +29,7 @@ public class PunchHandler : MonoBehaviour
     public float rightHitboxDuration = 1f; // how long the hitbox lasts after activation
     [StringPicker(options = new string[] { "EnemyHead", "EnemyBody" })]
     public string rightWeakpointTag; // Tag of the weakpoint hurtbox
+    public string rightBlockTag; // Tag of the enemy blocking hurtbox
     private Punch rightHook;
     #endregion
     [Header("General")]
@@ -147,6 +149,7 @@ public class PunchHandler : MonoBehaviour
             hitboxScript.weakpointMult = weakpointMult;
             hitboxScript.targetLayer = targetLayer;
             hitboxScript.weakpointTag = leftWeakpointTag;
+            hitboxScript.blockedTag = leftBlockTag;
             hitboxScript.baseKnockback = initialKnockback;
             hitboxScript.attack = leftJab;
         }
@@ -157,6 +160,7 @@ public class PunchHandler : MonoBehaviour
             hitboxScript.weakpointMult = weakpointMult;
             hitboxScript.targetLayer = targetLayer;
             hitboxScript.weakpointTag = rightWeakpointTag;
+            hitboxScript.blockedTag = rightBlockTag;
             hitboxScript.baseKnockback = initialKnockback;
             hitboxScript.attack = rightHook;
         }
