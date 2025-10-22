@@ -47,7 +47,7 @@ public class Blocking : MonoBehaviour
     void Update()
     {
         //if health == 0, KO state bool is activated and KO coroutine is activated
-        if (health <= 0)
+        if (health <= 0 && !isInKOState)
         {
             StartCoroutine(KOTimer());
         }
