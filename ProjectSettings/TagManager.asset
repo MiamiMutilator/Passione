@@ -9,6 +9,8 @@ TagManager:
   - EnemyBody
   - BodyJab
   - HeadHook
+  - BodyBlock
+  - HeadBlock
   layers:
   - Default
   - TransparentFX

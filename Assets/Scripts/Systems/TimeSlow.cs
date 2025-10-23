@@ -6,30 +6,28 @@ using UnityEngine;
 public class TimeSlow : IActivateable
 {
     private readonly float slowedTimeScale;
-    private readonly float duration;
 
-    private bool activated;
+    public bool Activated { get; private set; }
 
-    public TimeSlow(float slowedTimeScale, float duration)
+    public TimeSlow(float slowedTimeScale)
     {
-        this.duration = duration;
         this.slowedTimeScale = slowedTimeScale;
     }
 
     public void OnActivation()
     {
         Debug.Log("Time Slow activated");
-        if (!activated)
+        if (!Activated)
         {
             Time.timeScale = slowedTimeScale;
-            activated = true;
+            Activated = true;
         }
     }
 
     public void Deactivate()
     {
         Debug.Log("Time Slow deactivated");
-        activated = false;
+        Activated = false;
         Time.timeScale = 1;
     }
 }

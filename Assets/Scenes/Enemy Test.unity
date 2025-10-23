@@ -557,6 +557,14 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 976975449}
+    - target: {fileID: 7341725988781909995, guid: 93059703207a7cd41b14c440200644f9, type: 3}
+      propertyPath: distanceKeptAway
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341725988781909995, guid: 93059703207a7cd41b14c440200644f9, type: 3}
+      propertyPath: fightingDistance
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
