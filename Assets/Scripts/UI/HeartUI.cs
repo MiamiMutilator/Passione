@@ -21,7 +21,7 @@ public class HeartUI : MonoBehaviour
     private void Start()
     {
         if (playerHealth == null)
-            playerHealth = FindObjectOfType<PlayerHealth>();
+            playerHealth = FindFirstObjectByType<PlayerHealth>();
 
         ForceRefresh();
     }

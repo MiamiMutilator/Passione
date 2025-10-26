@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class DamageableCharacter : MonoBehaviour, IDamageable, IKnockback
 {
@@ -25,7 +20,7 @@ public class DamageableCharacter : MonoBehaviour, IDamageable, IKnockback
 
             if (health <= 0 && Targetable)
             {
-                targetable = false;
+                depleted = true;
                 health = 0;
                 Debug.Log(gameObject.name + " health depleted.");
             }
@@ -40,9 +35,9 @@ public class DamageableCharacter : MonoBehaviour, IDamageable, IKnockback
     public int maxHealth = 10;
     public int health = 10;
     public bool targetable = true;
-    public UnityEvent OnDestroyEvents;
 
     private Rigidbody rb;
+    protected bool depleted = false;
 
     public virtual void Start()
     {
@@ -55,7 +50,10 @@ public class DamageableCharacter : MonoBehaviour, IDamageable, IKnockback
     public virtual void OnHit(IAttack source, int damage)
     {
         Health -= damage;
-        Debug.Log(gameObject.name + " took " + damage + " damage from " + source.Originator + ". " + health + " health remaining.");
+
+        if (source != null) Debug.Log(gameObject.name + " took " + damage + " damage from " + source.Originator + ". " + health + " health remaining.");
+        else Debug.Log(gameObject.name + " took " + damage + " damage. " + health + " health remaining.");
+
     }
 
     public virtual void OnHitWithKnockback(int damage, Vector3 knockback)

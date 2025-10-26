@@ -32,7 +32,7 @@ public class RangedEnemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerRage = FindObjectOfType<Rage>();
+        playerRage = FindFirstObjectByType<Rage>();
     }
 
     // Update is called once per frame
