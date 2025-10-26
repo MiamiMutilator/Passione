@@ -16,7 +16,8 @@ public class PunchHitbox : MonoBehaviour
 
     private void Awake()
     {
-        rage = GetComponent<Rage>();
+        rage = GetComponentInParent<Rage>();
+        if (rage == null) Debug.LogError("Rage Component not found");
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -35,9 +36,10 @@ public class PunchHitbox : MonoBehaviour
             if (damageable.targetable && ((targetLayer & 1 << hurtbox.gameObject.layer) == 1 << hurtbox.gameObject.layer))
             {
                 // If hitbox collided with block, disable hitbox, unless enraged
-                if (!rage.enraged && hurtbox.gameObject.CompareTag(blockedTag))
+                if (rage && !rage.enraged && hurtbox.gameObject.CompareTag(blockedTag))
                 {
                     GetComponent<Collider>().enabled = false;
+                    Debug.Log($"{gameObject.name} blocked by {blockedTag}");
                     return;
                 }
 

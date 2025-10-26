@@ -50,7 +50,10 @@ public class DamageableCharacter : MonoBehaviour, IDamageable, IKnockback
     public virtual void OnHit(IAttack source, int damage)
     {
         Health -= damage;
-        Debug.Log(gameObject.name + " took " + damage + " damage from " + source.Originator + ". " + health + " health remaining.");
+
+        if (source != null) Debug.Log(gameObject.name + " took " + damage + " damage from " + source.Originator + ". " + health + " health remaining.");
+        else Debug.Log(gameObject.name + " took " + damage + " damage. " + health + " health remaining.");
+
     }
 
     public virtual void OnHitWithKnockback(int damage, Vector3 knockback)

@@ -37,6 +37,9 @@ public class Blocking : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         healthComponent = GetComponent<EnemyHealth>();
+
+        headBlock.enabled = false;
+        bodyBlock.enabled = false;
     }
 
     // Update is called once per frame
