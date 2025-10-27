@@ -573,6 +573,14 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 976975449}
+    - target: {fileID: 7122734025875839033, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
+      propertyPath: distanceKeptAway
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122734025875839033, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
+      propertyPath: fightingDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7633525573968415836, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
       propertyPath: m_Name
       value: RangedEnemy

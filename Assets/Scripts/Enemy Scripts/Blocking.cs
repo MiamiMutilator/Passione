@@ -186,6 +186,12 @@ public class Blocking : MonoBehaviour
                 headBlock.enabled = false;
                 animator.SetBool("isBlockingHead", false);
                 break;
+            //case 2: //punch
+            //    Debug.Log("Punched");
+            //    actionTimer = 2;
+            //    yield return new WaitForSeconds(actionTimer);
+            //    Debug.Log("Finished Punching");
+            //    break;
         }
         yield return new WaitForSeconds(0.5f);
         isInAction = false;

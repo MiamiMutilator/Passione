@@ -165,15 +165,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInKOState: 0
   health: 5
-  actionChosen: 0
   actionTimer: 0
   isInAction: 0
   hitCooldown: 1
   stunnedVFX: {fileID: 3842728241893787842}
   enemy: {fileID: 7794696005016998009}
   Player: {fileID: 0}
-  distanceKeptAway: 5
-  fightingDistance: 10
+  distanceKeptAway: 12
+  fightingDistance: 15
   awarenessDistance: 15
   playerRage: {fileID: 0}
 --- !u!1001 &2881824263363553686
