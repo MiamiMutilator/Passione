@@ -39,7 +39,7 @@ public class PunchHitbox : MonoBehaviour
                 if (rage && !rage.enraged && hurtbox.gameObject.CompareTag(blockedTag))
                 {
                     GetComponent<Collider>().enabled = false;
-                    Debug.Log($"{gameObject.name} blocked by {blockedTag}");
+                    Debug.Log($"{gameObject.name} blocked by {blockedTag}. Punch Collider: {GetComponent<Collider>().enabled}");
                     return;
                 }
 
