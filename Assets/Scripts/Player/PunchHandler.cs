@@ -58,7 +58,7 @@ public class PunchHandler : MonoBehaviour
     private void OnDisable()
     {
         leftJabAction.action.Disable();
-        rightHookAction.action.Enable();
+        rightHookAction.action.Disable();
     }
 
     private void Start()
