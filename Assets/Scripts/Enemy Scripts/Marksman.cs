@@ -55,6 +55,7 @@ public class Marksman : EnemyHealth
     {
         currentAmmo--;
 
+        Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.red, 1f);
         if (Physics.Raycast(firePoint.position, pathing.player.position - firePoint.position, out RaycastHit hit, shotRange, targetLayer))
         {
             if (hit.transform.gameObject.TryGetComponent<IDamageable>(out var damageable))

@@ -529,36 +529,90 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3842728241893787842, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7122734025875839033, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 976975449}
-    - target: {fileID: 7122734025875839033, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
-      propertyPath: distanceKeptAway
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122734025875839033, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
-      propertyPath: fightingDistance
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 7633525573968415836, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
       propertyPath: m_Name
-      value: RangedEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7633525573968415836, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: Marksman
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 3339963963741309823, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
+    - {fileID: 7122734025875839033, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7633525573968415836, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 1579977063}
+    - targetCorrespondingSourceObject: {fileID: 7633525573968415836, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 1579977062}
   m_SourcePrefab: {fileID: 100100000, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
+--- !u!1 &1579977058 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7633525573968415836, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
+  m_PrefabInstance: {fileID: 1579977057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1579977059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3842728241893787842, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
+  m_PrefabInstance: {fileID: 1579977057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1579977060 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 7794696005016998009, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
+  m_PrefabInstance: {fileID: 1579977057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1579977061 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2030952867584053955, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
+  m_PrefabInstance: {fileID: 1579977057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1579977062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579977058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd26b7f8d12b4894d91a40735c1a6982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 1579977060}
+  player: {fileID: 976975449}
+  distanceKeptAway: 2
+  awarenessDistance: 5
+  speed: 5
+  isRanged: 1
+  state: 0
+--- !u!114 &1579977063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579977058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3619604ee4e9a47b3c31cae14beb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  health: 5
+  targetable: 1
+  koStateTime: 5
+  hitCooldown: 1
+  healthRecoveryDivisor: 1
+  stunnedVFX: {fileID: 1579977059}
+  isInKOState: 0
+  damage: 2
+  maxAmmo: 6
+  shotRange: 30
+  shotCooldown: 1
+  firePoint: {fileID: 1579977061}
 --- !u!1001 &73706588669735072
 PrefabInstance:
   m_ObjectHideFlags: 0
