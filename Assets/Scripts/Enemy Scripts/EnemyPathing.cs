@@ -6,7 +6,7 @@ public class EnemyPathing : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public float distanceKeptAway = 2f;
-    private float fightingDistance = 3f; // kept at distanceKeptAway + 1
+    public float fightingDistance = 3f;
     public float awarenessDistance = 5f;
     public float speed;
     public bool isRanged;
@@ -15,12 +15,12 @@ public class EnemyPathing : MonoBehaviour
 
     private void Start()
     {
-        fightingDistance = distanceKeptAway + 1;
         agent.speed = speed;
     }
 
     void Update()
     {
+        //Debug.Log(state.ToString());
         Pathing();
     }
 
@@ -47,10 +47,14 @@ public class EnemyPathing : MonoBehaviour
             agent.SetDestination(retreatPosition);
             state = EnemyPathingState.Retreating;
         }
-        else
+        else if (isRanged && distance < fightingDistance)
         {
             agent.ResetPath();
             state = EnemyPathingState.Attacking;
+        }
+        else
+        {
+            agent.ResetPath();
         }
     }
 }

@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 6250713594248757371}
   - component: {fileID: 6526678933069189547}
   - component: {fileID: 7794696005016998009}
-  - component: {fileID: 7122734025875839033}
+  - component: {fileID: 3807832441268823720}
+  - component: {fileID: 3992635835835464954}
   - component: {fileID: 8947509537185619422}
   m_Layer: 7
   m_Name: RangedEnemy
@@ -136,7 +137,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7122734025875839033
+--- !u!114 &3807832441268823720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,10 +146,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7633525573968415836}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 159494358d22a4442a0d7e5be2362afb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b3619604ee4e9a47b3c31cae14beb07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 5
   health: 5
   targetable: 1
   koStateTime: 5
@@ -156,13 +157,31 @@ MonoBehaviour:
   healthRecoveryDivisor: 1
   stunnedVFX: {fileID: 3842728241893787842}
   isInKOState: 0
-  actionTimer: 0
-  isInAction: 0
-  enemy: {fileID: 7794696005016998009}
-  Player: {fileID: 0}
-  distanceKeptAway: 12
-  fightingDistance: 15
-  awarenessDistance: 15
+  damage: 2
+  maxAmmo: 6
+  shotRange: 30
+  shotCooldown: 1
+  firePoint: {fileID: 2030952867584053955}
+--- !u!114 &3992635835835464954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7633525573968415836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd26b7f8d12b4894d91a40735c1a6982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 7794696005016998009}
+  player: {fileID: 0}
+  distanceKeptAway: 2
+  fightingDistance: 4
+  awarenessDistance: 5
+  speed: 5
+  isRanged: 1
+  state: 0
 --- !u!54 &8947509537185619422
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -47,6 +47,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public void OnHit(IAttack source, int damage)
     {
         Health -= damage;
-        Debug.Log(gameObject.name + " took " + damage + " damage from " + source.Originator + ". " + health + " health remaining.");
+
+        if (source != null) Debug.Log(gameObject.name + " took " + damage + " damage from " + source.Originator + ". " + health + " health remaining.");
+        else Debug.Log(gameObject.name + " took " + damage + " damage. " + health + " health remaining.");
     }
 }

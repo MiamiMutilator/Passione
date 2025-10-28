@@ -32,7 +32,7 @@ public class Marksman : EnemyHealth
         base.Start();
         pathing = GetComponent<EnemyPathing>();
         currentAmmo = maxAmmo;
-        targetLayer = ~LayerMask.GetMask("Player"); // ignore all layers except for Player
+        targetLayer = LayerMask.GetMask("Player"); // ignore all layers except for Player
     }
 
     public override void Update()
@@ -55,13 +55,19 @@ public class Marksman : EnemyHealth
     {
         currentAmmo--;
 
-        Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.red, 1f);
+        
         if (Physics.Raycast(firePoint.position, pathing.player.position - firePoint.position, out RaycastHit hit, shotRange, targetLayer))
         {
+            Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.green, 0.5f);
             if (hit.transform.gameObject.TryGetComponent<IDamageable>(out var damageable))
             {
                 damageable.OnHit(null, damage);
             }
+        }
+        else
+        {
+            if(hit.transform != null) Debug.Log("Shot hit " + hit.transform.gameObject.name);
+            Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.red, 0.5f);
         }
     }
 
