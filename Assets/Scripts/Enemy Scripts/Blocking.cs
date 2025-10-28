@@ -78,15 +78,15 @@ public class Blocking : MonoBehaviour
                 animator.SetBool("isWalking", true);
                 
             }
-            //else if (distance < distanceKeptAway) //for ranged enemy
-            //{
-            //    Vector3 directionAway = (transform.position - Player.position).normalized;
+            else if (distance < distanceKeptAway) //for ranged enemy
+            {
+                Vector3 directionAway = (transform.position - Player.position).normalized;
 
-            //    Vector3 retreatPosition = transform.position + directionAway * (fightingDistance - distance);
+                Vector3 retreatPosition = transform.position + directionAway * (fightingDistance - distance);
 
-            //    enemy.SetDestination(retreatPosition);
-            //    animator.SetBool("isWalking", true);
-            //}
+                enemy.SetDestination(retreatPosition);
+                animator.SetBool("isWalking", true);
+            }
             else 
             {
                 enemy.ResetPath();
@@ -103,7 +103,12 @@ public class Blocking : MonoBehaviour
                 }
             }
         }
-        Vector3 direction = Player.position - transform.position; //when enemy is blocking
+        else
+        {
+            animator.SetBool("isBlockingBody", false);
+            animator.SetBool("isBlockingHead", false);
+        }
+            Vector3 direction = Player.position - transform.position; //when enemy is blocking
         direction.y = 0; 
 
         if (direction != Vector3.zero)
