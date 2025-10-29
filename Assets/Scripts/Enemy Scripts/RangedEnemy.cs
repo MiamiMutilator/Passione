@@ -2,23 +2,8 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 
-public class RangedEnemy : MonoBehaviour
+public class RangedEnemy : EnemyHealth
 {
-    public bool isInKOState;
-    public int health = 5;
-
-    public int actionTimer;
-    public bool isInAction;
-
-    private bool recentlyHit = false;
-    public float hitCooldown = 1f;
-
-
-    private Coroutine currentAction;
-
-    //vfx
-    public GameObject stunnedVFX;
-
     //Enemy AI
     public NavMeshAgent enemy;
     public Transform Player;
@@ -26,25 +11,14 @@ public class RangedEnemy : MonoBehaviour
     public float fightingDistance = 3f; // kept at distanceKeptAway + 1
     public float awarenessDistance = 5f;
 
-    //rage
-    public Rage playerRage;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Update()
     {
-        playerRage = FindFirstObjectByType<Rage>();
+        base.Update();
+        Pathing();
     }
 
-    // Update is called once per frame
-    void Update()
+    void Pathing()
     {
-        //if health == 0, KO state bool is activated and KO coroutine is activated
-        if (health <= 0 && !isInKOState)
-        {
-            StartCoroutine(KOTimer());
-        }
-
-        //pathing and AI
         float distance = Vector3.Distance(Player.position, transform.position);
         if (!isInKOState)
         {
@@ -78,49 +52,5 @@ public class RangedEnemy : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (recentlyHit) return;
-
-        if (other.gameObject.CompareTag("BodyJab"))
-        {
-            TakeDamage(1);
-        }
-        else if (other.gameObject.CompareTag("HeadHook"))
-        {
-            TakeDamage(3);
-        }
-        if (other.gameObject.CompareTag("BodyJab") && isInKOState == true || other.gameObject.CompareTag("HeadHook") && isInKOState == true)
-        {
-            Destroy(gameObject);
-            //increased knockback punch done through the punch script if it collides with a KO'd enemy
-        }
-
-    }
-
-    private IEnumerator KOTimer()
-    {
-        stunnedVFX.SetActive(true);
-        isInKOState = true;
-        yield return new WaitForSeconds(5);
-        health = 5;
-        isInKOState = false;
-        stunnedVFX.SetActive(false);
-    }
-
-
-    private IEnumerator DamageCooldown()
-    {
-        recentlyHit = true;
-        yield return new WaitForSeconds(hitCooldown);
-        recentlyHit = false;
-    }
-
-    private void TakeDamage(int amount)
-    {
-        health -= amount;
-        StartCoroutine(DamageCooldown());
     }
 }

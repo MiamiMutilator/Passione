@@ -31,11 +31,11 @@ public class EnemyHealth : DamageableCharacter
         }
     }
 
-    public override void OnHit(IAttack source, int damage)
+    public override void OnHit(int damage)
     {
         if (!recentlyHit)
         {
-            base.OnHit(source, damage);
+            base.OnHit(damage);
             StartCoroutine(DamageCooldown());
         }
     }
@@ -45,7 +45,7 @@ public class EnemyHealth : DamageableCharacter
         // Enemy doesn't take knockback if they aren't in the KO state
         if (!isInKOState)
         {
-            OnHit(null, damage);
+            OnHit(damage);
         }
         else
         {

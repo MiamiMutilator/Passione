@@ -529,29 +529,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3842728241893787842, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122734025875839033, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
-      propertyPath: Player
+    - target: {fileID: 3992635835835464954, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
+      propertyPath: player
       value: 
       objectReference: {fileID: 976975449}
-    - target: {fileID: 7122734025875839033, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
-      propertyPath: distanceKeptAway
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7122734025875839033, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
-      propertyPath: fightingDistance
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 7633525573968415836, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
       propertyPath: m_Name
-      value: RangedEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7633525573968415836, guid: 58ccaf9dc96de1d4f988f0ae93ea1d1f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      value: Marksman
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

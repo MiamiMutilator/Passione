@@ -51,8 +51,13 @@ public class Blocking : MonoBehaviour
         //    StartCoroutine(KOTimer());
         //}
 
-        animator.SetBool("isBlockingBody", isBlockingBody);
-        animator.SetBool("isBlockingHead", isBlockingHead);
+        if (healthComponent.isInKOState)
+            SetBlockingAnimations(false);
+        else
+        {
+            animator.SetBool("isBlockingBody", isBlockingBody);
+            animator.SetBool("isBlockingHead", isBlockingHead);
+        }
         //animator.SetBool("isKO", isInKOState);
 
         //pathing and AI (probably move later)
@@ -71,22 +76,21 @@ public class Blocking : MonoBehaviour
                     isBlockingBody = false;
                     isBlockingHead = false;
                     isInAction = false;
-                    animator.SetBool("isBlockingBody", false);
-                    animator.SetBool("isBlockingHead", false);
+                    SetBlockingAnimations(false);
                 }
                 enemy.SetDestination(Player.position);
                 animator.SetBool("isWalking", true);
                 
             }
-            //else if (distance < distanceKeptAway) //for ranged enemy
-            //{
-            //    Vector3 directionAway = (transform.position - Player.position).normalized;
+            else if (distance < distanceKeptAway) //for ranged enemy
+            {
+                Vector3 directionAway = (transform.position - Player.position).normalized;
 
-            //    Vector3 retreatPosition = transform.position + directionAway * (fightingDistance - distance);
+                Vector3 retreatPosition = transform.position + directionAway * (fightingDistance - distance);
 
-            //    enemy.SetDestination(retreatPosition);
-            //    animator.SetBool("isWalking", true);
-            //}
+                enemy.SetDestination(retreatPosition);
+                animator.SetBool("isWalking", true);
+            }
             else 
             {
                 enemy.ResetPath();
@@ -102,6 +106,10 @@ public class Blocking : MonoBehaviour
                     currentAction = StartCoroutine(ActionTaken());
                 }
             }
+        }
+        else
+        {
+            SetBlockingAnimations(false);
         }
         Vector3 direction = Player.position - transform.position; //when enemy is blocking
         direction.y = 0; 
@@ -196,6 +204,12 @@ public class Blocking : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         isInAction = false;
 
+    }
+
+    void SetBlockingAnimations(bool boolean)
+    {
+        animator.SetBool("isBlockingHead", boolean);
+        animator.SetBool("isBlockingBody", boolean);
     }
     /*
     private IEnumerator DamageCooldown()
