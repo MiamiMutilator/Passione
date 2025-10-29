@@ -51,8 +51,13 @@ public class Blocking : MonoBehaviour
         //    StartCoroutine(KOTimer());
         //}
 
-        animator.SetBool("isBlockingBody", isBlockingBody);
-        animator.SetBool("isBlockingHead", isBlockingHead);
+        if (healthComponent.isInKOState)
+            SetBlockingAnimations(false);
+        else
+        {
+            animator.SetBool("isBlockingBody", isBlockingBody);
+            animator.SetBool("isBlockingHead", isBlockingHead);
+        }
         //animator.SetBool("isKO", isInKOState);
 
         //pathing and AI (probably move later)
@@ -71,8 +76,7 @@ public class Blocking : MonoBehaviour
                     isBlockingBody = false;
                     isBlockingHead = false;
                     isInAction = false;
-                    animator.SetBool("isBlockingBody", false);
-                    animator.SetBool("isBlockingHead", false);
+                    SetBlockingAnimations(false);
                 }
                 enemy.SetDestination(Player.position);
                 animator.SetBool("isWalking", true);
@@ -105,10 +109,9 @@ public class Blocking : MonoBehaviour
         }
         else
         {
-            animator.SetBool("isBlockingBody", false);
-            animator.SetBool("isBlockingHead", false);
+            SetBlockingAnimations(false);
         }
-            Vector3 direction = Player.position - transform.position; //when enemy is blocking
+        Vector3 direction = Player.position - transform.position; //when enemy is blocking
         direction.y = 0; 
 
         if (direction != Vector3.zero)
@@ -201,6 +204,12 @@ public class Blocking : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         isInAction = false;
 
+    }
+
+    void SetBlockingAnimations(bool boolean)
+    {
+        animator.SetBool("isBlockingHead", boolean);
+        animator.SetBool("isBlockingBody", boolean);
     }
     /*
     private IEnumerator DamageCooldown()

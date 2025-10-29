@@ -47,13 +47,11 @@ public class DamageableCharacter : MonoBehaviour, IDamageable, IKnockback
         if (!rb) Debug.LogWarning("Put Rigidbody on " + gameObject.name);
     }
 
-    public virtual void OnHit(IAttack source, int damage)
+    public virtual void OnHit(int damage)
     {
         Health -= damage;
 
-        if (source != null) Debug.Log(gameObject.name + " took " + damage + " damage from " + source.Originator + ". " + health + " health remaining.");
-        else Debug.Log(gameObject.name + " took " + damage + " damage. " + health + " health remaining.");
-
+        Debug.Log(gameObject.name + " took " + damage + " damage. " + health + " health remaining.");
     }
 
     public virtual void OnHitWithKnockback(int damage, Vector3 knockback)

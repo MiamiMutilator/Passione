@@ -16,32 +16,42 @@ public class Marksman : EnemyHealth
     Animations for standing and shooting, running, and reloading after firing 6 times would be relevant.
      */
 
-    public int damage = 2;
+    public int damage = 1;
     public int maxAmmo = 6;
     public float shotRange = 30f;
+    [Tooltip("The time between shots")]
     public float shotCooldown = 1f;
+    [Tooltip("How long it takes for the enemy to reload.")]
+    public float reloadTime = 2f;
+    [Tooltip("The minimum distance before the enemy can start to miss the player with its shots.")]
+    public float accuracyFalloffThreshold = 7f;
+    [Tooltip("Accuracy of a shot = 100 - (max[0, distance from player - falloff threshold] * falloff factor)")]
+    public float accuracyFalloffFactor = 4f;
     public Transform firePoint;
 
     private EnemyPathing pathing;
     private int currentAmmo;
     private bool currentlyFiring;
     private LayerMask targetLayer;
+    private bool isReloading;
 
     public override void Start()
     {
-        base.Start();
+        base.Start(); // Gets the Animator and Rigidbody
+
         pathing = GetComponent<EnemyPathing>();
         currentAmmo = maxAmmo;
-        targetLayer = LayerMask.GetMask("Player"); // ignore all layers except for Player
+        targetLayer = LayerMask.GetMask("Player"); // only hits the Player layer
     }
 
     public override void Update()
     {
-        base.Update();
+        base.Update(); // Handles KO state
 
-        if (pathing == null) return;
-        
-        if (pathing.state == EnemyPathingState.Attacking)
+        if (pathing == null || isReloading) return;
+
+        if (currentAmmo <= 0) StartCoroutine(Reload());
+        else if (pathing.state == EnemyPathingState.Attacking)
         {
             if (currentAmmo > 0 && !currentlyFiring)
             {
@@ -54,21 +64,53 @@ public class Marksman : EnemyHealth
     void Shoot()
     {
         currentAmmo--;
-
-        
+        // Cast a ray toward the player's position. If it hits an object with the Player layer, deal damage using the IDamageable component
         if (Physics.Raycast(firePoint.position, pathing.player.position - firePoint.position, out RaycastHit hit, shotRange, targetLayer))
         {
-            Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.green, 0.5f);
-            if (hit.transform.gameObject.TryGetComponent<IDamageable>(out var damageable))
+            // Calculate accuracy reduction based on distance from the player
+            float accuracy = 100 - (Mathf.Max(0, Vector3.Distance(pathing.player.position, transform.position) - accuracyFalloffThreshold) * accuracyFalloffFactor);
+            float chance = Random.Range(0, 100f);
+
+            if (accuracy != 0 && chance <= accuracy)
             {
-                damageable.OnHit(null, damage);
+                // Shot landed
+                if (hit.collider.gameObject == null) return;
+
+                var damageable = hit.collider.gameObject.GetComponentInParent<IDamageable>();
+                if (damageable != null)
+                {
+                    Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.green, 0.5f);
+                    //Debug.Log($"Shot successfully hit {hit.collider.gameObject.name} with {accuracy}% chance to hit and a roll of {chance}");
+                    damageable.OnHit(damage);
+                }
+                else
+                {
+                    Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.magenta, 0.5f);
+                    Debug.LogError("IDamageable not found on gameObject " + hit.collider.gameObject.name);
+                }
+            }
+            else
+            {
+                Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.yellow, 0.5f);
+                //Debug.Log($"Shot missed with {accuracy}% chance to hit and a roll of {chance}");
             }
         }
         else
         {
-            if(hit.transform != null) Debug.Log("Shot hit " + hit.transform.gameObject.name);
+            //if (hit.collider.gameObject != null) Debug.Log("Wrong target. Shot hit " + hit.collider.gameObject.name);
             Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.red, 0.5f);
         }
+    }
+
+    IEnumerator Reload()
+    {
+        isReloading = true;
+        Debug.Log("Reloading");
+
+        yield return new WaitForSeconds(reloadTime);
+
+        currentAmmo = maxAmmo;
+        isReloading = false;
     }
 
     IEnumerator ShotCooldown()

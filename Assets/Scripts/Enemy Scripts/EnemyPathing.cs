@@ -6,8 +6,8 @@ public class EnemyPathing : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public float distanceKeptAway = 2f;
-    public float fightingDistance = 3f;
-    public float awarenessDistance = 5f;
+    public float fightingDistance = 10f;
+    public float awarenessDistance = 10f;
     public float speed;
     public bool isRanged;
 

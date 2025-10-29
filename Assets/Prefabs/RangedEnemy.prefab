@@ -157,10 +157,13 @@ MonoBehaviour:
   healthRecoveryDivisor: 1
   stunnedVFX: {fileID: 3842728241893787842}
   isInKOState: 0
-  damage: 2
+  damage: 1
   maxAmmo: 6
   shotRange: 30
   shotCooldown: 1
+  reloadTime: 2
+  accuracyFalloffThreshold: 7
+  accuracyFalloffFactor: 4
   firePoint: {fileID: 2030952867584053955}
 --- !u!114 &3992635835835464954
 MonoBehaviour:
@@ -177,9 +180,9 @@ MonoBehaviour:
   agent: {fileID: 7794696005016998009}
   player: {fileID: 0}
   distanceKeptAway: 2
-  fightingDistance: 4
-  awarenessDistance: 5
-  speed: 5
+  fightingDistance: 20
+  awarenessDistance: 30
+  speed: 3
   isRanged: 1
   state: 0
 --- !u!54 &8947509537185619422
