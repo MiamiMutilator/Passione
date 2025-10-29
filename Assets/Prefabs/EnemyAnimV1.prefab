@@ -714,6 +714,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6e070882e872ad048a321b422aee41d0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1758633706487638072}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6e070882e872ad048a321b422aee41d0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5511422520831518270}
   m_SourcePrefab: {fileID: 100100000, guid: 6e070882e872ad048a321b422aee41d0, type: 3}
 --- !u!4 &1503426999032343629 stripped
 Transform:
@@ -764,11 +767,6 @@ MonoBehaviour:
   headBlock: {fileID: 2845342675293986766}
   isBlockingBody: 0
   bodyBlock: {fileID: 4911207785783260378}
-  enemy: {fileID: 4291400348246813949}
-  Player: {fileID: 0}
-  distanceKeptAway: 2
-  fightingDistance: 2.5
-  awarenessDistance: 15
 --- !u!195 &4291400348246813949
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -873,6 +871,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5511422520831518270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2276268685922252535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd26b7f8d12b4894d91a40735c1a6982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 4291400348246813949}
+  player: {fileID: 0}
+  distanceKeptAway: 2
+  fightingDistance: 3
+  awarenessDistance: 15
+  speed: 5
+  isRanged: 0
+  state: 0
 --- !u!1001 &4472332899434654119
 PrefabInstance:
   m_ObjectHideFlags: 0
