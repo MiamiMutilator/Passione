@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     private IActivateable dash;
     private int currentDashes = 0;
     private bool canDash = true;
-    private bool dashing = false; // Dash is currently active
+    [HideInInspector] public bool dashing = false; // Dash is currently active. Used in PunchHandler to prevent punching
 
     [Header("Time Slow")]
     [Tooltip("Duration of the Time Slow in seconds")]

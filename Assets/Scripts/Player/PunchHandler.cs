@@ -89,7 +89,7 @@ public class PunchHandler : MonoBehaviour
     private void Update()
     {
         AdjustAnimator();
-        CheckPunching();
+        if (!controller.dashing) CheckPunching();
     }
 
     void AdjustAnimator()
