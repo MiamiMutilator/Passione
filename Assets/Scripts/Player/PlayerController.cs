@@ -19,18 +19,27 @@ public class PlayerController : MonoBehaviour
 
     [Header("Dash")]
     public float dashVelocity = 2f;
-    [Tooltip("Duration in seconds")]
+    [Tooltip("Duration of the Dash in seconds")]
     public float dashDuration = 0.1f;
-    [Tooltip("Duration in seconds")]
+    [Tooltip("The number of dashes that can be performed before undergoing cooldown")]
+    public int maxConsecutiveDashes = 2;
+    [Tooltip("Duration of the dash cooldown in seconds")]
+    public float dashCooldown = 0.5f;
+
+    private IActivateable dash;
+    private int currentDashes = 0;
+    private bool canDash = true;
+    private bool dashing = false; // Dash is currently active
+
+    [Header("Time Slow")]
+    [Tooltip("Duration of the Time Slow in seconds")]
     public float timeSlowDuration = 1.5f;
     [Tooltip("What the time scale gets set to when Time Slow activates. 1 is normal speed, 0 is paused")]
     public float slowedTimeScale = 0.5f;
     public InputActionReference dashAction;
     public float TimeScale { get; set; }
 
-    private IActivateable dash;
     private TimeSlow timeSlow;
-    private bool dashing = false; // Dash is currently active
     private float timer = 0f;
 
     // TO REMOVE
@@ -80,8 +89,6 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
-
-
     private void OnEnable()
     {
         moveAction.action.Enable();
@@ -109,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        ToggleTimeSlow(); // Testing Purposes
+        ToggleTimeSlow(); // Testing Purposes; To Remove
 
         UpdateTimeScale();
         ReadMoveInput();
@@ -120,7 +127,6 @@ public class PlayerController : MonoBehaviour
 
     // If Time Slow is activated, counteract it with the reciprocal of the slowedTimeScale
     void UpdateTimeScale() => TimeScale = timeSlow.Activated ? 1 / slowedTimeScale : Time.timeScale; 
-    
 
     void ReadMoveInput()
     {
@@ -146,27 +152,47 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyDash()
     {
-        if (!dashing && dashAction.action.triggered)
+        if (canDash && currentDashes == maxConsecutiveDashes && !dashing)
         {
-            // Start Dashing when input and can dash
-            dashing = true;
-            timer = 0;
-            //timeSlow.OnActivation();
-            //Invoke(nameof(DeactivateTimeSlow), timeSlowDuration / trueTimeScale );
+            // Dashed consecutively the max number of times. Start cooldown
+            StartCoroutine(DashCooldown());
         }
+        else if (canDash && currentDashes < maxConsecutiveDashes)
+        {
+            if (!dashing && dashAction.action.triggered)
+            {
+                // Start Dashing when input and can dash
+                dashing = true;
+                timer = 0;
+                //timeSlow.OnActivation();
+                //Invoke(nameof(DeactivateTimeSlow), timeSlowDuration / trueTimeScale );
+            }
 
-        if (dashing && timer < dashDuration)
-        {
-            // Smoothly dash for the duration
-            timer += Time.deltaTime * TimeScale;
-            dash.OnActivation();
+            if (dashing && timer < dashDuration)
+            {
+                // Smoothly dash for the duration
+                timer += Time.deltaTime * TimeScale;
+                dash.OnActivation();
+            }
+            else if (dashing)
+            {
+                // Dash reached duration
+                timer = 0;
+                dashing = false;
+                currentDashes++;
+                Debug.Log("Dash Complete. Current Dashes: " + currentDashes);
+            }
         }
-        else if (dashing)
-        {
-            // Dash reached duration
-            timer = timer - dashDuration;
-            dashing = false;
-        }
+    }
+
+    IEnumerator DashCooldown()
+    {
+        Debug.Log("Starting Dash Cooldown");
+        canDash = false;
+        yield return new WaitForSeconds(dashCooldown * TimeScale);
+        Debug.Log("Dash Cooldown finished");
+        canDash = true;
+        currentDashes = 0;
     }
 
     void ActivateTimeSlow() => timeSlow.OnActivation();
