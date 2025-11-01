@@ -1,0 +1,84 @@
+using UnityEngine;
+using System.Collections;
+
+[RequireComponent(typeof(Rigidbody))]
+public class EnemyHealth : DamageableCharacter
+{
+    [Tooltip("How long the enemy stays in the KO state")]
+    public float koStateTime = 5f;
+    [Tooltip("How long after getting hit before the enemy can be hit again")]
+    public float hitCooldown = 1f;
+    [Tooltip("After the enemy recovers from the KO state, their health is set to (Max Health / Health Recovery Divisor)")]
+    public int healthRecoveryDivisor = 1;
+    public GameObject stunnedVFX;
+
+    [HideInInspector] public bool isInKOState;
+    private bool recentlyHit;
+    private Animator animator;
+    
+    public override void Start()
+    {
+        base.Start();
+
+        animator = GetComponent<Animator>();
+    }
+
+    public virtual void Update()
+    {
+        if (depleted && !isInKOState)
+        {
+            StartCoroutine(KOTimer());
+        }
+    }
+
+    public override void OnHit(int damage)
+    {
+        if (!recentlyHit)
+        {
+            base.OnHit(damage);
+            StartCoroutine(DamageCooldown());
+        }
+    }
+
+    public override void OnHitWithKnockback(int damage, Vector3 knockback)
+    {
+        // Enemy doesn't take knockback if they aren't in the KO state
+        if (!isInKOState)
+        {
+            OnHit(damage);
+        }
+        else
+        {
+            //base.OnHitWithKnockback(damage, knockback);
+            // For now, just destroy the enemy when hit in the KO state
+            Destroy(gameObject);
+        }
+    }
+
+    public virtual void RecoverHealth()
+    {
+        depleted = false;
+        health = maxHealth / healthRecoveryDivisor;
+    }
+
+    IEnumerator KOTimer()
+    {
+        stunnedVFX.SetActive(true);
+        animator.SetBool("isKO", true);
+        isInKOState = true;
+        //isBlockingBody = false;
+        //isBlockingHead = false;
+        yield return new WaitForSeconds(koStateTime);
+        RecoverHealth();
+        isInKOState = false;
+        animator.SetBool("isKO", false);
+        stunnedVFX.SetActive(false);
+    }
+
+    IEnumerator DamageCooldown()
+    {
+        recentlyHit = true;
+        yield return new WaitForSeconds(hitCooldown);
+        recentlyHit = false;
+    }
+}

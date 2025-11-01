@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 6250713594248757371}
   - component: {fileID: 6526678933069189547}
   - component: {fileID: 7794696005016998009}
-  - component: {fileID: 3339963963741309823}
-  - component: {fileID: 7122734025875839033}
+  - component: {fileID: 3807832441268823720}
+  - component: {fileID: 3992635835835464954}
+  - component: {fileID: 8947509537185619422}
   m_Layer: 7
   m_Name: RangedEnemy
   m_TagString: Untagged
@@ -136,22 +137,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3339963963741309823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7633525573968415836}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd26b7f8d12b4894d91a40735c1a6982, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 7794696005016998009}
-  Player: {fileID: 0}
-  distanceKeptAway: 2
---- !u!114 &7122734025875839033
+--- !u!114 &3807832441268823720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,22 +146,72 @@ MonoBehaviour:
   m_GameObject: {fileID: 7633525573968415836}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 159494358d22a4442a0d7e5be2362afb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b3619604ee4e9a47b3c31cae14beb07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInKOState: 0
+  maxHealth: 5
   health: 5
-  actionChosen: 0
-  actionTimer: 0
-  isInAction: 0
+  targetable: 1
+  koStateTime: 5
   hitCooldown: 1
+  healthRecoveryDivisor: 1
   stunnedVFX: {fileID: 3842728241893787842}
-  enemy: {fileID: 7794696005016998009}
-  Player: {fileID: 0}
-  distanceKeptAway: 5
-  fightingDistance: 10
-  awarenessDistance: 15
-  playerRage: {fileID: 0}
+  isInKOState: 0
+  damage: 1
+  maxAmmo: 6
+  shotRange: 30
+  shotCooldown: 1
+  reloadTime: 2
+  accuracyFalloffThreshold: 7
+  accuracyFalloffFactor: 4
+  firePoint: {fileID: 2030952867584053955}
+--- !u!114 &3992635835835464954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7633525573968415836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd26b7f8d12b4894d91a40735c1a6982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 7794696005016998009}
+  player: {fileID: 0}
+  distanceKeptAway: 2
+  fightingDistance: 20
+  awarenessDistance: 30
+  speed: 3
+  isRanged: 1
+  state: 0
+--- !u!54 &8947509537185619422
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7633525573968415836}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &2881824263363553686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191,6 +227,10 @@ PrefabInstance:
     - target: {fileID: 1344983232878354772, guid: 42a14284a6dc5cf4ca2ab0a7c012d3e0, type: 3}
       propertyPath: m_Name
       value: Stunned_VFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344983232878354772, guid: 42a14284a6dc5cf4ca2ab0a7c012d3e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5146891835452768639, guid: 42a14284a6dc5cf4ca2ab0a7c012d3e0, type: 3}
       propertyPath: m_LocalPosition.x
