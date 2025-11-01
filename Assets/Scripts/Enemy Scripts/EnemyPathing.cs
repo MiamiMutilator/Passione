@@ -6,9 +6,9 @@ public class EnemyPathing : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public float distanceKeptAway = 2f;
-    public float fightingDistance = 10f;
-    public float awarenessDistance = 10f;
-    public float speed;
+    public float fightingDistance = 3f;
+    public float awarenessDistance = 15f;
+    public float speed = 5f;
     public bool isRanged;
 
     [HideInInspector] public EnemyPathingState state;
@@ -24,7 +24,7 @@ public class EnemyPathing : MonoBehaviour
         Pathing();
     }
 
-    void Pathing()
+    public void Pathing()
     {
         float distance = Vector3.Distance(player.position, transform.position);
         if (distance > awarenessDistance)
@@ -38,7 +38,7 @@ public class EnemyPathing : MonoBehaviour
             state = EnemyPathingState.Chasing;
 
         }
-        else if (isRanged && distance < distanceKeptAway)
+        else if (isRanged && distance <= distanceKeptAway)
         {
             Vector3 directionAway = (transform.position - player.position).normalized;
 
@@ -47,14 +47,10 @@ public class EnemyPathing : MonoBehaviour
             agent.SetDestination(retreatPosition);
             state = EnemyPathingState.Retreating;
         }
-        else if (isRanged && distance < fightingDistance)
+        else if (distance <= fightingDistance)
         {
             agent.ResetPath();
             state = EnemyPathingState.Attacking;
-        }
-        else
-        {
-            agent.ResetPath();
         }
     }
 }

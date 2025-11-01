@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(EnemyPathing))]
 public class EnemyHealth : DamageableCharacter
 {
     [Tooltip("How long the enemy stays in the KO state")]
