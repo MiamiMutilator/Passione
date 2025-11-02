@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,12 +26,15 @@ public class PlayerController : MonoBehaviour
     public int maxConsecutiveDashes = 2;
     [Tooltip("Duration of the dash cooldown in seconds")]
     public float dashCooldown = 0.5f;
+    [Tooltip("Determines how long the dodge window is active for. Added on top of dash duration")]
+    public float evadeBuffer = 0.3f;
 
     private IActivateable dash;
     private int currentDashes = 0;
     private bool canDash = true;
     private PunchHandler punchHandler;
     [HideInInspector] public bool dashing = false; // Dash is currently active.
+    private bool isDodging = false;
 
     [Header("Time Slow")]
     [Tooltip("Duration of the Time Slow in seconds")]
@@ -118,6 +122,7 @@ public class PlayerController : MonoBehaviour
             {
                 // Start Dashing when input and can dash
                 dashing = true;
+                StartCoroutine(EvasionDuration());
                 timer = 0;
             }
 
@@ -138,11 +143,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    IEnumerator EvasionDuration()
+    {
+        isDodging = true;
+        yield return new WaitForSeconds((dashDuration + evadeBuffer) / TimeScale);
+        isDodging = false;
+    }
+
     IEnumerator DashCooldown()
     {
         Debug.Log("Starting Dash Cooldown");
         canDash = false;
-        yield return new WaitForSeconds(dashCooldown * TimeScale);
+        yield return new WaitForSeconds(dashCooldown / TimeScale);
         Debug.Log("Dash Cooldown finished");
         canDash = true;
         currentDashes = 0;
@@ -173,5 +185,6 @@ public class PlayerController : MonoBehaviour
 
     void ActivateTimeSlow() => timeSlow.OnActivation();
     void DeactivateTimeSlow() => timeSlow.Deactivate();
-    
+
+    public bool IsDodging() => isDodging;
 }
