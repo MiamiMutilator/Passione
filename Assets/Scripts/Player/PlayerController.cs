@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
     private IActivateable dash;
     private int currentDashes = 0;
     private bool canDash = true;
-    [HideInInspector] public bool dashing = false; // Dash is currently active. Used in PunchHandler to prevent punching
+    private PunchHandler punchHandler;
+    [HideInInspector] public bool dashing = false; // Dash is currently active.
 
     [Header("Time Slow")]
     [Tooltip("Duration of the Time Slow in seconds")]
@@ -110,6 +111,7 @@ public class PlayerController : MonoBehaviour
         dash = new Dash(this, characterController, dashVelocity);
         timeSlow = new TimeSlow(slowedTimeScale);
         TimeScale = Time.timeScale;
+        punchHandler = GetComponent<PunchHandler>();
 
         if (!gameObject.CompareTag("Player")) Debug.LogWarning($"Give the Player tag to {gameObject.name}!");
     }
@@ -152,6 +154,8 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyDash()
     {
+        if (punchHandler.IsPunching()) return;
+
         if (canDash && currentDashes == maxConsecutiveDashes && !dashing)
         {
             // Dashed consecutively the max number of times. Start cooldown

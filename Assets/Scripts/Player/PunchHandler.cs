@@ -105,14 +105,14 @@ public class PunchHandler : MonoBehaviour
         // Trigger a left or right punch based on the input
         // Get the true duration of a punch by multiplying the animation length by the reciprocal of the animation's speed multiplier, then add the endlag
 
-        if (!isPunching && leftJabAction.action.triggered)
+        if (!IsPunching() && leftJabAction.action.triggered)
         {
             leftJab.OnActivation(); // Punch script handles animation and successful hit logic
             isPunching = true;
             StartCoroutine(Punch(leftHitbox, leftJabAnimationLength * (1 / armAnimator.GetFloat("LeftMult")) + leftPunchEndlag, true)); // Handle Hitbox activation
         }
 
-        if (!isPunching && rightHookAction.action.triggered)
+        if (!IsPunching() && rightHookAction.action.triggered)
         {
             rightHook.OnActivation(); // Punch script handles animation and successful hit logic
             isPunching = true;
@@ -222,6 +222,8 @@ public class PunchHandler : MonoBehaviour
             }
         }
     }
+
+    public bool IsPunching() => isPunching;
 }
 
 #region Custom Editor
