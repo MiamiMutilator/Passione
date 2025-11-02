@@ -42,67 +42,19 @@ public class PlayerController : MonoBehaviour
 
     private TimeSlow timeSlow;
     private float timer = 0f;
-
-    // TO REMOVE
-    #region TEMPORARY
-    public InputActionReference toggle;
+    private bool timeSlowActivated = false;
     private bool toggleActive = false;
-    private float startSlowTime = 0;
     private float slowTimer = 0;
 
-    void ToggleTimeSlow()
-    {
-        if (toggleActive)
-        {
-            slowTimer += Time.deltaTime * TimeScale;
-            //CheckTime<float>(slowTimer);
-
-            if (slowTimer > timeSlowDuration)
-            {
-                DeactivateTimeSlow();
-                toggleActive = false;
-                //print("Timer lasted " + (Time.time - startSlowTime) + " seconds compared to the timeSlowDuration " + timeSlowDuration);
-            }
-        }
-
-        if(toggle.action.triggered)
-        {
-            if (!toggleActive)
-            {
-                //Debug.Log("Time Slow Activated");
-                toggleActive = true;
-                ActivateTimeSlow();
-                slowTimer = 0;
-                startSlowTime = Time.time;
-            }
-        }
-    }
-
-    void CheckTime<T> (T value)
-    {
-        if (toggleActive)
-        {
-            Debug.Log("Value during Time Slow: " + value);
-        }
-        else
-        {
-            Debug.Log("Value outside of Time Slow: " + value);
-        }
-    }
-    #endregion
     private void OnEnable()
     {
         moveAction.action.Enable();
         dashAction.action.Enable();
-
-        toggle.action.Enable(); // To Remove
     }
     private void OnDisable()
     {
         moveAction.action.Disable();
         dashAction.action.Disable();
-
-        toggle.action.Disable(); // To Remove
     }
 
     private void Awake()
@@ -118,8 +70,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        ToggleTimeSlow(); // Testing Purposes; To Remove
-
+        ApplyTimeSlow();
         UpdateTimeScale();
         ReadMoveInput();
         ApplyRotation();
@@ -168,8 +119,6 @@ public class PlayerController : MonoBehaviour
                 // Start Dashing when input and can dash
                 dashing = true;
                 timer = 0;
-                //timeSlow.OnActivation();
-                //Invoke(nameof(DeactivateTimeSlow), timeSlowDuration / trueTimeScale );
             }
 
             if (dashing && timer < dashDuration)
@@ -197,6 +146,29 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Dash Cooldown finished");
         canDash = true;
         currentDashes = 0;
+    }
+
+    public void OnEvade() => timeSlowActivated = true;
+
+    void ApplyTimeSlow()
+    {
+        if (timeSlowActivated && !toggleActive)
+        {
+            toggleActive = true;
+            ActivateTimeSlow();
+            slowTimer = 0;
+        }
+        else if (timeSlowActivated && toggleActive)
+        {
+            slowTimer += Time.deltaTime * TimeScale;
+
+            if (slowTimer > timeSlowDuration)
+            {
+                DeactivateTimeSlow();
+                toggleActive = false;
+                timeSlowActivated = false;
+            }
+        }
     }
 
     void ActivateTimeSlow() => timeSlow.OnActivation();

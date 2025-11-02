@@ -67,6 +67,16 @@ public class Marksman : EnemyHealth
         // Cast a ray toward the player's position. If it hits an object with the Player layer, deal damage using the IDamageable component
         if (Physics.Raycast(firePoint.position, pathing.player.position - firePoint.position, out RaycastHit hit, shotRange, targetLayer))
         {
+            if (hit.collider.gameObject == null) return;
+
+            PlayerController player = hit.collider.gameObject.GetComponentInParent<PlayerController>();
+            if (player != null && player.dashing)
+            {
+                Debug.Log("Player dodged the bullet");
+                player.OnEvade();
+                return;
+            }
+
             // Calculate accuracy reduction based on distance from the player
             float accuracy = 100 - (Mathf.Max(0, Vector3.Distance(pathing.player.position, transform.position) - accuracyFalloffThreshold) * accuracyFalloffFactor);
             float chance = Random.Range(0, 100f);
@@ -74,7 +84,6 @@ public class Marksman : EnemyHealth
             if (accuracy != 0 && chance <= accuracy)
             {
                 // Shot landed
-                if (hit.collider.gameObject == null) return;
 
                 var damageable = hit.collider.gameObject.GetComponentInParent<IDamageable>();
                 if (damageable != null)
