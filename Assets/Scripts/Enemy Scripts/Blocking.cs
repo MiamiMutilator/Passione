@@ -123,6 +123,15 @@ public class Blocking : MonoBehaviour
             //    yield return new WaitForSeconds(actionTimer);
             //    Debug.Log("Finished Punching");
             //    break;
+            //case 3: //fake block
+            //    actiontimer = 0.5f;
+            //    block
+            //    Debug.Log("Punched");
+            //    actionTimer = 2;
+            //    yield return new WaitForSeconds(actionTimer);
+            //    Debug.Log("Finished Punching");
+            //    break;
+
         }
         yield return new WaitForSeconds(0.5f);
         isInAction = false;
