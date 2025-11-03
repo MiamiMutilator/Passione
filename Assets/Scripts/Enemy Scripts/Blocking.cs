@@ -17,6 +17,7 @@ public class Blocking : MonoBehaviour
     private bool isInAction;
     private EnemyHealth healthComponent;
     private EnemyPathing pathing;
+    private EnemyPunchHitbox enemyPunchHitbox;
     private Animator animator;
     private Coroutine currentAction;
     
@@ -27,6 +28,7 @@ public class Blocking : MonoBehaviour
         animator = GetComponent<Animator>();
         healthComponent = GetComponent<EnemyHealth>();
         pathing = GetComponent<EnemyPathing>();
+        enemyPunchHitbox = GetComponentInChildren<EnemyPunchHitbox>();
 
         headBlock.enabled = false;
         bodyBlock.enabled = false;
@@ -127,6 +129,7 @@ public class Blocking : MonoBehaviour
                 animator.SetBool("isBlockingHead", false);
                 break;
             case 2: //punch
+                enemyPunchHitbox.hasBeenHit = false;
                 animator.SetBool("isIdle", true);
                 punchIndicator.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
@@ -148,6 +151,7 @@ public class Blocking : MonoBehaviour
                 isBlockingHead = false;
                 headBlock.enabled = false;
                 animator.SetBool("isBlockingHead", false);
+                enemyPunchHitbox.hasBeenHit = false;
                 animator.SetBool("isIdle", true);
                 punchIndicator.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
@@ -169,6 +173,7 @@ public class Blocking : MonoBehaviour
                 isBlockingBody = false;
                 bodyBlock.enabled = false;
                 animator.SetBool("isBlockingBody", false);
+                enemyPunchHitbox.hasBeenHit = false;
                 animator.SetBool("isIdle", true);
                 punchIndicator.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
