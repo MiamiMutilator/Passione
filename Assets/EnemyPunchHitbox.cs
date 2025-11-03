@@ -19,7 +19,7 @@ public class EnemyPunchHitbox : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+            PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
             if (playerHealth != null)
             {
                 playerHealth.OnHit(3);
@@ -30,9 +30,10 @@ public class EnemyPunchHitbox : MonoBehaviour
 
         if (other.CompareTag("NearMiss"))
         {
-            PlayerController player = other.GetComponent<PlayerController>();
+            PlayerController player = other.GetComponentInParent<PlayerController>();
             if (player != null && player.IsDodging())
             {
+                Debug.Log("Player dodged the punch");
                 player.OnEvade();
             }
         }

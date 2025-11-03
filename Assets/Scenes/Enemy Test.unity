@@ -310,6 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2ebfafbe918ea408f5e442c5f475bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitbox: {fileID: 0}
 --- !u!1001 &941585249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -363,6 +364,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8033357727186760322, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: dodgeHitbox
+      value: 
+      objectReference: {fileID: 941585250}
+    - target: {fileID: 8033357727186760322, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: evadeBuffer
       value: 2
       objectReference: {fileID: 0}
@@ -371,6 +376,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+--- !u!1 &941585250 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3712297565560844490, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+  m_PrefabInstance: {fileID: 941585249}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &976975449 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2643115183621521956, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}

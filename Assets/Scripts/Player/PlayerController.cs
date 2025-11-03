@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public float dashCooldown = 0.5f;
     [Tooltip("Determines how long the dodge window is active for. Added on top of dash duration")]
     public float evadeBuffer = 0.3f;
+    public GameObject dodgeHitbox;
 
     private IActivateable dash;
     private int currentDashes = 0;
@@ -148,6 +149,8 @@ public class PlayerController : MonoBehaviour
 
     void ApplyDodge()
     {
+        dodgeHitbox.SetActive(isDodging);
+
         if (totalDodgeTime > 0 && !isDodging)
         {
             Debug.Log("Started dodging attacks.");
