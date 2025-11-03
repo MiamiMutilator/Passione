@@ -261,6 +261,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   weakpointTag: 
+  blockedTag: 
   baseKnockback: {x: 0, y: 0, z: 0}
 --- !u!1 &2456276787219158868
 GameObject:
@@ -301,6 +302,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2518589505485142577}
+  - {fileID: 4181720561668257766}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7287375745429117094
@@ -583,10 +585,13 @@ MonoBehaviour:
   lastDirection: {x: 0, y: 0, z: 0}
   dashVelocity: 10
   dashDuration: 0.1
+  maxConsecutiveDashes: 2
+  dashCooldown: 0.5
+  evadeBuffer: 0.3
+  dashing: 0
   timeSlowDuration: 1.5
   slowedTimeScale: 0.5
   dashAction: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  toggle: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &3998035177492620065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,13 +623,15 @@ MonoBehaviour:
   leftJabAction: {fileID: 8194790677430557180, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   leftDamage: 1
   leftHitbox: {fileID: 8572402774751774585}
-  leftHitboxDuration: 1
   leftWeakpointTag: EnemyBody
+  leftBlockTag: BodyBlock
+  leftPunchEndlag: 0
   rightHookAction: {fileID: -7803995681073658105, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rightDamage: 3
   rightHitbox: {fileID: 2188372657333629929}
-  rightHitboxDuration: 1
   rightWeakpointTag: EnemyHead
+  rightBlockTag: HeadBlock
+  rightPunchEndlag: 0.2
   weakpointMult: 2
   targetLayer:
     serializedVersion: 2
@@ -634,6 +641,59 @@ MonoBehaviour:
   maxCombo: 3
   armAnimator: {fileID: 7113303679745168467}
   combo: 0
+--- !u!1 &3712297565560844490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4181720561668257766}
+  - component: {fileID: 3655386275072554696}
+  m_Layer: 6
+  m_Name: DodgeHitbox
+  m_TagString: NearMiss
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4181720561668257766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712297565560844490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 6.029928, y: 6.029928, z: 6.029928}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2643115183621521956}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &3655386275072554696
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712297565560844490}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3754193354743460269
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +794,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   weakpointTag: 
+  blockedTag: 
   baseKnockback: {x: 0, y: 0, z: 0}
 --- !u!1001 &7355432325084361735
 PrefabInstance:
@@ -761,7 +822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b2dc28dfb3cfde458b974b781f69c80, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.526
+      value: -1.743
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b2dc28dfb3cfde458b974b781f69c80, type: 3}
       propertyPath: m_LocalPosition.z
