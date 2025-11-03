@@ -1,56 +1,60 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class HeartUI : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private PlayerHealth playerHealth; 
-    [SerializeField] private Image heartImage; 
+    [SerializeField] private PlayerHealth playerHealth;  
+    [SerializeField] private Animator animator;           
 
-    [Header("Sprites (0 = empty ... 4 = full)")]
-    [Tooltip("Exactly 5 sprites. 0 = empty, 4 = full.")]
-    [SerializeField] private Sprite[] heartSprites = new Sprite[5];
+    private static readonly int StateHash = Animator.StringToHash("State");
+    private int _lastState = -1;
 
-    private int _lastIndex = -1;
-
-    private void Reset()
+    private void Awake()
     {
-        heartImage = GetComponent<Image>();
+        if (animator == null)
+            animator = GetComponent<Animator>();
     }
 
     private void Start()
     {
+        
         if (playerHealth == null)
             playerHealth = FindFirstObjectByType<PlayerHealth>();
 
-        ForceRefresh();
+        
+        ApplyState(force: true);
     }
 
     private void Update()
     {
-        if (playerHealth == null) return;
-
-        // Scale health (0..maxHealth) into 0..4
-        int index = Mathf.RoundToInt(
-            (playerHealth.Health / (float)playerHealth.maxHealth) * (heartSprites.Length - 1)
-        );
-
-        index = Mathf.Clamp(index, 0, heartSprites.Length - 1);
-
-        if (index != _lastIndex)
-            ForceRefresh();
+        ApplyState(force: false);
     }
 
-    private void ForceRefresh()
+    private void ApplyState(bool force)
     {
-        int index = Mathf.RoundToInt(
-            (playerHealth.Health / (float)playerHealth.maxHealth) * (heartSprites.Length - 1)
-        );
+        if (playerHealth == null || animator == null) return;
 
-        index = Mathf.Clamp(index, 0, heartSprites.Length - 1);
+        
+        float ratio = playerHealth.maxHealth > 0
+            ? playerHealth.Health / (float)playerHealth.maxHealth
+            : 0f;
 
-        _lastIndex = index;
-        if (heartSprites != null && heartSprites.Length > 0)
-            heartImage.sprite = heartSprites[index];
+        // Convert health ratio into one of 5 bands (0 = full, 4 = empty)
+        int state =
+            ratio >= 0.99f ? 0 :   // Full health
+            ratio >= 0.75f ? 1 :   // 3/4
+            ratio >= 0.50f ? 2 :   // 2/4
+            ratio >= 0.25f ? 3 :   // 1/4
+                               4;   // Empty (0 health)
+
+        // Only update Animator if state changes or on forced refresh
+        if (force || state != _lastState)
+        {
+            _lastState = state;
+            animator.SetInteger(StateHash, state);
+
+            // Debug line (optional):
+            // Debug.Log($"HeartUI → Health: {playerHealth.Health}/{playerHealth.maxHealth}, Ratio: {ratio:F2}, State: {state}");
+        }
     }
 }
