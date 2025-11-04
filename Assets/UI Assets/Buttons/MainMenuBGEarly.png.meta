@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a68194a4251eaf545872941b4df1cea8
+guid: f4b9982470ab67f4a84caa8e28f43ec1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_StartButton_01_0
+      name: MainMenuBGEarly_0
       rect:
         serializedVersion: 2
-        x: 57
-        y: 817
-        width: 535
-        height: 253
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,30 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7d92cf705cfbcb4b85499364b68162b
-      internalID: -2027014523
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_StartButton_01_1
-      rect:
-        serializedVersion: 2
-        x: 93
-        y: 804
-        width: 5
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 88e4f0e1b105ba74ea1f61780a5bf446
-      internalID: 1043184901
+      spriteID: 3e5d286d9ddd68148a2cc890c5663a48
+      internalID: 776595786
       vertices: []
       indices: 
       edges: []
@@ -157,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 97e611f27f715524886d8b24fd2d02c7
+    spriteID: c76819eabfa2bb44d882085d291bbaab
     internalID: 0
     vertices: []
     indices: 
@@ -167,8 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      UI_StartButton_01_0: -2027014523
-      UI_StartButton_01_1: 1043184901
+      MainMenuBGEarly_0: 776595786
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

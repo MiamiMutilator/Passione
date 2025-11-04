@@ -3,8 +3,8 @@ using UnityEngine;
 public class HeartUI : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private PlayerHealth playerHealth;  // PlayerHealth
-    [SerializeField] private Animator animator;          // Animator on HeartImage
+    [SerializeField] private PlayerHealth playerHealth;  // PlayerHealth Drag
+    [SerializeField] private Animator animator;          // Animator on HeartImage 
 
     private static readonly int StateHash = Animator.StringToHash("State");
     private int _lastState = -1;
@@ -26,6 +26,9 @@ public class HeartUI : MonoBehaviour
     }
 
     private void Apply(bool force)
+
+    // Check player health
+    // 
     {
         if (!playerHealth || !animator) return;
 
