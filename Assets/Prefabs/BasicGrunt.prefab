@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1124207980975923497
 Transform:
   m_ObjectHideFlags: 0
@@ -512,6 +512,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -6968871291735635958, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e26ada21a809fc4ab54aeeb7d1bb303, type: 2}
     - target: {fileID: -6880587818251433916, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -604,6 +608,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -4444722505556372312, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e26ada21a809fc4ab54aeeb7d1bb303, type: 2}
     - target: {fileID: -4393058116657422572, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -652,6 +660,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -3017375678209858330, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e26ada21a809fc4ab54aeeb7d1bb303, type: 2}
     - target: {fileID: -3005101127509734745, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -752,6 +764,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -1206874426333947015, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1206874426333947015, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e26ada21a809fc4ab54aeeb7d1bb303, type: 2}
+    - target: {fileID: -1206874426333947015, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 078447a6415a1be4480dd3365db68821, type: 2}
     - target: {fileID: -1189059140824470427, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -936,6 +960,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3077988718587846791, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e26ada21a809fc4ab54aeeb7d1bb303, type: 2}
     - target: {fileID: 3345704893975491197, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1000,6 +1028,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5303619195206425659, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e26ada21a809fc4ab54aeeb7d1bb303, type: 2}
     - target: {fileID: 5462976582187655697, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1211,7 +1243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2ebfafbe918ea408f5e442c5f475bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitbox: {fileID: 7039306513339026580}
+  jab: {fileID: 8924653931100159508}
+  hook: {fileID: 7039306513339026580}
   hasBeenHit: 0
 --- !u!1 &329505456730006476 stripped
 GameObject:
@@ -1257,7 +1290,8 @@ MonoBehaviour:
   headBlock: {fileID: 2049777694024079633}
   isBlockingBody: 0
   bodyBlock: {fileID: 3858503296798579869}
-  punch: {fileID: 8924653931100159508}
+  jab: {fileID: 8924653931100159508}
+  hook: {fileID: 7039306513339026580}
   punchIndicator: {fileID: 1952044091699546443}
 --- !u!195 &-1223888558065708103
 NavMeshAgent:
@@ -1327,6 +1361,7 @@ MonoBehaviour:
   awarenessDistance: 15
   speed: 5
   isRanged: 0
+  enemyHealth: {fileID: 4525643195027478113}
   state: 0
 --- !u!114 &4525643195027478113
 MonoBehaviour:
@@ -1426,7 +1461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2ebfafbe918ea408f5e442c5f475bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitbox: {fileID: 8924653931100159508}
+  jab: {fileID: 8924653931100159508}
+  hook: {fileID: 7039306513339026580}
   hasBeenHit: 0
 --- !u!4 &4586563418527954246 stripped
 Transform:

@@ -11,17 +11,27 @@ public class EnemyPathing : MonoBehaviour
     public float speed = 5f;
     public bool isRanged;
 
+    public EnemyHealth enemyHealth;
+
     [HideInInspector] public EnemyPathingState state;
 
     private void Start()
     {
         agent.speed = speed;
+
+        if (enemyHealth == null)
+        {
+            enemyHealth = GetComponent<EnemyHealth>();
+        }
     }
 
     void Update()
     {
         //Debug.Log(state.ToString());
-        Pathing();
+        if (!enemyHealth.isInKOState)
+        {
+            Pathing();
+        }
     }
 
     public void Pathing()

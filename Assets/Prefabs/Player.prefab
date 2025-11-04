@@ -373,7 +373,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -587,7 +587,8 @@ MonoBehaviour:
   dashDuration: 0.1
   maxConsecutiveDashes: 2
   dashCooldown: 0.5
-  evadeBuffer: 0.3
+  evadeBuffer: 2
+  dodgeHitbox: {fileID: 3712297565560844490}
   dashing: 0
   timeSlowDuration: 1.5
   slowedTimeScale: 0.5

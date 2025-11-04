@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class EnemyPunchHitbox : MonoBehaviour
 {
-    public BoxCollider hitbox;
+    public BoxCollider jab;
+    public BoxCollider hook;
     public bool hasBeenHit;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,9 +28,10 @@ public class EnemyPunchHitbox : MonoBehaviour
             PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.OnHit(3);
+                playerHealth.OnHit(1);
                 hasBeenHit = true;
-                hitbox.enabled = false;
+                jab.enabled = false;
+                hook.enabled = false;
             }
 
         }
