@@ -173251,7 +173251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2643115183621521956, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -28.26
+      value: 26.33
       objectReference: {fileID: 0}
     - target: {fileID: 2643115183621521956, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: m_LocalPosition.y
@@ -173259,7 +173259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2643115183621521956, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.51
+      value: 9.91
       objectReference: {fileID: 0}
     - target: {fileID: 2643115183621521956, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: m_LocalRotation.w
@@ -347189,13 +347189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 0}
-  heartImage: {fileID: 1935695337}
-  heartSprites:
-  - {fileID: 21300000, guid: 46ff9d510b930714f9b7a709111523d6, type: 3}
-  - {fileID: 21300000, guid: ab31d0395690eea4d8a2b2d908c1be9d, type: 3}
-  - {fileID: 21300000, guid: bc92976496585e341a7f2024559d3c1b, type: 3}
-  - {fileID: 21300000, guid: 114fea0c501d80c43ac7c72d18cff3de, type: 3}
-  - {fileID: 21300000, guid: f28e2341f860d0841891ec7e6e38a963, type: 3}
+  animator: {fileID: 0}
 --- !u!43 &1937613123
 Mesh:
   m_ObjectHideFlags: 0
