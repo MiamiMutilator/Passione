@@ -27,7 +27,7 @@ public class EnemyPunchHitbox : MonoBehaviour
             PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.OnHit(3);
+                playerHealth.OnHit(1);
                 hasBeenHit = true;
                 hitbox.enabled = false;
             }
