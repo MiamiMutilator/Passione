@@ -65,6 +65,9 @@ public class EnemyHealth : DamageableCharacter
     IEnumerator KOTimer()
     {
         stunnedVFX.SetActive(true);
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isBlockingBody", false);
+        animator.SetBool("isBlockingHead", false);
         animator.SetBool("isKO", true);
         isInKOState = true;
         //isBlockingBody = false;
