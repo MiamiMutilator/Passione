@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
@@ -53,6 +54,11 @@ public class PlayerController : MonoBehaviour
     private bool toggleActive = false;
     private float slowTimer = 0;
 
+    [Header("Gravity")]
+    [SerializeField] private float gravityMultiplier = 3.0f;
+    private const float Gravity = -9.81f;
+    private Vector3 playerVelocity;
+
     private void OnEnable()
     {
         moveAction.action.Enable();
@@ -81,6 +87,7 @@ public class PlayerController : MonoBehaviour
         UpdateTimeScale();
         ReadMoveInput();
         ApplyRotation();
+        ApplyGravity();
         ApplyMovement();
         ApplyDash();
         ApplyDodge();
@@ -104,10 +111,21 @@ public class PlayerController : MonoBehaviour
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime * TimeScale);
     }
+    private void ApplyGravity()
+    {
+        if (IsGrounded() && playerVelocity.y < 0.0f)
+        {
+            playerVelocity.y = 0f;
+        }
+
+        playerVelocity.y += Gravity * gravityMultiplier * Time.deltaTime * TimeScale;
+    }
 
     private void ApplyMovement()
     {
-        characterController.Move(moveSpeed * Time.deltaTime * TimeScale * moveDirection);
+        // Combine horizontal and vertical movement
+        Vector3 finalMove = (moveSpeed * moveDirection) + (playerVelocity.y * Vector3.up);
+        characterController.Move(Time.deltaTime * TimeScale * finalMove);
         lastDirection = moveDirection;
     }
 
@@ -206,6 +224,6 @@ public class PlayerController : MonoBehaviour
 
     void ActivateTimeSlow() => timeSlow.OnActivation();
     void DeactivateTimeSlow() => timeSlow.Deactivate();
-
+    private bool IsGrounded() => characterController.isGrounded;
     public bool IsDodging() => isDodging;
 }
