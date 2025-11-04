@@ -25153,7 +25153,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 4077cec784d110749aa38059da3c72c1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 0ac03ff6ea000484a9d15c8a813c5142, type: 2}
+      objectReference: {fileID: 2100000, guid: fbca772cdc413e54296bfcdbb2f61eb3, type: 2}
     - target: {fileID: 919132149155446097, guid: 4077cec784d110749aa38059da3c72c1, type: 3}
       propertyPath: m_Name
       value: U_StraightSidewalk (3)
@@ -60211,7 +60211,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 4077cec784d110749aa38059da3c72c1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 32fd78c5b3190e849a75b414b2896b5b, type: 2}
+      objectReference: {fileID: 2100000, guid: fbca772cdc413e54296bfcdbb2f61eb3, type: 2}
     - target: {fileID: 919132149155446097, guid: 4077cec784d110749aa38059da3c72c1, type: 3}
       propertyPath: m_Name
       value: U_StraightSidewalk
@@ -89947,7 +89947,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0ac03ff6ea000484a9d15c8a813c5142, type: 2}
+  - {fileID: 2100000, guid: fbca772cdc413e54296bfcdbb2f61eb3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90732,7 +90732,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: af96dea3007cae642bdc8daa4ad1ba1c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 32fd78c5b3190e849a75b414b2896b5b, type: 2}
+      objectReference: {fileID: 2100000, guid: 7e1ed151a8c176c4bb20a3b99a90a24b, type: 2}
     - target: {fileID: 919132149155446097, guid: af96dea3007cae642bdc8daa4ad1ba1c, type: 3}
       propertyPath: m_Name
       value: Dumpster (1)
@@ -113481,7 +113481,7 @@ PrefabInstance:
     - target: {fileID: -8850708561214233376, guid: 2539aa684f03e6342a7a1b26371242ca, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: 7e1ed151a8c176c4bb20a3b99a90a24b, type: 2}
     - target: {fileID: -8679921383154817045, guid: 2539aa684f03e6342a7a1b26371242ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.623001
@@ -113525,7 +113525,7 @@ PrefabInstance:
     - target: {fileID: 372015521315926245, guid: 2539aa684f03e6342a7a1b26371242ca, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 32fd78c5b3190e849a75b414b2896b5b, type: 2}
+      objectReference: {fileID: 2100000, guid: 7e1ed151a8c176c4bb20a3b99a90a24b, type: 2}
     - target: {fileID: 919132149155446097, guid: 2539aa684f03e6342a7a1b26371242ca, type: 3}
       propertyPath: m_Name
       value: AU_Trashcan (2)
@@ -131424,7 +131424,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 7e1ed151a8c176c4bb20a3b99a90a24b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -166567,7 +166567,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 4077cec784d110749aa38059da3c72c1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 0ac03ff6ea000484a9d15c8a813c5142, type: 2}
+      objectReference: {fileID: 2100000, guid: fbca772cdc413e54296bfcdbb2f61eb3, type: 2}
     - target: {fileID: 919132149155446097, guid: 4077cec784d110749aa38059da3c72c1, type: 3}
       propertyPath: m_Name
       value: U_StraightSidewalk (2)
@@ -173104,7 +173104,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 7e1ed151a8c176c4bb20a3b99a90a24b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -176850,7 +176850,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: fe7d943aca65e6f49bc49e78839ba3c6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fbca772cdc413e54296bfcdbb2f61eb3, type: 2}
     - target: {fileID: 919132149155446097, guid: fe7d943aca65e6f49bc49e78839ba3c6, type: 3}
       propertyPath: m_Name
       value: AU_RoadTile (3)
@@ -289755,7 +289755,7 @@ PrefabInstance:
     - target: {fileID: -8850708561214233376, guid: 2539aa684f03e6342a7a1b26371242ca, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: 7e1ed151a8c176c4bb20a3b99a90a24b, type: 2}
     - target: {fileID: -8679921383154817045, guid: 2539aa684f03e6342a7a1b26371242ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.836998
@@ -289799,7 +289799,7 @@ PrefabInstance:
     - target: {fileID: 372015521315926245, guid: 2539aa684f03e6342a7a1b26371242ca, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 32fd78c5b3190e849a75b414b2896b5b, type: 2}
+      objectReference: {fileID: 2100000, guid: 7e1ed151a8c176c4bb20a3b99a90a24b, type: 2}
     - target: {fileID: 919132149155446097, guid: 2539aa684f03e6342a7a1b26371242ca, type: 3}
       propertyPath: m_Name
       value: AU_Trashcan (1)
@@ -316159,7 +316159,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 4077cec784d110749aa38059da3c72c1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 32fd78c5b3190e849a75b414b2896b5b, type: 2}
+      objectReference: {fileID: 2100000, guid: fbca772cdc413e54296bfcdbb2f61eb3, type: 2}
     - target: {fileID: 919132149155446097, guid: 4077cec784d110749aa38059da3c72c1, type: 3}
       propertyPath: m_Name
       value: U_StraightSidewalk (1)
@@ -360035,7 +360035,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 7e1ed151a8c176c4bb20a3b99a90a24b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
