@@ -20,8 +20,10 @@ public class Blocking : MonoBehaviour
     private EnemyPunchHitbox enemyPunchHitbox;
     private Animator animator;
     private Coroutine currentAction;
-    
-    int[] actionProbability = { 0, 0, 1, 1, 2, 2, 2, 3, 4 }; //gives probability to actions, Currently 0 = 20% chance 1 = 20% chance 3 = 30 % chance 3 and 4 = 10% chance
+
+    bool wasBlockingHead = false;
+    bool wasBlockingBody = false;
+    int[] actionProbability = { 0, 0, 0, 1, 1, 1, 2, 2, 3, 3, 4, 5 }; //gives probability to actions, Currently 0 = 20% chance 1 = 20% chance 3 = 30 % chance 3 and 4 = 10% chance
 
     void Start()
     {
@@ -49,6 +51,9 @@ public class Blocking : MonoBehaviour
 
         if (pathing == null) return;
 
+
+
+
         if (!healthComponent.isInKOState)
         {
             if (pathing.state == EnemyPathingState.Idle)
@@ -75,8 +80,6 @@ public class Blocking : MonoBehaviour
                 if (!isInAction)
                 {
                     actionChosen = actionProbability[Random.Range(0, actionProbability.Length)];
-                    StartCoroutine(ActionTaken());
-
                     if (currentAction != null)
                         StopCoroutine(currentAction);
 
@@ -103,8 +106,11 @@ public class Blocking : MonoBehaviour
         isBlockingHead = false;
         isBlockingBody = false;
         isInAction = false;
+        if (isInAction) yield break;
         SetBlockingAnimations(false);
         isInAction = true;
+        wasBlockingHead = isBlockingHead;
+        wasBlockingBody = isBlockingBody;
         switch (actionChosen)
         {
             case 0: // Block body
@@ -128,21 +134,54 @@ public class Blocking : MonoBehaviour
                 headBlock.enabled = false;
                 animator.SetBool("isBlockingHead", false);
                 break;
-            case 2: //punch
+            case 2: //jab
                 enemyPunchHitbox.hasBeenHit = false;
-                animator.SetBool("isIdle", true);
                 punchIndicator.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
                 punchIndicator.SetActive(false);
+                animator.SetTrigger("Jab");
                 //Debug.Log("Punched");
                 punch.enabled = true;
-                actionTimer = 1; //duration of punch animation
-                yield return new WaitForSeconds(actionTimer);
+                //actionTimer = 1; //duration of punch animation
+                yield return new WaitForSeconds(1);
                 punch.enabled = false;
-                animator.SetBool("isIdle", false);
+                if (wasBlockingHead)
+                {
+                    isBlockingHead = true;
+                    animator.SetBool("isBlockingHead", true);
+                }
+                else if (wasBlockingBody)
+                {
+                    isBlockingBody = true;
+                    animator.SetBool("isBlockingBody", true);
+                }
                 //Debug.Log("Finished Punching");
                 break;
-            case 3: //fake block Head
+            case 3: //hook
+                enemyPunchHitbox.hasBeenHit = false;
+                punchIndicator.SetActive(true);
+                yield return new WaitForSeconds(0.5f);
+                punchIndicator.SetActive(false);
+                animator.SetTrigger("Hook");
+                //Debug.Log("Punched");
+                punch.enabled = true;
+                //actionTimer = 1; //duration of punch animation
+                yield return new WaitForSeconds(1);
+                punch.enabled = false;
+                if (wasBlockingHead)
+                {
+                    isBlockingHead = true;
+                    animator.SetBool("isBlockingHead", true);
+                }
+                else if (wasBlockingBody)
+                {
+                    isBlockingBody = true;
+                    animator.SetBool("isBlockingBody", true);
+                }
+                //Debug.Log("Finished Punching");
+                break;
+
+            case 4: //fake block Head
                 Debug.Log("Fake Blocked Head");
                 isBlockingHead = true;
                 headBlock.enabled = true;
@@ -152,19 +191,29 @@ public class Blocking : MonoBehaviour
                 headBlock.enabled = false;
                 animator.SetBool("isBlockingHead", false);
                 enemyPunchHitbox.hasBeenHit = false;
-                animator.SetBool("isIdle", true);
                 punchIndicator.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
                 punchIndicator.SetActive(false);
+                animator.SetTrigger("Jab");
                 //Debug.Log("Punched");
                 punch.enabled = true;
-                actionTimer = 1; //duration of punch animation
-                yield return new WaitForSeconds(actionTimer);
+                //actionTimer = 1; //duration of punch animation
+                yield return new WaitForSeconds(1);
                 punch.enabled = false;
-                animator.SetBool("isIdle", false);
+                if (wasBlockingHead)
+                {
+                    isBlockingHead = true;
+                    animator.SetBool("isBlockingHead", true);
+                }
+                else if (wasBlockingBody)
+                {
+                    isBlockingBody = true;
+                    animator.SetBool("isBlockingBody", true);
+                }
+
                 //Debug.Log("Finished Punching");
                 break;
-            case 4: //fake block body
+            case 5: //fake block body
                 Debug.Log("Fake Blocked Body");
                 isBlockingBody = true;
                 bodyBlock.enabled = true;
@@ -174,22 +223,32 @@ public class Blocking : MonoBehaviour
                 bodyBlock.enabled = false;
                 animator.SetBool("isBlockingBody", false);
                 enemyPunchHitbox.hasBeenHit = false;
-                animator.SetBool("isIdle", true);
                 punchIndicator.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
                 punchIndicator.SetActive(false);
+                animator.SetTrigger("Jab");
                 //Debug.Log("Punched");
                 punch.enabled = true;
-                actionTimer = 1; //duration of punch animation
-                yield return new WaitForSeconds(actionTimer);
+                //actionTimer = 1; //duration of punch animation
+                yield return new WaitForSeconds(1);
                 punch.enabled = false;
-                animator.SetBool("isIdle", false);
+                if (wasBlockingHead)
+                {
+                    isBlockingHead = true;
+                    animator.SetBool("isBlockingHead", true);
+                }
+                else if (wasBlockingBody)
+                {
+                    isBlockingBody = true;
+                    animator.SetBool("isBlockingBody", true);
+                }
+
                 //Debug.Log("Finished Punching");
                 break;
 
 
         }
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
         isInAction = false;
 
     }
