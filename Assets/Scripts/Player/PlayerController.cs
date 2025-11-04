@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public float dashCooldown = 0.5f;
     [Tooltip("Determines how long the dodge window is active for. Added on top of dash duration")]
     public float evadeBuffer = 0.3f;
+    public GameObject dodgeHitbox;
 
     private IActivateable dash;
     private int currentDashes = 0;
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour
     private PunchHandler punchHandler;
     [HideInInspector] public bool dashing = false; // Dash is currently active.
     private bool isDodging = false;
+    private float totalDodgeTime = 0;
+    private float dodgeTimer = 0;
 
     [Header("Time Slow")]
     [Tooltip("Duration of the Time Slow in seconds")]
@@ -45,7 +48,7 @@ public class PlayerController : MonoBehaviour
     public float TimeScale { get; set; }
 
     private TimeSlow timeSlow;
-    private float timer = 0f;
+    private float dashTimer = 0f;
     private bool timeSlowActivated = false;
     private bool toggleActive = false;
     private float slowTimer = 0;
@@ -80,6 +83,7 @@ public class PlayerController : MonoBehaviour
         ApplyRotation();
         ApplyMovement();
         ApplyDash();
+        ApplyDodge();
     }
 
     // If Time Slow is activated, counteract it with the reciprocal of the slowedTimeScale
@@ -122,20 +126,20 @@ public class PlayerController : MonoBehaviour
             {
                 // Start Dashing when input and can dash
                 dashing = true;
-                StartCoroutine(EvasionDuration());
-                timer = 0;
+                totalDodgeTime += (dashDuration + evadeBuffer); // Evade enemy attacks for the duration
+                dashTimer = 0;
             }
 
-            if (dashing && timer < dashDuration)
+            if (dashing && dashTimer < dashDuration)
             {
                 // Smoothly dash for the duration
-                timer += Time.deltaTime * TimeScale;
+                dashTimer += Time.deltaTime * TimeScale;
                 dash.OnActivation();
             }
             else if (dashing)
             {
                 // Dash reached duration
-                timer = 0;
+                dashTimer = 0;
                 dashing = false;
                 currentDashes++;
                 Debug.Log("Dash Complete. Current Dashes: " + currentDashes);
@@ -143,11 +147,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator EvasionDuration()
+    void ApplyDodge()
     {
-        isDodging = true;
-        yield return new WaitForSeconds((dashDuration + evadeBuffer) / TimeScale);
-        isDodging = false;
+        dodgeHitbox.SetActive(isDodging);
+
+        if (totalDodgeTime > 0 && !isDodging)
+        {
+            Debug.Log("Started dodging attacks.");
+            isDodging = true;
+            dodgeTimer = 0;
+        }
+
+        if (isDodging && dodgeTimer < totalDodgeTime)
+        {
+            dodgeTimer += Time.deltaTime * TimeScale;
+        }
+        else if (isDodging)
+        {
+            Debug.Log("Stopped dodging attacks");
+            totalDodgeTime = 0;
+            dodgeTimer = 0;
+            isDodging = false;
+        }
     }
 
     IEnumerator DashCooldown()

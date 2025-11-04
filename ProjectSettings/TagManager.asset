@@ -12,6 +12,7 @@ TagManager:
   - BodyBlock
   - HeadBlock
   - NearMiss
+  - EnemyPunch
   layers:
   - Default
   - TransparentFX
