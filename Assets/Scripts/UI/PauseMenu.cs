@@ -5,9 +5,6 @@ using UnityEngine.EventSystems;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject firstSelected;
-
-    private Animator[] pauseAnimators;
     public static bool isPaused;
 
     void Start()
@@ -15,12 +12,6 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
-        //animators
-        pauseAnimators = pauseMenu.GetComponentsInChildren<Animator>(true);
-        //animate offscreen
-        foreach (var anim in pauseAnimators)
-            anim.cullingMode = AnimatorCullingMode.AlwaysAnimate;
     }
 
     void Update()
@@ -41,29 +32,18 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        // ui animator unscaled time
-        foreach (var anim in pauseAnimators)
-            anim.updateMode = AnimatorUpdateMode.UnscaledTime;
-
-        if (EventSystem.current && firstSelected)
-        {
+        if (EventSystem.current)
             EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(firstSelected);
-        }
     }
 
     public void ResumeGame()
     {
-        //returns animator
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        
-        foreach (var anim in pauseAnimators)
-            anim.updateMode = AnimatorUpdateMode.Normal;
 
         if (EventSystem.current)
             EventSystem.current.SetSelectedGameObject(null);
@@ -72,16 +52,15 @@ public class PauseMenu : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
+        isPaused = false;
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void Options()
+    public void QuitGame()
     {
-        Debug.Log("Options");
+        Application.Quit();
     }
-
-
-    public void QuitGame() { Application.Quit(); }
 }
