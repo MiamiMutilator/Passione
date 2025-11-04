@@ -373,7 +373,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -584,10 +584,11 @@ MonoBehaviour:
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   lastDirection: {x: 0, y: 0, z: 0}
   dashVelocity: 10
-  dashDuration: 0.1
+  dashDuration: 0.5
   maxConsecutiveDashes: 2
   dashCooldown: 0.5
-  evadeBuffer: 0.3
+  evadeBuffer: 1
+  dodgeHitbox: {fileID: 0}
   dashing: 0
   timeSlowDuration: 1.5
   slowedTimeScale: 0.5
