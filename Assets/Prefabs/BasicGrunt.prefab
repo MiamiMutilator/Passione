@@ -1235,7 +1235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2ebfafbe918ea408f5e442c5f475bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitbox: {fileID: 7039306513339026580}
+  jab: {fileID: 8924653931100159508}
+  hook: {fileID: 7039306513339026580}
   hasBeenHit: 0
 --- !u!1 &329505456730006476 stripped
 GameObject:
@@ -1352,7 +1353,7 @@ MonoBehaviour:
   awarenessDistance: 15
   speed: 5
   isRanged: 0
-  enemyHealth: {fileID: 0}
+  enemyHealth: {fileID: 4525643195027478113}
   state: 0
 --- !u!114 &4525643195027478113
 MonoBehaviour:
@@ -1452,7 +1453,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2ebfafbe918ea408f5e442c5f475bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitbox: {fileID: 8924653931100159508}
+  jab: {fileID: 8924653931100159508}
+  hook: {fileID: 7039306513339026580}
   hasBeenHit: 0
 --- !u!4 &4586563418527954246 stripped
 Transform:
