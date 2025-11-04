@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,11 +26,18 @@ public class PlayerController : MonoBehaviour
     public int maxConsecutiveDashes = 2;
     [Tooltip("Duration of the dash cooldown in seconds")]
     public float dashCooldown = 0.5f;
+    [Tooltip("Determines how long the dodge window is active for. Added on top of dash duration")]
+    public float evadeBuffer = 0.3f;
+    public GameObject dodgeHitbox;
 
     private IActivateable dash;
     private int currentDashes = 0;
     private bool canDash = true;
-    [HideInInspector] public bool dashing = false; // Dash is currently active. Used in PunchHandler to prevent punching
+    private PunchHandler punchHandler;
+    [HideInInspector] public bool dashing = false; // Dash is currently active.
+    private bool isDodging = false;
+    private float totalDodgeTime = 0;
+    private float dodgeTimer = 0;
 
     [Header("Time Slow")]
     [Tooltip("Duration of the Time Slow in seconds")]
@@ -40,68 +48,20 @@ public class PlayerController : MonoBehaviour
     public float TimeScale { get; set; }
 
     private TimeSlow timeSlow;
-    private float timer = 0f;
-
-    // TO REMOVE
-    #region TEMPORARY
-    public InputActionReference toggle;
+    private float dashTimer = 0f;
+    private bool timeSlowActivated = false;
     private bool toggleActive = false;
-    private float startSlowTime = 0;
     private float slowTimer = 0;
 
-    void ToggleTimeSlow()
-    {
-        if (toggleActive)
-        {
-            slowTimer += Time.deltaTime * TimeScale;
-            //CheckTime<float>(slowTimer);
-
-            if (slowTimer > timeSlowDuration)
-            {
-                DeactivateTimeSlow();
-                toggleActive = false;
-                //print("Timer lasted " + (Time.time - startSlowTime) + " seconds compared to the timeSlowDuration " + timeSlowDuration);
-            }
-        }
-
-        if(toggle.action.triggered)
-        {
-            if (!toggleActive)
-            {
-                //Debug.Log("Time Slow Activated");
-                toggleActive = true;
-                ActivateTimeSlow();
-                slowTimer = 0;
-                startSlowTime = Time.time;
-            }
-        }
-    }
-
-    void CheckTime<T> (T value)
-    {
-        if (toggleActive)
-        {
-            Debug.Log("Value during Time Slow: " + value);
-        }
-        else
-        {
-            Debug.Log("Value outside of Time Slow: " + value);
-        }
-    }
-    #endregion
     private void OnEnable()
     {
         moveAction.action.Enable();
         dashAction.action.Enable();
-
-        toggle.action.Enable(); // To Remove
     }
     private void OnDisable()
     {
         moveAction.action.Disable();
         dashAction.action.Disable();
-
-        toggle.action.Disable(); // To Remove
     }
 
     private void Awake()
@@ -110,19 +70,20 @@ public class PlayerController : MonoBehaviour
         dash = new Dash(this, characterController, dashVelocity);
         timeSlow = new TimeSlow(slowedTimeScale);
         TimeScale = Time.timeScale;
+        punchHandler = GetComponent<PunchHandler>();
 
         if (!gameObject.CompareTag("Player")) Debug.LogWarning($"Give the Player tag to {gameObject.name}!");
     }
 
     private void Update()
     {
-        ToggleTimeSlow(); // Testing Purposes; To Remove
-
+        ApplyTimeSlow();
         UpdateTimeScale();
         ReadMoveInput();
         ApplyRotation();
         ApplyMovement();
         ApplyDash();
+        ApplyDodge();
     }
 
     // If Time Slow is activated, counteract it with the reciprocal of the slowedTimeScale
@@ -152,6 +113,8 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyDash()
     {
+        if (punchHandler.IsPunching()) return;
+
         if (canDash && currentDashes == maxConsecutiveDashes && !dashing)
         {
             // Dashed consecutively the max number of times. Start cooldown
@@ -163,21 +126,20 @@ public class PlayerController : MonoBehaviour
             {
                 // Start Dashing when input and can dash
                 dashing = true;
-                timer = 0;
-                //timeSlow.OnActivation();
-                //Invoke(nameof(DeactivateTimeSlow), timeSlowDuration / trueTimeScale );
+                totalDodgeTime += (dashDuration + evadeBuffer); // Evade enemy attacks for the duration
+                dashTimer = 0;
             }
 
-            if (dashing && timer < dashDuration)
+            if (dashing && dashTimer < dashDuration)
             {
                 // Smoothly dash for the duration
-                timer += Time.deltaTime * TimeScale;
+                dashTimer += Time.deltaTime * TimeScale;
                 dash.OnActivation();
             }
             else if (dashing)
             {
                 // Dash reached duration
-                timer = 0;
+                dashTimer = 0;
                 dashing = false;
                 currentDashes++;
                 Debug.Log("Dash Complete. Current Dashes: " + currentDashes);
@@ -185,17 +147,65 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void ApplyDodge()
+    {
+        dodgeHitbox.SetActive(isDodging);
+
+        if (totalDodgeTime > 0 && !isDodging)
+        {
+            Debug.Log("Started dodging attacks.");
+            isDodging = true;
+            dodgeTimer = 0;
+        }
+
+        if (isDodging && dodgeTimer < totalDodgeTime)
+        {
+            dodgeTimer += Time.deltaTime * TimeScale;
+        }
+        else if (isDodging)
+        {
+            Debug.Log("Stopped dodging attacks");
+            totalDodgeTime = 0;
+            dodgeTimer = 0;
+            isDodging = false;
+        }
+    }
+
     IEnumerator DashCooldown()
     {
         Debug.Log("Starting Dash Cooldown");
         canDash = false;
-        yield return new WaitForSeconds(dashCooldown * TimeScale);
+        yield return new WaitForSeconds(dashCooldown / TimeScale);
         Debug.Log("Dash Cooldown finished");
         canDash = true;
         currentDashes = 0;
     }
 
+    public void OnEvade() => timeSlowActivated = true;
+
+    void ApplyTimeSlow()
+    {
+        if (timeSlowActivated && !toggleActive)
+        {
+            toggleActive = true;
+            ActivateTimeSlow();
+            slowTimer = 0;
+        }
+        else if (timeSlowActivated && toggleActive)
+        {
+            slowTimer += Time.deltaTime * TimeScale;
+
+            if (slowTimer > timeSlowDuration)
+            {
+                DeactivateTimeSlow();
+                toggleActive = false;
+                timeSlowActivated = false;
+            }
+        }
+    }
+
     void ActivateTimeSlow() => timeSlow.OnActivation();
     void DeactivateTimeSlow() => timeSlow.Deactivate();
-    
+
+    public bool IsDodging() => isDodging;
 }

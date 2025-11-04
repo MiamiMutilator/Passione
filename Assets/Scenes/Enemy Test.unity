@@ -307,7 +307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2643115183621521956, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.899149
+      value: -1.01
       objectReference: {fileID: 0}
     - target: {fileID: 2643115183621521956, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: m_LocalPosition.y
@@ -345,11 +345,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8033357727186760322, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: dodgeHitbox
+      value: 
+      objectReference: {fileID: 941585250}
+    - target: {fileID: 8033357727186760322, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: evadeBuffer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033357727186760322, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: dashDuration
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+--- !u!1 &941585250 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3712297565560844490, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+  m_PrefabInstance: {fileID: 941585249}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &976975449 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2643115183621521956, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}

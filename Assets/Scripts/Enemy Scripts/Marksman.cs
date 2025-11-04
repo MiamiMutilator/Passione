@@ -19,6 +19,8 @@ public class Marksman : EnemyHealth
     public int damage = 1;
     public int maxAmmo = 6;
     public float shotRange = 30f;
+    [Tooltip("The time before a shot is fired. Used to give visual cues for an incoming shot")]
+    public float aimingTime = 0.6f;
     [Tooltip("The time between shots")]
     public float shotCooldown = 1f;
     [Tooltip("How long it takes for the enemy to reload.")]
@@ -32,8 +34,12 @@ public class Marksman : EnemyHealth
     private EnemyPathing pathing;
     private int currentAmmo;
     private bool currentlyFiring;
+    private bool currentlyAiming;
     private LayerMask targetLayer;
     private bool isReloading;
+
+    private Renderer appearance; // Testing
+    private Color baseColor; // Testing
 
     public override void Start()
     {
@@ -42,31 +48,57 @@ public class Marksman : EnemyHealth
         pathing = GetComponent<EnemyPathing>();
         currentAmmo = maxAmmo;
         targetLayer = LayerMask.GetMask("Player"); // only hits the Player layer
+        appearance = GetComponent<Renderer>();
+        baseColor = appearance.material.color;
     }
 
     public override void Update()
     {
         base.Update(); // Handles KO state
 
-        if (pathing == null || isReloading) return;
+        if (pathing == null || isReloading || currentlyAiming) return;
 
         if (currentAmmo <= 0) StartCoroutine(Reload());
         else if (pathing.state == EnemyPathingState.Attacking)
         {
             if (currentAmmo > 0 && !currentlyFiring)
             {
-                StartCoroutine(ShotCooldown());
-                Shoot();
+                StartCoroutine(Aim());
             }
         }
     }
 
+    IEnumerator Aim()
+    {
+        appearance.material.SetColor("_BaseColor", Color.red); // Testing
+        currentlyAiming = true;
+        Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.white, aimingTime);
+
+        yield return new WaitForSeconds(aimingTime);
+
+        appearance.material.SetColor("_BaseColor", baseColor); // Testing
+        currentlyAiming = false;
+        Shoot();
+    }
+
     void Shoot()
     {
+        StartCoroutine(ShotCooldown());
         currentAmmo--;
+
         // Cast a ray toward the player's position. If it hits an object with the Player layer, deal damage using the IDamageable component
         if (Physics.Raycast(firePoint.position, pathing.player.position - firePoint.position, out RaycastHit hit, shotRange, targetLayer))
         {
+            if (hit.collider.gameObject == null) return;
+
+            PlayerController player = hit.collider.gameObject.GetComponentInParent<PlayerController>();
+            if (player != null && player.IsDodging())
+            {
+                Debug.Log("Player dodged the bullet");
+                player.OnEvade();
+                return;
+            }
+
             // Calculate accuracy reduction based on distance from the player
             float accuracy = 100 - (Mathf.Max(0, Vector3.Distance(pathing.player.position, transform.position) - accuracyFalloffThreshold) * accuracyFalloffFactor);
             float chance = Random.Range(0, 100f);
@@ -74,7 +106,6 @@ public class Marksman : EnemyHealth
             if (accuracy != 0 && chance <= accuracy)
             {
                 // Shot landed
-                if (hit.collider.gameObject == null) return;
 
                 var damageable = hit.collider.gameObject.GetComponentInParent<IDamageable>();
                 if (damageable != null)
