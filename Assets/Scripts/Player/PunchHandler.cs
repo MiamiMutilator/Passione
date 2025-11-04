@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Analytics;
+using System;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -15,9 +17,12 @@ public class PunchHandler : MonoBehaviour
     public InputActionReference leftJabAction;
     public int leftDamage = 1;
     public Collider leftHitbox;
-    public float leftHitboxDuration = 1f; // how long the hitbox lasts after activation
     [StringPicker(options = new string[] { "EnemyHead", "EnemyBody" })]
     public string leftWeakpointTag; // Tag of the weakpoint hurtbox
+    public string leftBlockTag; // Tag of the enemy blocking hurtbox
+    public float leftPunchEndlag = 0;
+
+    float leftJabAnimationLength = 1f; // how long the hitbox lasts after activation
     private Punch leftJab;
     #endregion
     #region Right Arm
@@ -25,9 +30,12 @@ public class PunchHandler : MonoBehaviour
     public InputActionReference rightHookAction;
     public int rightDamage = 3;
     public Collider rightHitbox;
-    public float rightHitboxDuration = 1f; // how long the hitbox lasts after activation
     [StringPicker(options = new string[] { "EnemyHead", "EnemyBody" })]
     public string rightWeakpointTag; // Tag of the weakpoint hurtbox
+    public string rightBlockTag; // Tag of the enemy blocking hurtbox
+    public float rightPunchEndlag = 0.2f;
+
+    float rightHookAnimationLength = 1f; // how long the hitbox lasts after activation
     private Punch rightHook;
     #endregion
     [Header("General")]
@@ -56,7 +64,7 @@ public class PunchHandler : MonoBehaviour
     private void OnDisable()
     {
         leftJabAction.action.Disable();
-        rightHookAction.action.Enable();
+        rightHookAction.action.Disable();
     }
 
     private void Start()
@@ -74,13 +82,42 @@ public class PunchHandler : MonoBehaviour
         {
             armAnimator.SetBool("isIdle", true);
             baseAnimatorSpeed = 1;
+            UpdateAnimClipTimes();
         }
     }
 
     private void Update()
     {
         AdjustAnimator();
-        CheckPunching();
+        if (!controller.dashing) CheckPunching();
+    }
+
+    void AdjustAnimator()
+    {
+        if (armAnimator == null) return;
+
+        armAnimator.SetBool("isIdle", !isPunching);
+        armAnimator.speed = baseAnimatorSpeed * controller.TimeScale;
+    }
+
+    void CheckPunching()
+    {
+        // Trigger a left or right punch based on the input
+        // Get the true duration of a punch by multiplying the animation length by the reciprocal of the animation's speed multiplier, then add the endlag
+
+        if (!IsPunching() && leftJabAction.action.triggered)
+        {
+            leftJab.OnActivation(); // Punch script handles animation and successful hit logic
+            isPunching = true;
+            StartCoroutine(Punch(leftHitbox, leftJabAnimationLength * (1 / armAnimator.GetFloat("LeftMult")) + leftPunchEndlag, true)); // Handle Hitbox activation
+        }
+
+        if (!IsPunching() && rightHookAction.action.triggered)
+        {
+            rightHook.OnActivation(); // Punch script handles animation and successful hit logic
+            isPunching = true;
+            StartCoroutine(Punch(rightHitbox, rightHookAnimationLength * (1 / armAnimator.GetFloat("RightMult")) + rightPunchEndlag, false)); // Handle Hitbox activation
+        }
     }
 
     IEnumerator Punch(Collider hitbox, float duration, bool isLeft)
@@ -113,31 +150,6 @@ public class PunchHandler : MonoBehaviour
         ResetCombo();
     }
 
-    void AdjustAnimator()
-    {
-        if (armAnimator == null) return;
-
-        armAnimator.SetBool("isIdle", !isPunching);
-        armAnimator.speed = baseAnimatorSpeed * controller.TimeScale;
-    }
-
-    void CheckPunching()
-    {
-        if (!isPunching && leftJabAction.action.triggered)
-        {
-            leftJab.OnActivation(); // Punch script handles animation and successful hit logic
-            isPunching = true;
-            StartCoroutine(Punch(leftHitbox, leftHitboxDuration, true)); // Handle Hitbox activation
-        }
-
-        if (!isPunching && rightHookAction.action.triggered)
-        {
-            rightHook.OnActivation(); // Punch script handles animation and successful hit logic
-            isPunching = true;
-            StartCoroutine(Punch(rightHitbox, rightHitboxDuration, false)); // Handle Hitbox activation
-        }
-    }
-
     void InitializeHitbox(bool isLeft)
     {
         if (isLeft)
@@ -147,6 +159,7 @@ public class PunchHandler : MonoBehaviour
             hitboxScript.weakpointMult = weakpointMult;
             hitboxScript.targetLayer = targetLayer;
             hitboxScript.weakpointTag = leftWeakpointTag;
+            hitboxScript.blockedTag = leftBlockTag;
             hitboxScript.baseKnockback = initialKnockback;
             hitboxScript.attack = leftJab;
         }
@@ -157,6 +170,7 @@ public class PunchHandler : MonoBehaviour
             hitboxScript.weakpointMult = weakpointMult;
             hitboxScript.targetLayer = targetLayer;
             hitboxScript.weakpointTag = rightWeakpointTag;
+            hitboxScript.blockedTag = rightBlockTag;
             hitboxScript.baseKnockback = initialKnockback;
             hitboxScript.attack = rightHook;
         }
@@ -191,6 +205,25 @@ public class PunchHandler : MonoBehaviour
             ResetCombo();
         }
     }
+
+    public void UpdateAnimClipTimes()
+    {
+        AnimationClip[] clips = armAnimator.runtimeAnimatorController.animationClips;
+        foreach (AnimationClip clip in clips)
+        {
+            switch (clip.name)
+            {
+                case "Left Punch":
+                    leftJabAnimationLength = clip.length;
+                    break;
+                case "Right Punch":
+                    rightHookAnimationLength = clip.length;
+                    break;
+            }
+        }
+    }
+
+    public bool IsPunching() => isPunching;
 }
 
 #region Custom Editor

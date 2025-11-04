@@ -25,7 +25,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused) ResumeGame();
             else PauseGame();
@@ -55,15 +55,15 @@ public class PauseMenu : MonoBehaviour
     public void ResumeGame()
     {
         //returns animator
-        foreach (var anim in pauseAnimators)
-            anim.updateMode = AnimatorUpdateMode.Normal;
-
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        
+        foreach (var anim in pauseAnimators)
+            anim.updateMode = AnimatorUpdateMode.Normal;
 
         if (EventSystem.current)
             EventSystem.current.SetSelectedGameObject(null);

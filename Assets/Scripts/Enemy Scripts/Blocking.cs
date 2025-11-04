@@ -8,103 +8,93 @@ public class Blocking : MonoBehaviour
     public BoxCollider headBlock;
     public bool isBlockingBody;
     public BoxCollider bodyBlock;
-    public bool isInKOState;
-    public int health = 5;
-
-    public int actionChosen;
-    public int actionTimer;
-    public bool isInAction;
-
-    private bool recentlyHit = false;
-    public float hitCooldown = 1f;
+    public BoxCollider jab;
+    public BoxCollider hook;
+    public GameObject punchIndicator;
 
 
+    private int actionChosen;
+    private int actionTimer;
+    private bool isInAction;
+    private EnemyHealth healthComponent;
+    private EnemyPathing pathing;
+    private EnemyPunchHitbox enemyPunchHitbox;
     private Animator animator;
     private Coroutine currentAction;
 
-    //vfx
-    public GameObject stunnedVFX;
+    bool wasBlockingHead = false;
+    bool wasBlockingBody = false;
+    int[] actionProbability = { 0, 0, 0, 1, 1, 1, 2, 3, 4, 5 }; //gives probability to actions, Currently 0 = 20% chance 1 = 20% chance 3 = 30 % chance 3 and 4 = 10% chance
 
-    //Enemy AI
-    public NavMeshAgent enemy;
-    public Transform Player;
-    public float distanceKeptAway = 2f;
-    public float fightingDistance = 3f; // kept at distanceKeptAway + 1
-    public float awarenessDistance = 5f;
-
-    //rage
-    public Rage playerRage;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
+        healthComponent = GetComponent<EnemyHealth>();
+        pathing = GetComponent<EnemyPathing>();
+        enemyPunchHitbox = GetComponentInChildren<EnemyPunchHitbox>();
 
-        playerRage = FindObjectOfType<Rage>();
+        headBlock.enabled = false;
+        bodyBlock.enabled = false;
+        jab.enabled = false;
+
+        punchIndicator.SetActive(false);
+
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //if health == 0, KO state bool is activated and KO coroutine is activated
-        if (health <= 0)
+        if (healthComponent.isInKOState) SetBlockingAnimations(false);
+        else
         {
-            StartCoroutine(KOTimer());
+            animator.SetBool("isBlockingBody", isBlockingBody);
+            animator.SetBool("isBlockingHead", isBlockingHead);
         }
 
-        animator.SetBool("isBlockingBody", isBlockingBody);
-        animator.SetBool("isBlockingHead", isBlockingHead);
-        animator.SetBool("isKO", isInKOState);
+        if (pathing == null) return;
 
-        //pathing and AI
-        float distance = Vector3.Distance(Player.position, transform.position);
-        if (!isInKOState)
+
+
+
+        if (!healthComponent.isInKOState)
         {
-            if (distance > awarenessDistance)
+            if (pathing.state == EnemyPathingState.Idle)
             {
-                enemy.ResetPath();
                 animator.SetBool("isWalking", false);
             }
-            else if (distance > fightingDistance)
+            else if (pathing.state == EnemyPathingState.Chasing)
             {
+                //Debug.Log("Chasing");
                 if (isBlockingBody || isBlockingHead)
                 {
                     isBlockingBody = false;
                     isBlockingHead = false;
                     isInAction = false;
-                    animator.SetBool("isBlockingBody", false);
-                    animator.SetBool("isBlockingHead", false);
+                    SetBlockingAnimations(false);
                 }
-                enemy.SetDestination(Player.position);
                 animator.SetBool("isWalking", true);
                 
             }
-            //else if (distance < distanceKeptAway) //for ranged enemy
-            //{
-            //    Vector3 directionAway = (transform.position - Player.position).normalized;
-
-            //    Vector3 retreatPosition = transform.position + directionAway * (fightingDistance - distance);
-
-            //    enemy.SetDestination(retreatPosition);
-            //    animator.SetBool("isWalking", true);
-            //}
             else 
             {
-                enemy.ResetPath();
+                //Debug.Log("In Attack Range");
                 animator.SetBool("isWalking", false);
                 if (!isInAction)
                 {
-                    actionChosen = Random.Range(0, 2);
-                    StartCoroutine(actionTaken());
-
+                    actionChosen = actionProbability[Random.Range(0, actionProbability.Length)];
                     if (currentAction != null)
                         StopCoroutine(currentAction);
 
-                    currentAction = StartCoroutine(actionTaken());
+                    currentAction = StartCoroutine(ActionTaken());
                 }
             }
         }
-        Vector3 direction = Player.position - transform.position; //when enemy is blocking
+        else
+        {
+            SetBlockingAnimations(false);
+        }
+
+        Vector3 direction = pathing.player.position - transform.position; //when enemy is blocking
         direction.y = 0; 
 
         if (direction != Vector3.zero)
@@ -113,59 +103,20 @@ public class Blocking : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (recentlyHit) return;
-
-        if (other.gameObject.CompareTag("BodyJab"))
-        {
-            if (!bodyBlock.enabled || (playerRage.enraged))
-            {
-                TakeDamage(1);
-            }
-        }
-        else if (other.gameObject.CompareTag("HeadHook"))
-        {
-            if (!headBlock.enabled || (playerRage.enraged))
-            {
-                TakeDamage(3);
-            }
-        }
-        if (other.gameObject.CompareTag("BodyJab") && isInKOState == true || other.gameObject.CompareTag("HeadHook") && isInKOState == true)
-        {
-            Destroy(gameObject);
-            //increased knockback punch done through the punch script if it collides with a KO'd enemy
-        }
-
-    }
-
-    private IEnumerator KOTimer()
-    {
-        stunnedVFX.SetActive(true);
-        animator.SetBool("isKO", true);
-        isInKOState = true;
-        isBlockingBody = false;
-        isBlockingHead = false;
-        yield return new WaitForSeconds(5);
-        health = 5;
-        isInKOState = false;
-        animator.SetBool("isKO", false);
-        stunnedVFX.SetActive(false);
-    }
-
-    private IEnumerator actionTaken()
+    private IEnumerator ActionTaken()
     {
         isBlockingHead = false;
         isBlockingBody = false;
         isInAction = false;
-        animator.SetBool("isBlockingBody", false);
-        animator.SetBool("isBlockingHead", false);
+        if (isInAction) yield break;
+        SetBlockingAnimations(false);
         isInAction = true;
+        wasBlockingHead = isBlockingHead;
+        wasBlockingBody = isBlockingBody;
         switch (actionChosen)
         {
             case 0: // Block body
-                actionTimer = Random.Range(2, 7);
+                actionTimer = Random.Range(1, 2);
                 isBlockingBody = true;
                 bodyBlock.enabled = true;
                 animator.SetBool("isBlockingBody", true);
@@ -176,7 +127,7 @@ public class Blocking : MonoBehaviour
                 break;
 
             case 1: // Block head
-                actionTimer = Random.Range(2, 7);
+                actionTimer = Random.Range(1, 2);
                 isBlockingHead = true;
                 headBlock.enabled = true;
                 animator.SetBool("isBlockingHead", true);
@@ -185,22 +136,129 @@ public class Blocking : MonoBehaviour
                 headBlock.enabled = false;
                 animator.SetBool("isBlockingHead", false);
                 break;
+            case 2: //jab
+                enemyPunchHitbox.hasBeenHit = false;
+                punchIndicator.SetActive(true);
+                yield return new WaitForSeconds(0.5f);
+                punchIndicator.SetActive(false);
+                animator.SetTrigger("Jab");
+                //Debug.Log("Punched");
+                jab.enabled = true;
+                //actionTimer = 1; //duration of punch animation
+                yield return new WaitForSeconds(1);
+                jab.enabled = false;
+                if (wasBlockingHead)
+                {
+                    isBlockingHead = true;
+                    animator.SetBool("isBlockingHead", true);
+                }
+                else if (wasBlockingBody)
+                {
+                    isBlockingBody = true;
+                    animator.SetBool("isBlockingBody", true);
+                }
+                //Debug.Log("Finished Punching");
+                break;
+            case 3: //hook
+                enemyPunchHitbox.hasBeenHit = false;
+                punchIndicator.SetActive(true);
+                yield return new WaitForSeconds(0.5f);
+                punchIndicator.SetActive(false);
+                animator.SetTrigger("Hook");
+                //Debug.Log("Punched");
+                hook.enabled = true;
+                //actionTimer = 1; //duration of punch animation
+                yield return new WaitForSeconds(1);
+                hook.enabled = false;
+                if (wasBlockingHead)
+                {
+                    isBlockingHead = true;
+                    animator.SetBool("isBlockingHead", true);
+                }
+                else if (wasBlockingBody)
+                {
+                    isBlockingBody = true;
+                    animator.SetBool("isBlockingBody", true);
+                }
+                //Debug.Log("Finished Punching");
+                break;
+
+            case 4: //fake block Head
+                Debug.Log("Fake Blocked Head");
+                isBlockingHead = true;
+                headBlock.enabled = true;
+                animator.SetBool("isBlockingHead", true);
+                yield return new WaitForSeconds(0.5f);
+                isBlockingHead = false;
+                headBlock.enabled = false;
+                animator.SetBool("isBlockingHead", false);
+                enemyPunchHitbox.hasBeenHit = false;
+                punchIndicator.SetActive(true);
+                yield return new WaitForSeconds(0.5f);
+                punchIndicator.SetActive(false);
+                animator.SetTrigger("Hook");
+                //Debug.Log("Punched");
+                hook.enabled = true;
+                //actionTimer = 1; //duration of punch animation
+                yield return new WaitForSeconds(1);
+                hook.enabled = false;
+                if (wasBlockingHead)
+                {
+                    isBlockingHead = true;
+                    animator.SetBool("isBlockingHead", true);
+                }
+                else if (wasBlockingBody)
+                {
+                    isBlockingBody = true;
+                    animator.SetBool("isBlockingBody", true);
+                }
+
+                //Debug.Log("Finished Punching");
+                break;
+            case 5: //fake block body
+                Debug.Log("Fake Blocked Body");
+                isBlockingBody = true;
+                bodyBlock.enabled = true;
+                animator.SetBool("isBlockingBody", true);
+                yield return new WaitForSeconds(0.5f);
+                isBlockingBody = false;
+                bodyBlock.enabled = false;
+                animator.SetBool("isBlockingBody", false);
+                enemyPunchHitbox.hasBeenHit = false;
+                punchIndicator.SetActive(true);
+                yield return new WaitForSeconds(0.5f);
+                punchIndicator.SetActive(false);
+                animator.SetTrigger("Hook");
+                //Debug.Log("Punched");
+                hook.enabled = true;
+                //actionTimer = 1; //duration of punch animation
+                yield return new WaitForSeconds(1);
+                hook.enabled = false;
+                if (wasBlockingHead)
+                {
+                    isBlockingHead = true;
+                    animator.SetBool("isBlockingHead", true);
+                }
+                else if (wasBlockingBody)
+                {
+                    isBlockingBody = true;
+                    animator.SetBool("isBlockingBody", true);
+                }
+
+                //Debug.Log("Finished Punching");
+                break;
+
+
         }
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
         isInAction = false;
 
     }
 
-    private IEnumerator DamageCooldown()
-    {
-        recentlyHit = true;
-        yield return new WaitForSeconds(hitCooldown);
-        recentlyHit = false;
-    }
 
-    private void TakeDamage(int amount)
+    void SetBlockingAnimations(bool boolean)
     {
-        health -= amount;
-        StartCoroutine(DamageCooldown());
+        animator.SetBool("isBlockingHead", boolean);
+        animator.SetBool("isBlockingBody", boolean);
     }
 }
