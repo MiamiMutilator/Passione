@@ -154,8 +154,8 @@ MonoBehaviour:
   lookAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   player: {fileID: 2643115183621521956}
   mouseSensitivity:
-    horizontal: 50
-    vertical: 50
+    horizontal: 70
+    vertical: 70
     invertHorizontal: 1
     invertVertical: 0
   cameraAngle:
@@ -298,7 +298,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.9449253, y: 1.06, z: -7.992638}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2518589505485142577}
@@ -587,12 +587,13 @@ MonoBehaviour:
   dashDuration: 0.1
   maxConsecutiveDashes: 2
   dashCooldown: 0.5
-  evadeBuffer: 2
+  evadeBuffer: 3
   dodgeHitbox: {fileID: 3712297565560844490}
   dashing: 0
-  timeSlowDuration: 1.5
+  timeSlowDuration: 3
   slowedTimeScale: 0.5
   dashAction: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  gravityMultiplier: 3
 --- !u!114 &3998035177492620065
 MonoBehaviour:
   m_ObjectHideFlags: 0
