@@ -122,10 +122,22 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
+        if (moveDirection == Vector3.zero)
+        {
+            // Default last direction to backwards if there's no movement input
+            Vector3 cameraForward = playerCamera.transform.forward;
+            Vector3 backward = new Vector3(cameraForward.x, 0, cameraForward.z) * -1;
+            lastDirection = backward;
+        }
+        else
+        {
+            lastDirection = moveDirection;
+        }
+
         // Combine horizontal and vertical movement
         Vector3 finalMove = (moveSpeed * moveDirection) + (playerVelocity.y * Vector3.up);
         characterController.Move(Time.deltaTime * TimeScale * finalMove);
-        lastDirection = moveDirection;
+        
     }
 
     private void ApplyDash()
