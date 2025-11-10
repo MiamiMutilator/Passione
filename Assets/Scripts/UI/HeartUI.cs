@@ -1,54 +1,56 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HeartUI : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private PlayerHealth playerHealth;  // PlayerHealth Drag
-    [SerializeField] private Animator animator;          // Animator on HeartImage 
+    [Header("Refs")]
+    [SerializeField] private PlayerHealth playerHealth;   // Player
+    [SerializeField] private Animator animator;           // HeartImage
 
-    private static readonly int StateHash = Animator.StringToHash("State");
-    private int _lastState = -1;
+    [Header("Animator state names (full → empty)")]
+    [SerializeField]
+    private string[] stateNames =
+        { "HeartFull", "Heart1", "Heart2", "Heart3", "Heart4" };
 
-    private void Awake()
+    [Header("Tuning")]
+    [SerializeField] private float fadeDuration = 0.10f;  // crossfade
+
+    private int _lastIndex = -1;
+
+    void Awake()
     {
         if (!animator) animator = GetComponent<Animator>();
         if (!playerHealth) playerHealth = FindFirstObjectByType<PlayerHealth>();
     }
 
-    private void OnEnable()
-    {
-        Apply(true);
-    }
+    void OnEnable() => Apply(force: true);
 
-    private void Update()
-    {
-        Apply(false);
-    }
+    void Update() => Apply(force: false);
 
     private void Apply(bool force)
-
-    // Check player health
-    // 
     {
-        if (!playerHealth || !animator) return;
+        if (!playerHealth || !animator || stateNames.Length != 5) return;
 
-        float ratio = playerHealth.maxHealth > 0
-            ? playerHealth.Health / (float)playerHealth.maxHealth
+        
+        float ratio = playerHealth.maxHealth > 0 //player health
+            ? Mathf.Clamp01(playerHealth.Health / (float)playerHealth.maxHealth)
             : 0f;
 
-        // 0 = Full, 4 = Empty
-        int state =
-            ratio >= 0.99f ? 0 :
-            ratio >= 0.75f ? 1 :
-            ratio >= 0.50f ? 2 :
-            ratio >= 0.25f ? 3 :
-                              4;
+        // Map to 5 buckets (Full, 75%, 50%, 25%, Empty)
+        // 10 - Full
+        // 8–9 - Heart1
+        // 6–7 - Heart2
+        // 3–5 - Heart3
+        // 0–2 - Heart4 empty
+        int idx =
+            (ratio >= 0.99f) ? 0 :
+            (ratio >= 0.75f) ? 1 :
+            (ratio >= 0.50f) ? 2 :
+            (ratio >= 0.25f) ? 3 : 4;
 
-        if (force || state != _lastState)
+        if (force || idx != _lastIndex)
         {
-            _lastState = state;
-            animator.SetInteger(StateHash, state);
-            Debug.Log($"[HeartUI] HP {playerHealth.Health}/{playerHealth.maxHealth} (ratio {ratio:F2}) -> State {state}");
+            _lastIndex = idx;
+            animator.CrossFade(stateNames[idx], fadeDuration, 0, 0f);
         }
     }
 }
