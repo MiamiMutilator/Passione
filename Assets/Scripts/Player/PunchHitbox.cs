@@ -11,12 +11,14 @@ public class PunchHitbox : MonoBehaviour
     [HideInInspector] public Vector3 baseKnockback;
 
     private Rage rage;
+    private PlayerController player;
     private int finalDamage;
     private Vector3 finalKnockback;
 
     private void Awake()
     {
         rage = GetComponentInParent<Rage>();
+        player = GetComponentInParent<PlayerController>();
         if (rage == null) Debug.LogError("Rage Component not found");
     }
 
@@ -51,6 +53,12 @@ public class PunchHitbox : MonoBehaviour
                 else
                 {
                     finalDamage = baseDamage;
+                }
+                
+                if(damageable.TryGetComponent<EnemyHealth>(out var enemy))
+                {
+                    // When hitting a stunned enemy, activate time slow
+                    if (enemy.isInKOState) player.ActivateTimeSlow();
                 }
 
                 finalKnockback = baseKnockback * finalDamage;

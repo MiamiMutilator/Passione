@@ -590,7 +590,7 @@ MonoBehaviour:
   evadeBuffer: 3
   dodgeHitbox: {fileID: 3712297565560844490}
   dashing: 0
-  timeSlowDuration: 3
+  timeSlowDuration: 2
   slowedTimeScale: 0.5
   dashAction: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   gravityMultiplier: 3
