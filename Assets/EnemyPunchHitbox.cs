@@ -9,15 +9,15 @@ public class EnemyPunchHitbox : MonoBehaviour
     void Start()
     {
         hasBeenHit = false;
+        jab.enabled = false;
+        hook.enabled = false;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
+        
     }
-
-
 
 
     private void OnTriggerEnter(Collider other)
@@ -28,6 +28,7 @@ public class EnemyPunchHitbox : MonoBehaviour
             PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
             if (playerHealth != null)
             {
+                Debug.Log("test");
                 playerHealth.OnHit(1);
                 hasBeenHit = true;
                 jab.enabled = false;
