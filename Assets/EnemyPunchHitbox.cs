@@ -43,7 +43,7 @@ public class EnemyPunchHitbox : MonoBehaviour
             if (player != null && player.IsDodging())
             {
                 Debug.Log("Player dodged the punch");
-                player.OnEvade();
+                player.ActivateTimeSlow();
             }
         }
     }

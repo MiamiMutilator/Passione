@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Time Slow")]
     [Tooltip("Duration of the Time Slow in seconds")]
-    public float timeSlowDuration = 1.5f;
+    public float timeSlowDuration = 2f;
     [Tooltip("What the time scale gets set to when Time Slow activates. 1 is normal speed, 0 is paused")]
     public float slowedTimeScale = 0.5f;
     public InputActionReference dashAction;
@@ -210,14 +210,14 @@ public class PlayerController : MonoBehaviour
         currentDashes = 0;
     }
 
-    public void OnEvade() => timeSlowActivated = true;
+    
 
     void ApplyTimeSlow()
     {
         if (timeSlowActivated && !toggleActive)
         {
             toggleActive = true;
-            ActivateTimeSlow();
+            StartTimeSlow();
             slowTimer = 0;
         }
         else if (timeSlowActivated && toggleActive)
@@ -226,15 +226,16 @@ public class PlayerController : MonoBehaviour
 
             if (slowTimer > timeSlowDuration)
             {
-                DeactivateTimeSlow();
+                StopTimeSlow();
                 toggleActive = false;
                 timeSlowActivated = false;
             }
         }
     }
 
-    void ActivateTimeSlow() => timeSlow.OnActivation();
-    void DeactivateTimeSlow() => timeSlow.Deactivate();
+    public void ActivateTimeSlow() => timeSlowActivated = true;
+    void StartTimeSlow() => timeSlow.OnActivation();
+    void StopTimeSlow() => timeSlow.Deactivate();
     private bool IsGrounded() => characterController.isGrounded;
     public bool IsDodging() => isDodging;
 }
