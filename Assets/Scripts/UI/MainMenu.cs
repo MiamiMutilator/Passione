@@ -1,16 +1,39 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
-public class MainMenu : MonoBehaviour
+public class MenuSFXAndLoad : MonoBehaviour
 {
-    public void ExitButton()
+    public AudioSource src;
+    public AudioClip clickSfx;
+    public AudioClip backSfx;
+    public float sceneLoadDelay = .5f; //Loading Scene Delay
+
+    public void PlayClickAndLoad(string sceneName)
     {
-        Application.Quit();
-        Debug.Log("QUIT");
+        StartCoroutine(PlayThenLoad(clickSfx, sceneName));
     }
 
-    public void StartGame()
+    public void PlayBackAndLoad(string sceneName)
     {
-        SceneManager.LoadScene("Prototype Level");
+        StartCoroutine(PlayThenLoad(backSfx, sceneName));
+    }
+
+    private IEnumerator PlayThenLoad(AudioClip clip, string sceneName)
+    {
+        if (clip != null)
+            src.PlayOneShot(clip);
+
+        yield return new WaitForSecondsRealtime(sceneLoadDelay);
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void PlayClick() { if (clickSfx) src.PlayOneShot(clickSfx); }
+    public void PlayBack() { if (backSfx) src.PlayOneShot(backSfx); }
+
+    
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

@@ -486,7 +486,6 @@ GameObject:
   - component: {fileID: 163487929}
   - component: {fileID: 163487928}
   - component: {fileID: 163487927}
-  - component: {fileID: 163487926}
   - component: {fileID: 163487930}
   m_Layer: 5
   m_Name: Exit Button
@@ -515,28 +514,6 @@ RectTransform:
   m_AnchoredPosition: {x: 12, y: -238}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &163487926
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 163487924}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ec20caff24a2a3748b8ea16e065d0e7e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &163487927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1674,7 +1651,6 @@ GameObject:
   - component: {fileID: 559541996}
   - component: {fileID: 559541995}
   - component: {fileID: 559541994}
-  - component: {fileID: 559541997}
   - component: {fileID: 559541998}
   m_Layer: 5
   m_Name: Start Button
@@ -1797,28 +1773,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559541992}
   m_CullTransparentMesh: 1
---- !u!95 &559541997
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 559541992}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ec20caff24a2a3748b8ea16e065d0e7e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &559541998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2204,7 +2158,6 @@ GameObject:
   - component: {fileID: 694512332}
   - component: {fileID: 694512331}
   - component: {fileID: 694512330}
-  - component: {fileID: 694512329}
   - component: {fileID: 694512333}
   m_Layer: 5
   m_Name: Quit Button
@@ -2233,28 +2186,6 @@ RectTransform:
   m_AnchoredPosition: {x: 12, y: -231}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &694512329
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 694512327}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ec20caff24a2a3748b8ea16e065d0e7e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &694512330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2789,7 +2720,6 @@ GameObject:
   - component: {fileID: 761531957}
   - component: {fileID: 761531956}
   - component: {fileID: 761531955}
-  - component: {fileID: 761531954}
   - component: {fileID: 761531958}
   m_Layer: 5
   m_Name: Settings Button
@@ -2818,28 +2748,6 @@ RectTransform:
   m_AnchoredPosition: {x: 12, y: 85}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &761531954
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761531952}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ec20caff24a2a3748b8ea16e065d0e7e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &761531955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3151,7 +3059,6 @@ GameObject:
   - component: {fileID: 821572491}
   - component: {fileID: 821572490}
   - component: {fileID: 821572489}
-  - component: {fileID: 821572488}
   - component: {fileID: 821572492}
   m_Layer: 5
   m_Name: Quit Button
@@ -3180,28 +3087,6 @@ RectTransform:
   m_AnchoredPosition: {x: 12, y: -234}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &821572488
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 821572486}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ec20caff24a2a3748b8ea16e065d0e7e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &821572489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3246,9 +3131,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: ExitButton
+      - m_Target: {fileID: 1458850723}
+        m_TargetAssemblyTypeName: MenuSFXAndLoad, Assembly-CSharp
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5306,7 +5191,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1458850718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9665a797310e8ca4fb6c5c40a5247ede, type: 3}
+  m_Script: {fileID: 11500000, guid: 789b6f0ea964142438693d6d028f98e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   src: {fileID: 1611372810}
@@ -5650,7 +5535,6 @@ GameObject:
   - component: {fileID: 1654681732}
   - component: {fileID: 1654681731}
   - component: {fileID: 1654681730}
-  - component: {fileID: 1654681729}
   - component: {fileID: 1654681733}
   m_Layer: 5
   m_Name: Credits Button
@@ -5679,28 +5563,6 @@ RectTransform:
   m_AnchoredPosition: {x: 12, y: -73}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &1654681729
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1654681727}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ec20caff24a2a3748b8ea16e065d0e7e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1654681730
 MonoBehaviour:
   m_ObjectHideFlags: 0
