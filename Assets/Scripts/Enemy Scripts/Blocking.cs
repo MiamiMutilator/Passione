@@ -142,11 +142,13 @@ public class Blocking : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 punchIndicator.SetActive(false);
                 animator.SetTrigger("Jab");
+                animator.speed = 1.1f;
                 //Debug.Log("Punched");
                 jab.enabled = true;
                 yield return StartCoroutine(WaitForAnimationToFinish("Jab"));
+                animator.speed = 1f;
                 //jab.enabled = false;
-                enemyPunchHitbox.hasBeenHit = false;
+                //enemyPunchHitbox.hasBeenHit = false;
                 if (wasBlockingHead)
                 {
                     isBlockingHead = true;
@@ -164,12 +166,14 @@ public class Blocking : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 punchIndicator.SetActive(false);
                 animator.SetTrigger("Hook");
+                animator.speed = 1.2f;
                 //Debug.Log("Punched");
                 hook.enabled = true;
                 yield return StartCoroutine(WaitForAnimationToFinish("Hook"));
                 //hook.enabled = false;
-                yield return new WaitForSeconds(0.1f);
-                enemyPunchHitbox.hasBeenHit = false;
+                animator.speed = 1f;
+                //yield return new WaitForSeconds(0.1f);
+                //enemyPunchHitbox.hasBeenHit = false;
                 if (wasBlockingHead)
                 {
                     isBlockingHead = true;
@@ -199,8 +203,8 @@ public class Blocking : MonoBehaviour
                 hook.enabled = true;
                 yield return StartCoroutine(WaitForAnimationToFinish("Hook"));
                 //hook.enabled = false;
-                yield return new WaitForSeconds(0.1f);
-                enemyPunchHitbox.hasBeenHit = false;
+                //yield return new WaitForSeconds(0.1f);
+                //enemyPunchHitbox.hasBeenHit = false;
                 if (wasBlockingHead)
                 {
                     isBlockingHead = true;
@@ -230,8 +234,8 @@ public class Blocking : MonoBehaviour
                 hook.enabled = true;
                 yield return StartCoroutine(WaitForAnimationToFinish("Hook"));
                 //hook.enabled = false;
-                yield return new WaitForSeconds(0.1f);
-                enemyPunchHitbox.hasBeenHit = false;
+                //yield return new WaitForSeconds(0.1f);
+                //enemyPunchHitbox.hasBeenHit = false;
                 if (wasBlockingHead)
                 {
                     isBlockingHead = true;

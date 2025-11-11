@@ -8,7 +8,7 @@ public class EnemyPunchHitbox : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        hasBeenHit = false;
+        //hasBeenHit = false;
         jab.enabled = false;
         hook.enabled = false;
 
@@ -22,15 +22,15 @@ public class EnemyPunchHitbox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (hasBeenHit) return;
+        //if (hasBeenHit) return;
         if (other.CompareTag("Player"))
         {
             PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
             if (playerHealth != null)
             {
-                Debug.Log("test");
+                //Debug.Log("test");
                 playerHealth.OnHit(1);
-                hasBeenHit = true;
+                //hasBeenHit = true;
                 jab.enabled = false;
                 hook.enabled = false;
             }
