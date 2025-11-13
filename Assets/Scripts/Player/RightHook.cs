@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class RightHook : Punch
 {
-    public RightHook(GameObject originator, int damage, Animator armAnimator) : base(originator, damage, armAnimator)
+    public RightHook(GameObject originator, Animator armAnimator) : base(originator, armAnimator)
     {
         Originator = originator;
-        Damage = damage;
         this.armAnimator = armAnimator;
     }
 

@@ -67,8 +67,8 @@ public class PunchHandler : ToggleableBehaviour
     {
         controller = GetComponent<PlayerController>();
 
-        leftJab = new LeftJab(gameObject, leftDamage, armAnimator);
-        rightHook = new RightHook(gameObject, rightDamage, armAnimator);
+        leftJab = new LeftJab(gameObject, armAnimator);
+        rightHook = new RightHook(gameObject, armAnimator);
 
         leftHitbox.enabled = false;
         rightHitbox.enabled = false;

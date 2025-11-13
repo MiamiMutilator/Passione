@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class LeftJab : Punch
 {
-    public LeftJab(GameObject originator, int damage, Animator armAnimator) : base(originator, damage, armAnimator)
+    public LeftJab(GameObject originator, Animator armAnimator) : base(originator, armAnimator)
     {
         Originator = originator;
-        Damage = damage;
         this.armAnimator = armAnimator;
     }
 

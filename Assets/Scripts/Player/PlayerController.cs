@@ -210,8 +210,6 @@ public class PlayerController : ToggleableBehaviour
         currentDashes = 0;
     }
 
-    
-
     void ApplyTimeSlow()
     {
         if (timeSlowActivated && !toggleActive)
