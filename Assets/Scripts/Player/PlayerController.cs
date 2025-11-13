@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : ToggleableBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;

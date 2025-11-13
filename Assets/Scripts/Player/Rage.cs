@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine.UI;
 
-public class Rage : MonoBehaviour
+public class Rage : ToggleableBehaviour
 {
     public int RageMeter = 100;
     public bool enraged;

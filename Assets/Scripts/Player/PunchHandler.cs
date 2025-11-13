@@ -1,15 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Analytics;
-using System;
-
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-public class PunchHandler : MonoBehaviour
+public class PunchHandler : ToggleableBehaviour
 {
     #region Variables
     #region Left Arm
