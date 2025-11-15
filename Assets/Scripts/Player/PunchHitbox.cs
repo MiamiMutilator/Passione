@@ -8,8 +8,9 @@ public class PunchHitbox : MonoBehaviour
     [HideInInspector] public string weakpointTag;
     [HideInInspector] public string blockedTag;
     [HideInInspector] public IAttack attack;
-    [HideInInspector] public Vector3 baseKnockback;
-
+    [HideInInspector] public float knockbackFactor;
+    
+    private Vector3 baseKnockback;
     private Rage rage;
     private PlayerController player;
     private int finalDamage;
@@ -24,6 +25,14 @@ public class PunchHitbox : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        if (collision.gameObject == null) return;
+
+        // Get the knockback vector 
+        Vector3 distanceVector = (collision.gameObject.transform.position - player.gameObject.transform.position).normalized;
+        //Debug.Log("Distance vector against " + collision.gameObject.name + ": " + distanceVector);
+        baseKnockback = distanceVector * knockbackFactor;
+        //Debug.Log("Base knockback against " + collision.gameObject.name + ": " + baseKnockback);
+
         // Check if collision is damageable
         if (collision.gameObject.TryGetComponent<Hurtbox>(out var hurtbox))
         {
