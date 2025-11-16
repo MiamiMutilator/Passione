@@ -8,7 +8,7 @@ public class EnemyHealth : DamageableCharacter
     [Tooltip("How long the enemy stays in the KO state")]
     public float koStateTime = 5f;
     [Tooltip("How long after getting hit before the enemy can be hit again")]
-    public float hitCooldown = 1f;
+    public float hitCooldown = 2f;
     [Tooltip("After the enemy recovers from the KO state, their health is set to (Max Health / Health Recovery Divisor)")]
     public int healthRecoveryDivisor = 1;
     public GameObject stunnedVFX;

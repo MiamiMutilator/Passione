@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : ToggleableBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Time Slow")]
     [Tooltip("Duration of the Time Slow in seconds")]
-    public float timeSlowDuration = 1.5f;
+    public float timeSlowDuration = 2f;
     [Tooltip("What the time scale gets set to when Time Slow activates. 1 is normal speed, 0 is paused")]
     public float slowedTimeScale = 0.5f;
     public InputActionReference dashAction;
@@ -51,6 +52,11 @@ public class PlayerController : MonoBehaviour
     private bool timeSlowActivated = false;
     private bool toggleActive = false;
     private float slowTimer = 0;
+
+    [Header("Gravity")]
+    [SerializeField] private float gravityMultiplier = 3.0f;
+    private const float Gravity = -9.81f;
+    private Vector3 playerVelocity;
 
     private void OnEnable()
     {
@@ -80,6 +86,7 @@ public class PlayerController : MonoBehaviour
         UpdateTimeScale();
         ReadMoveInput();
         ApplyRotation();
+        ApplyGravity();
         ApplyMovement();
         ApplyDash();
         ApplyDodge();
@@ -103,11 +110,34 @@ public class PlayerController : MonoBehaviour
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime * TimeScale);
     }
+    private void ApplyGravity()
+    {
+        if (IsGrounded() && playerVelocity.y < 0.0f)
+        {
+            playerVelocity.y = 0f;
+        }
+
+        playerVelocity.y += Gravity * gravityMultiplier * Time.deltaTime * TimeScale;
+    }
 
     private void ApplyMovement()
     {
-        characterController.Move(moveSpeed * Time.deltaTime * TimeScale * moveDirection);
-        lastDirection = moveDirection;
+        if (moveDirection == Vector3.zero)
+        {
+            // Default last direction to backwards if there's no movement input
+            Vector3 cameraForward = playerCamera.transform.forward;
+            Vector3 backward = new Vector3(cameraForward.x, 0, cameraForward.z) * -1;
+            lastDirection = backward;
+        }
+        else
+        {
+            lastDirection = moveDirection;
+        }
+
+        // Combine horizontal and vertical movement
+        Vector3 finalMove = (moveSpeed * moveDirection) + (playerVelocity.y * Vector3.up);
+        characterController.Move(Time.deltaTime * TimeScale * finalMove);
+        
     }
 
     private void ApplyDash()
@@ -180,14 +210,12 @@ public class PlayerController : MonoBehaviour
         currentDashes = 0;
     }
 
-    public void OnEvade() => timeSlowActivated = true;
-
     void ApplyTimeSlow()
     {
         if (timeSlowActivated && !toggleActive)
         {
             toggleActive = true;
-            ActivateTimeSlow();
+            StartTimeSlow();
             slowTimer = 0;
         }
         else if (timeSlowActivated && toggleActive)
@@ -196,15 +224,16 @@ public class PlayerController : MonoBehaviour
 
             if (slowTimer > timeSlowDuration)
             {
-                DeactivateTimeSlow();
+                StopTimeSlow();
                 toggleActive = false;
                 timeSlowActivated = false;
             }
         }
     }
 
-    void ActivateTimeSlow() => timeSlow.OnActivation();
-    void DeactivateTimeSlow() => timeSlow.Deactivate();
-
+    public void ActivateTimeSlow() => timeSlowActivated = true;
+    void StartTimeSlow() => timeSlow.OnActivation();
+    void StopTimeSlow() => timeSlow.Deactivate();
+    private bool IsGrounded() => characterController.isGrounded;
     public bool IsDodging() => isDodging;
 }

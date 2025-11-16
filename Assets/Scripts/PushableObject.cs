@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent (typeof(Rigidbody))]
 public class PushableObject : MonoBehaviour, IKnockback
 {
-    [Tooltip("Multiplied against incoming damage and knockback")]
+    [Tooltip("Multiplied against incoming knockback")]
     [SerializeField] private float knockbackFactor = 1f;
 
     private Rigidbody rb;
@@ -15,6 +15,8 @@ public class PushableObject : MonoBehaviour, IKnockback
 
     public virtual void OnHitWithKnockback(int damage, Vector3 knockback)
     {
-        rb.AddForce(damage * knockbackFactor * knockback, ForceMode.Impulse);
+        Vector3 trueKnockback = knockback * knockbackFactor;
+        Debug.Log(name + " pushed back " + trueKnockback);
+        rb.AddForce(trueKnockback, ForceMode.Impulse);
     }
 }

@@ -1347,13 +1347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 7728868686681551041}
-  heartImage: {fileID: 448458698}
-  heartSprites:
-  - {fileID: 21300000, guid: 46ff9d510b930714f9b7a709111523d6, type: 3}
-  - {fileID: 21300000, guid: ab31d0395690eea4d8a2b2d908c1be9d, type: 3}
-  - {fileID: 21300000, guid: bc92976496585e341a7f2024559d3c1b, type: 3}
-  - {fileID: 21300000, guid: 114fea0c501d80c43ac7c72d18cff3de, type: 3}
-  - {fileID: 21300000, guid: f28e2341f860d0841891ec7e6e38a963, type: 3}
+  animator: {fileID: 0}
 --- !u!114 &448458698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1483,8 +1477,11 @@ GameObject:
   - component: {fileID: 708486084}
   - component: {fileID: 708486083}
   - component: {fileID: 708486082}
+  - component: {fileID: 708486088}
+  - component: {fileID: 708486087}
+  - component: {fileID: 708486086}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Pushable Prism
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1573,12 +1570,73 @@ Transform:
   m_GameObject: {fileID: 708486081}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.620332, y: 0.55, z: -1.8026264}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -11.620332, y: 1.86, z: -1.8026264}
+  m_LocalScale: {x: 1, y: 3.8704, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &708486086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708486081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09fca7dc567b2dd4abadddc1e7c6e3bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackFactor: 1
+--- !u!54 &708486087
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708486081}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &708486088
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708486081}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.42, y: 1.09, z: 1.45}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &765433840
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,7 +2339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1332703991
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2318,9 +2376,6 @@ MonoBehaviour:
   maxHealth: 10
   health: 10
   targetable: 1
-  OnDestroyEvents:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!54 &1332703993
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2870,7 +2925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1930631423
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2975,9 +3030,6 @@ MonoBehaviour:
   maxHealth: 10
   health: 10
   targetable: 1
-  OnDestroyEvents:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!54 &1930631428
 Rigidbody:
   m_ObjectHideFlags: 0
