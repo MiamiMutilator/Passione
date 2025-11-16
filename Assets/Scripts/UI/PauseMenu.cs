@@ -1,11 +1,10 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private ToggleControl toggleControl; //drag player
+    [SerializeField] private ToggleControl playerToggleControl; //drag Player
     public static bool isPaused;
 
     void Start()
@@ -33,6 +32,9 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
+        if (playerToggleControl)
+            playerToggleControl.Toggle(false);
+
         if (EventSystem.current)
             EventSystem.current.SetSelectedGameObject(null);
     }
@@ -46,22 +48,11 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
+        if (playerToggleControl)
+            playerToggleControl.Toggle(true); //toggle
+
         if (EventSystem.current)
             EventSystem.current.SetSelectedGameObject(null);
     }
 
-    public void GoToMainMenu()
-    {
-        Time.timeScale = 1f;
-        isPaused = false;
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
 }
