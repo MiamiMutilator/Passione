@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private ToggleControl toggleControl; //drag player
     public static bool isPaused;
 
     void Start()
