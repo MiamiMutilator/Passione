@@ -8,20 +8,31 @@ public class PunchHitbox : MonoBehaviour
     [HideInInspector] public string weakpointTag;
     [HideInInspector] public string blockedTag;
     [HideInInspector] public IAttack attack;
-    [HideInInspector] public Vector3 baseKnockback;
-
+    [HideInInspector] public float knockbackFactor;
+    
+    private Vector3 baseKnockback;
     private Rage rage;
+    private PlayerController player;
     private int finalDamage;
     private Vector3 finalKnockback;
 
     private void Awake()
     {
         rage = GetComponentInParent<Rage>();
+        player = GetComponentInParent<PlayerController>();
         if (rage == null) Debug.LogError("Rage Component not found");
     }
 
     private void OnTriggerEnter(Collider collision)
     {
+        if (collision.gameObject == null) return;
+
+        // Get the knockback vector 
+        Vector3 distanceVector = (collision.gameObject.transform.position - player.gameObject.transform.position).normalized;
+        //Debug.Log("Distance vector against " + collision.gameObject.name + ": " + distanceVector);
+        baseKnockback = distanceVector * knockbackFactor;
+        //Debug.Log("Base knockback against " + collision.gameObject.name + ": " + baseKnockback);
+
         // Check if collision is damageable
         if (collision.gameObject.TryGetComponent<Hurtbox>(out var hurtbox))
         {
@@ -51,6 +62,12 @@ public class PunchHitbox : MonoBehaviour
                 else
                 {
                     finalDamage = baseDamage;
+                }
+                
+                if(damageable.TryGetComponent<EnemyHealth>(out var enemy))
+                {
+                    // When hitting a stunned enemy, activate time slow
+                    if (enemy.isInKOState) player.ActivateTimeSlow();
                 }
 
                 finalKnockback = baseKnockback * finalDamage;

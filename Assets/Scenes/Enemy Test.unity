@@ -351,7 +351,7 @@ PrefabInstance:
       objectReference: {fileID: 941585250}
     - target: {fileID: 8033357727186760322, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: evadeBuffer
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8033357727186760322, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: dashDuration

@@ -1,21 +1,18 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Analytics;
-using System;
-
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-public class PunchHandler : MonoBehaviour
+public class PunchHandler : ToggleableBehaviour
 {
     #region Variables
     #region Left Arm
     [Header("Left Jab")]
     public InputActionReference leftJabAction;
     public int leftDamage = 1;
+    public float leftKnockbackStrength = 3f;
     public Collider leftHitbox;
     [StringPicker(options = new string[] { "EnemyHead", "EnemyBody" })]
     public string leftWeakpointTag; // Tag of the weakpoint hurtbox
@@ -29,6 +26,7 @@ public class PunchHandler : MonoBehaviour
     [Header("Right Hook")]
     public InputActionReference rightHookAction;
     public int rightDamage = 3;
+    public float rightKnockbackStrength = 10f;
     public Collider rightHitbox;
     [StringPicker(options = new string[] { "EnemyHead", "EnemyBody" })]
     public string rightWeakpointTag; // Tag of the weakpoint hurtbox
@@ -41,7 +39,6 @@ public class PunchHandler : MonoBehaviour
     [Header("General")]
     public float weakpointMult = 2f; // Damage increase when hitting a certain hurtbox
     public LayerMask targetLayer; // Damageable layer
-    public Vector3 initialKnockback = Vector3.back;
     [Tooltip("The amount of time after a punch before the combo resets to 0")]
     public float comboResetTimer = 0.5f;
     public int maxCombo = 3;
@@ -71,8 +68,8 @@ public class PunchHandler : MonoBehaviour
     {
         controller = GetComponent<PlayerController>();
 
-        leftJab = new LeftJab(gameObject, leftDamage, armAnimator);
-        rightHook = new RightHook(gameObject, rightDamage, armAnimator);
+        leftJab = new LeftJab(gameObject, armAnimator);
+        rightHook = new RightHook(gameObject, armAnimator);
 
         leftHitbox.enabled = false;
         rightHitbox.enabled = false;
@@ -160,8 +157,8 @@ public class PunchHandler : MonoBehaviour
             hitboxScript.targetLayer = targetLayer;
             hitboxScript.weakpointTag = leftWeakpointTag;
             hitboxScript.blockedTag = leftBlockTag;
-            hitboxScript.baseKnockback = initialKnockback;
             hitboxScript.attack = leftJab;
+            hitboxScript.knockbackFactor = leftKnockbackStrength;
         }
         else
         {
@@ -171,8 +168,8 @@ public class PunchHandler : MonoBehaviour
             hitboxScript.targetLayer = targetLayer;
             hitboxScript.weakpointTag = rightWeakpointTag;
             hitboxScript.blockedTag = rightBlockTag;
-            hitboxScript.baseKnockback = initialKnockback;
             hitboxScript.attack = rightHook;
+            hitboxScript.knockbackFactor = rightKnockbackStrength;
         }
     }
 
