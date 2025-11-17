@@ -7,6 +7,9 @@ using UnityEngine.InputSystem.XR;
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 public class PlayerController : ToggleableBehaviour
 {
+    private Vector3 knockback = Vector3.zero;
+
+
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotationSpeed = 500f;
@@ -136,6 +139,11 @@ public class PlayerController : ToggleableBehaviour
 
         // Combine horizontal and vertical movement
         Vector3 finalMove = (moveSpeed * moveDirection) + (playerVelocity.y * Vector3.up);
+        if (knockback != Vector3.zero)
+        {
+            finalMove += knockback;
+            knockback = Vector3.Lerp(knockback, Vector3.zero, 10f * Time.deltaTime);
+        }
         characterController.Move(Time.deltaTime * TimeScale * finalMove);
         
     }
@@ -236,4 +244,10 @@ public class PlayerController : ToggleableBehaviour
     void StopTimeSlow() => timeSlow.Deactivate();
     private bool IsGrounded() => characterController.isGrounded;
     public bool IsDodging() => isDodging;
+
+    public void ApplyKnockback(Vector3 force)
+    {
+        knockback = force;
+    }
+
 }
