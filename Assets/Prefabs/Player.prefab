@@ -262,7 +262,7 @@ MonoBehaviour:
     m_Bits: 0
   weakpointTag: 
   blockedTag: 
-  baseKnockback: {x: 0, y: 0, z: 0}
+  knockbackFactor: 0
 --- !u!1 &2456276787219158868
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +567,11 @@ MonoBehaviour:
   OnDestroyEvents:
     m_PersistentCalls:
       m_Calls: []
+  cameraShakeOn: 1
+  playerCam: {fileID: 1287892965639580066}
+  shakeAmount: 0.1
+  decreaseFactor: 1
+  shakeDuration: 0.1
 --- !u!114 &8033357727186760322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,7 +593,7 @@ MonoBehaviour:
   dashDuration: 0.1
   maxConsecutiveDashes: 2
   dashCooldown: 0.5
-  evadeBuffer: 3
+  evadeBuffer: 5
   dodgeHitbox: {fileID: 3712297565560844490}
   dashing: 0
   timeSlowDuration: 2
@@ -625,12 +630,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftJabAction: {fileID: 8194790677430557180, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   leftDamage: 1
+  leftKnockbackStrength: 3
   leftHitbox: {fileID: 8572402774751774585}
   leftWeakpointTag: EnemyBody
   leftBlockTag: BodyBlock
   leftPunchEndlag: 0
   rightHookAction: {fileID: -7803995681073658105, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rightDamage: 3
+  rightKnockbackStrength: 10
   rightHitbox: {fileID: 2188372657333629929}
   rightWeakpointTag: EnemyHead
   rightBlockTag: HeadBlock
@@ -639,7 +646,6 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  initialKnockback: {x: 0, y: 0, z: -5}
   comboResetTimer: 0.5
   maxCombo: 3
   armAnimator: {fileID: 7113303679745168467}
@@ -810,7 +816,7 @@ MonoBehaviour:
     m_Bits: 0
   weakpointTag: 
   blockedTag: 
-  baseKnockback: {x: 0, y: 0, z: 0}
+  knockbackFactor: 0
 --- !u!1001 &7355432325084361735
 PrefabInstance:
   m_ObjectHideFlags: 0
