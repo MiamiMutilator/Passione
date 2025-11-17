@@ -15,6 +15,7 @@ public class PlayerCameraController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        UpdateMouseSensitivity(); //
     }
 
     private void OnEnable()
@@ -39,7 +40,13 @@ public class PlayerCameraController : MonoBehaviour
     {
         transform.eulerAngles = new Vector3(cameraRotation.Pitch, cameraRotation.Yaw, 0.0f);
     }
-
+    //
+    public void UpdateMouseSensitivity()
+    {
+        mouseSensitivity.vertical = PlayerPrefs.GetFloat("MouseSensitivityVertical");
+        mouseSensitivity.horizontal = PlayerPrefs.GetFloat("MouseSensitivityHorizontal");
+    }
+    //
     private static int BoolToInt(bool b) => b ? 1 : -1;
 }
 
