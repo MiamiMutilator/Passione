@@ -183,6 +183,7 @@ public class Blocking : MonoBehaviour
                 punchIndicator.SetActive(false);
                 animator.SetTrigger("Hook");
                 animator.speed = 1.2f;
+                yield return new WaitForSeconds(0.3f);
                 //Debug.Log("Punched");
                 hook.enabled = true;
                 yield return StartCoroutine(WaitForAnimationToFinish("Hook"));
@@ -215,6 +216,7 @@ public class Blocking : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 punchIndicator.SetActive(false);
                 animator.SetTrigger("Hook");
+                yield return new WaitForSeconds(0.3f);
                 //Debug.Log("Punched");
                 hook.enabled = true;
                 yield return StartCoroutine(WaitForAnimationToFinish("Hook"));
@@ -246,6 +248,7 @@ public class Blocking : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 punchIndicator.SetActive(false);
                 animator.SetTrigger("Hook");
+                yield return new WaitForSeconds(0.3f);
                 //Debug.Log("Punched");
                 hook.enabled = true;
                 yield return StartCoroutine(WaitForAnimationToFinish("Hook"));
@@ -284,14 +287,23 @@ public class Blocking : MonoBehaviour
     private IEnumerator WaitForAnimationToFinish(string animationName)
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        float timeout = 1f; //if animation gets locked, exit
+        float time = 0f;
         while (!stateInfo.IsName(animationName))
         {
+            if (time > timeout) yield break;
+            time += Time.deltaTime;
+
             yield return null;
             stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         }
 
         while (stateInfo.IsName(animationName) && stateInfo.normalizedTime < 1.0f)
         {
+            if (time > timeout) yield break;
+            time += Time.deltaTime;
+
             yield return null;
             stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         }
