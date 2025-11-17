@@ -17,6 +17,8 @@ public class EnemyPathing : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.FindWithTag("Player").transform;
+
         agent.speed = speed;
 
         if (enemyHealth == null)
