@@ -24,7 +24,7 @@ public class Blocking : MonoBehaviour
 
     bool wasBlockingHead = false;
     bool wasBlockingBody = false;
-    int[] actionProbability = { 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3 }; //gives probability to actions, Currently 0 = 20% chance 1 = 20% chance 3 = 30 % chance 3 and 4 = 10% chance
+    int[] actionProbability = { 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3 }; 
 
     void Start()
     {

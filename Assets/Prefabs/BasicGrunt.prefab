@@ -1390,7 +1390,7 @@ MonoBehaviour:
   agent: {fileID: -1223888558065708103}
   player: {fileID: 0}
   distanceKeptAway: 2
-  fightingDistance: 3
+  fightingDistance: 3.5
   awarenessDistance: 15
   speed: 5
   isRanged: 0
