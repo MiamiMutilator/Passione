@@ -56,6 +56,7 @@ public class Blocking : MonoBehaviour
 
 
 
+
         if (!healthComponent.isInKOState)
         {
             if (pathing.state == EnemyPathingState.Idle)
@@ -105,6 +106,21 @@ public class Blocking : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("BodyJab") && isBlockingHead == true)
+        {
+            StartCoroutine(TakenDamageToBody());
+        }
+
+        if (other.CompareTag("HeadHook") && isBlockingBody == true)
+        {
+            StartCoroutine(TakenDamageToHead());
+        }
+
+    }
+
     private IEnumerator ActionTaken()
     {
 
@@ -279,6 +295,22 @@ public class Blocking : MonoBehaviour
             yield return null;
             stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         }
+    }
+
+    private IEnumerator TakenDamageToHead()
+    {
+        isInAction = true;
+        animator.SetTrigger("HeadAttacked");
+        yield return StartCoroutine(WaitForAnimationToFinish("HeadAttacked"));
+        isInAction = false;
+    }
+
+    private IEnumerator TakenDamageToBody()
+    {
+        isInAction = true;
+        animator.SetTrigger("BodyAttacked");
+        yield return StartCoroutine(WaitForAnimationToFinish("BodyAttacked"));
+        isInAction = false;
     }
 
 
