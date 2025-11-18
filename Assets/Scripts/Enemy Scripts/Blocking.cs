@@ -109,12 +109,12 @@ public class Blocking : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("BodyJab") && isBlockingHead == true)
+        if (other.CompareTag("BodyJab") && isBlockingHead == true && healthComponent.health != 0)
         {
             StartCoroutine(TakenDamageToBody());
         }
 
-        if (other.CompareTag("HeadHook") && isBlockingBody == true)
+        if (other.CompareTag("HeadHook") && isBlockingBody == true && healthComponent.health != 0)
         {
             StartCoroutine(TakenDamageToHead());
         }
@@ -288,7 +288,7 @@ public class Blocking : MonoBehaviour
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-        float timeout = 1f; //if animation gets locked, exit
+        float timeout = 0.6f; //if animation gets locked, exit
         float time = 0f;
         while (!stateInfo.IsName(animationName))
         {
