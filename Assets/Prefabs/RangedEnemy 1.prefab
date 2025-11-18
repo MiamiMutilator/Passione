@@ -246,7 +246,7 @@ MonoBehaviour:
   fightingDistance: 10
   awarenessDistance: 15
   speed: 5
-  isRanged: 0
+  isRanged: 1
   enemyHealth: {fileID: 0}
   state: 0
 --- !u!54 &8965814576324144259
