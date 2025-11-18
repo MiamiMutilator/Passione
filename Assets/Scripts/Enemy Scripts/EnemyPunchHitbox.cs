@@ -5,6 +5,7 @@ public class EnemyPunchHitbox : MonoBehaviour
     public BoxCollider jab;
     public BoxCollider hook;
     public bool hasBeenHit;
+    public int damage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,7 +30,7 @@ public class EnemyPunchHitbox : MonoBehaviour
             if (playerHealth != null)
             {
                 //Debug.Log("test");
-                playerHealth.OnHit(1);
+                playerHealth.OnHit(damage);
                 //hasBeenHit = true;
                 jab.enabled = false;
                 hook.enabled = false;
