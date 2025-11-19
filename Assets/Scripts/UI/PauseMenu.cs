@@ -1,5 +1,6 @@
 using UnityEngine.EventSystems;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -49,10 +50,20 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         if (playerToggleControl)
-            playerToggleControl.Toggle(true); //toggle
+            playerToggleControl.Toggle(true);
 
         if (EventSystem.current)
             EventSystem.current.SetSelectedGameObject(null);
     }
 
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+
+        if (playerToggleControl)
+            playerToggleControl.Toggle(true);
+
+        SceneManager.LoadScene("MainMenu");
+    }
 }
