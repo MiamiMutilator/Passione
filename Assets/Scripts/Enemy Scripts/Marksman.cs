@@ -95,7 +95,7 @@ public class Marksman : EnemyHealth
             if (player != null && player.IsDodging())
             {
                 Debug.Log("Player dodged the bullet");
-                player.OnEvade();
+                player.ActivateTimeSlow();
                 return;
             }
 

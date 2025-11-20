@@ -2,17 +2,6 @@ using UnityEngine;
 
 public class Punch : IAttack, IActivateable
 {
-    public int Damage 
-    {
-        get
-        {
-            return damage;
-        }
-        set
-        {
-            damage = value;
-        }
-    }
     public GameObject Originator
     {
         get
@@ -27,14 +16,12 @@ public class Punch : IAttack, IActivateable
 
     public Animator armAnimator;
     private GameObject originator;
-    private int damage;
     protected PunchHandler handler;
     protected float startTime;
 
-    public Punch(GameObject originator, int damage, Animator armAnimator)
+    public Punch(GameObject originator, Animator armAnimator)
     {
         Originator = originator;
-        Damage = damage;
         this.armAnimator = armAnimator;
 
         handler = Originator.GetComponent<PunchHandler>();

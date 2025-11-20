@@ -154,8 +154,8 @@ MonoBehaviour:
   lookAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   player: {fileID: 2643115183621521956}
   mouseSensitivity:
-    horizontal: 50
-    vertical: 50
+    horizontal: 70
+    vertical: 70
     invertHorizontal: 1
     invertVertical: 0
   cameraAngle:
@@ -262,7 +262,7 @@ MonoBehaviour:
     m_Bits: 0
   weakpointTag: 
   blockedTag: 
-  baseKnockback: {x: 0, y: 0, z: 0}
+  knockbackFactor: 0
 --- !u!1 &2456276787219158868
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 8033357727186760322}
   - component: {fileID: 3998035177492620065}
   - component: {fileID: 8904977615255522092}
+  - component: {fileID: 4351866811838286478}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -298,7 +299,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.9449253, y: 1.06, z: -7.992638}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2518589505485142577}
@@ -373,7 +374,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -566,6 +567,11 @@ MonoBehaviour:
   OnDestroyEvents:
     m_PersistentCalls:
       m_Calls: []
+  cameraShakeOn: 1
+  playerCam: {fileID: 1287892965639580066}
+  shakeAmount: 0.1
+  decreaseFactor: 1
+  shakeDuration: 0.1
 --- !u!114 &8033357727186760322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,12 +593,13 @@ MonoBehaviour:
   dashDuration: 0.1
   maxConsecutiveDashes: 2
   dashCooldown: 0.5
-  evadeBuffer: 2
+  evadeBuffer: 5
   dodgeHitbox: {fileID: 3712297565560844490}
   dashing: 0
-  timeSlowDuration: 1.5
+  timeSlowDuration: 2
   slowedTimeScale: 0.5
   dashAction: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  gravityMultiplier: 3
 --- !u!114 &3998035177492620065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,12 +630,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftJabAction: {fileID: 8194790677430557180, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   leftDamage: 1
+  leftKnockbackStrength: 3
   leftHitbox: {fileID: 8572402774751774585}
   leftWeakpointTag: EnemyBody
   leftBlockTag: BodyBlock
   leftPunchEndlag: 0
   rightHookAction: {fileID: -7803995681073658105, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rightDamage: 3
+  rightKnockbackStrength: 10
   rightHitbox: {fileID: 2188372657333629929}
   rightWeakpointTag: EnemyHead
   rightBlockTag: HeadBlock
@@ -637,11 +646,22 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  initialKnockback: {x: 0, y: 0, z: -5}
   comboResetTimer: 0.5
   maxCombo: 3
   armAnimator: {fileID: 7113303679745168467}
   combo: 0
+--- !u!114 &4351866811838286478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456276787219158868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c152a7c6709ca439bbd33ee87cdd19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3712297565560844490
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,7 +816,7 @@ MonoBehaviour:
     m_Bits: 0
   weakpointTag: 
   blockedTag: 
-  baseKnockback: {x: 0, y: 0, z: 0}
+  knockbackFactor: 0
 --- !u!1001 &7355432325084361735
 PrefabInstance:
   m_ObjectHideFlags: 0

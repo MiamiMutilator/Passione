@@ -1198,12 +1198,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1332241085456557681, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2904934774609384136}
+    - targetCorrespondingSourceObject: {fileID: 1332241085456557681, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6330469126433755657}
     - targetCorrespondingSourceObject: {fileID: 728693470258793385, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7039306513339026580}
     - targetCorrespondingSourceObject: {fileID: 728693470258793385, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7786693895991668628}
+    - targetCorrespondingSourceObject: {fileID: 728693470258793385, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6222305842034591978}
   m_SourcePrefab: {fileID: 100100000, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
 --- !u!1 &166383046295082292 stripped
 GameObject:
@@ -1229,8 +1235,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.21415135, y: 0.073921226, z: 0.033448018}
-  m_Center: {x: -0.105691895, y: 0.0028633396, z: 0.0017076526}
+  m_Size: {x: 0.16598202, y: 0.06815479, z: 0.033448018}
+  m_Center: {x: -0.08160684, y: 0.0019412151, z: 0.0017076974}
 --- !u!114 &7786693895991668628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1246,6 +1252,34 @@ MonoBehaviour:
   jab: {fileID: 8924653931100159508}
   hook: {fileID: 7039306513339026580}
   hasBeenHit: 0
+  damage: 1
+--- !u!54 &6222305842034591978
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166383046295082292}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &329505456730006476 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}
@@ -1357,7 +1391,7 @@ MonoBehaviour:
   agent: {fileID: -1223888558065708103}
   player: {fileID: 0}
   distanceKeptAway: 2
-  fightingDistance: 3
+  fightingDistance: 3.5
   awarenessDistance: 15
   speed: 5
   isRanged: 0
@@ -1379,7 +1413,7 @@ MonoBehaviour:
   health: 5
   targetable: 1
   koStateTime: 5
-  hitCooldown: 1
+  hitCooldown: 2
   healthRecoveryDivisor: 1
   stunnedVFX: {fileID: 1970097135679159889}
   isInKOState: 0
@@ -1464,6 +1498,34 @@ MonoBehaviour:
   jab: {fileID: 8924653931100159508}
   hook: {fileID: 7039306513339026580}
   hasBeenHit: 0
+  damage: 1
+--- !u!54 &6330469126433755657
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886683420225796332}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!4 &4586563418527954246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5191113774625182757, guid: 5bc6d28260d4c464f85ee2d5544b4a25, type: 3}

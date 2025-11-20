@@ -63,7 +63,7 @@ ModelImporter:
       name: Blocking High
       takeName: Take 001
       internalID: 9067093048684652814
-      firstFrame: 34
+      firstFrame: 36
       lastFrame: 38
       wrapMode: 0
       orientationOffsetY: 0
@@ -92,7 +92,7 @@ ModelImporter:
       name: Blocking Low
       takeName: Take 001
       internalID: -8481709605947105597
-      firstFrame: 41
+      firstFrame: 43
       lastFrame: 46
       wrapMode: 0
       orientationOffsetY: 0
@@ -121,7 +121,7 @@ ModelImporter:
       name: Stunned
       takeName: Take 001
       internalID: 1178167638873134046
-      firstFrame: 110
+      firstFrame: 112
       lastFrame: 248
       wrapMode: 0
       orientationOffsetY: 0
@@ -237,8 +237,8 @@ ModelImporter:
       name: Jab (Attack Variant1)
       takeName: Take 001
       internalID: -5082598969275926800
-      firstFrame: 50
-      lastFrame: 74
+      firstFrame: 52
+      lastFrame: 69
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -266,8 +266,8 @@ ModelImporter:
       name: Hook (Attack Variant2)
       takeName: Take 001
       internalID: -1909932531233178359
-      firstFrame: 80
-      lastFrame: 107
+      firstFrame: 82
+      lastFrame: 105
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
