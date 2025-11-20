@@ -12270,7 +12270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &64532729
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13930,7 +13930,7 @@ GameObject:
   - component: {fileID: 89793298}
   - component: {fileID: 89793297}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Navmesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13966,7 +13966,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.026666665
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: a394815a43990d14d8715a354317cb02, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e4f3fdc2f14e63b48a88c94f8f9cb4a4, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &89793298
 Transform:
@@ -140491,6 +140491,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LDoor (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 120876344269580321, guid: c578d1803eb9d324db3ab7cf38bedc0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 785491972644139675, guid: c578d1803eb9d324db3ab7cf38bedc0c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.47381
@@ -164696,6 +164700,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RDoor (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4882603743713855526, guid: 62a480cd5cc52584db4808e9a34b7e55, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5226900779289203356, guid: 62a480cd5cc52584db4808e9a34b7e55, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.47381
@@ -174782,6 +174790,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2456276787219158868, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2643115183621521956, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.25
@@ -174838,6 +174850,22 @@ PrefabInstance:
       propertyPath: passionSlider
       value: 
       objectReference: {fileID: 1438556393}
+    - target: {fileID: 6304140026036379539, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: shakeAmount
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304140026036379539, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: decreaseFactor
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033357727186760322, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: evadeBuffer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033357727186760322, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: timeSlowDuration
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -184702,6 +184730,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 4882603743713855526, guid: 62a480cd5cc52584db4808e9a34b7e55, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5226900779289203356, guid: 62a480cd5cc52584db4808e9a34b7e55, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.52619
@@ -184741,6 +184773,10 @@ PrefabInstance:
     - target: {fileID: 5226900779289203356, guid: 62a480cd5cc52584db4808e9a34b7e55, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780404909180340713, guid: 62a480cd5cc52584db4808e9a34b7e55, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -284370,6 +284406,10 @@ PrefabInstance:
     - target: {fileID: 120876344269580321, guid: c578d1803eb9d324db3ab7cf38bedc0c, type: 3}
       propertyPath: m_Name
       value: LDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 120876344269580321, guid: c578d1803eb9d324db3ab7cf38bedc0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 785491972644139675, guid: c578d1803eb9d324db3ab7cf38bedc0c, type: 3}
       propertyPath: m_LocalPosition.x
