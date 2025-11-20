@@ -569,8 +569,9 @@ MonoBehaviour:
       m_Calls: []
   cameraShakeOn: 1
   playerCam: {fileID: 1287892965639580066}
-  shakeAmount: 0.1
-  decreaseFactor: 1
+  shakeAmount: 0.2
+  smoothness: 0.2
+  shakeFrequency: 15
   shakeDuration: 0.1
 --- !u!114 &8033357727186760322
 MonoBehaviour:

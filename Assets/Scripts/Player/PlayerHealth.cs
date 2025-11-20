@@ -41,10 +41,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public bool cameraShakeOn = true;
     public Camera playerCam;
     public float shakeAmount = 0.7f;
-    public float decreaseFactor = 1.0f;
+    public float smoothness = 0.5f;
+    public float shakeFrequency = 15f;
     public float shakeDuration = 0.4f;
 
     float remainingShake = 0;
+    bool isShaking = false;
     Vector3 originalCameraPosition;
 
     public void Start()
@@ -61,16 +63,30 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     void CameraShake()
     {
-        if (remainingShake > 0)
+        if (remainingShake > 0f && !isShaking)
         {
-            playerCam.transform.localPosition = (Random.insideUnitSphere + originalCameraPosition) * shakeAmount;
-            remainingShake -= Time.deltaTime * decreaseFactor;
-
+            isShaking = true;
         }
-        else
+
+        if (isShaking && remainingShake > 0f)
         {
-            playerCam.transform.localPosition = originalCameraPosition;
+            float shake = shakeAmount * (remainingShake / shakeDuration);
+
+            float x = (Mathf.PerlinNoise(Time.time * shakeFrequency, 0f) - 0.5f) * shake;
+            float y = (Mathf.PerlinNoise(0f, Time.time * shakeFrequency) - 0.5f) * shake;
+
+            Vector3 targetPos = originalCameraPosition + new Vector3(x, y, 0);
+
+            playerCam.transform.localPosition = Vector3.Lerp(playerCam.transform.localPosition, targetPos, smoothness);
+
+            remainingShake -= Time.deltaTime;
+        }
+        else if (isShaking)
+        {
+            isShaking = false;
             remainingShake = 0f;
+
+            playerCam.transform.localPosition = Vector3.Lerp(playerCam.transform.localPosition, originalCameraPosition, smoothness);
         }
     }
 
