@@ -1,13 +1,11 @@
+using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject firstSelected;
-
-    private Animator[] pauseAnimators;
+    [SerializeField] private ToggleControl playerToggleControl; //drag Player
     public static bool isPaused;
 
     void Start()
@@ -15,12 +13,6 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
-        //animators
-        pauseAnimators = pauseMenu.GetComponentsInChildren<Animator>(true);
-        //animate offscreen
-        foreach (var anim in pauseAnimators)
-            anim.cullingMode = AnimatorCullingMode.AlwaysAnimate;
     }
 
     void Update()
@@ -41,47 +33,37 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        // ui animator unscaled time
-        foreach (var anim in pauseAnimators)
-            anim.updateMode = AnimatorUpdateMode.UnscaledTime;
+        if (playerToggleControl)
+            playerToggleControl.Toggle(false);
 
-        if (EventSystem.current && firstSelected)
-        {
+        if (EventSystem.current)
             EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(firstSelected);
-        }
     }
 
     public void ResumeGame()
     {
-        //returns animator
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        
-        foreach (var anim in pauseAnimators)
-            anim.updateMode = AnimatorUpdateMode.Normal;
+
+        if (playerToggleControl)
+            playerToggleControl.Toggle(true);
 
         if (EventSystem.current)
             EventSystem.current.SetSelectedGameObject(null);
     }
 
-    public void GoToMainMenu()
+    public void LoadMainMenu()
     {
         Time.timeScale = 1f;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        isPaused = false;
+
+        if (playerToggleControl)
+            playerToggleControl.Toggle(true);
+
         SceneManager.LoadScene("MainMenu");
     }
-
-    public void Options()
-    {
-        Debug.Log("Options");
-    }
-
-
-    public void QuitGame() { Application.Quit(); }
 }
