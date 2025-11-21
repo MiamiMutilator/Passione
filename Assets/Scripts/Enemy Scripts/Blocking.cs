@@ -332,7 +332,8 @@ public class Blocking : MonoBehaviour
         jab.enabled = false;
         animator.SetBool("isBlockingBody", false);
         animator.SetTrigger("HeadAttacked");
-        yield return null;
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.05f);
         yield return StartCoroutine(WaitForAnimationToFinish("HeadAttacked"));
         isInAction = false;
     }
@@ -350,7 +351,8 @@ public class Blocking : MonoBehaviour
         jab.enabled = false;
         animator.SetBool("isBlockingHead", false);
         animator.SetTrigger("BodyAttacked");
-        yield return null;
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.05f);
         yield return StartCoroutine(WaitForAnimationToFinish("BodyAttacked"));
         isInAction = false;
     }
