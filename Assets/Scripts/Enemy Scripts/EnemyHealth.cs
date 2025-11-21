@@ -76,7 +76,7 @@ public class EnemyHealth : DamageableCharacter
         animator.SetBool("isBlockingBody", false);
         animator.SetBool("isBlockingHead", false);
         animator.SetBool("isKO", true);
-        yield return new WaitForSeconds(KOcooldown);
+        yield return new WaitForSeconds(KoCooldown);
         recentlyHit = false;
         //isBlockingBody = false;
         //isBlockingHead = false;
