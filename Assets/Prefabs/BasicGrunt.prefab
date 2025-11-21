@@ -1327,6 +1327,7 @@ MonoBehaviour:
   jab: {fileID: 8924653931100159508}
   hook: {fileID: 7039306513339026580}
   punchIndicator: {fileID: 1952044091699546443}
+  previousHealth: 0
 --- !u!195 &-1223888558065708103
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1413,7 +1414,7 @@ MonoBehaviour:
   health: 5
   targetable: 1
   koStateTime: 5
-  hitCooldown: 2
+  hitCooldown: 1
   healthRecoveryDivisor: 1
   stunnedVFX: {fileID: 1970097135679159889}
   isInKOState: 0
