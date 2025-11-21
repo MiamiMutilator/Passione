@@ -336,6 +336,8 @@ public class Blocking : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         yield return StartCoroutine(WaitForAnimationToFinish("HeadAttacked"));
         isInAction = false;
+        actionChosen = Random.Range(1, 2);
+        currentAction = StartCoroutine(ActionTaken());
     }
 
     private IEnumerator TakenDamageToBody()
@@ -355,6 +357,8 @@ public class Blocking : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         yield return StartCoroutine(WaitForAnimationToFinish("BodyAttacked"));
         isInAction = false;
+        actionChosen = Random.Range(1, 2);
+        currentAction = StartCoroutine(ActionTaken());
     }
 
 
