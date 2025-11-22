@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class PunchHitbox : MonoBehaviour
 {
-    [HideInInspector] public int baseDamage;
-    [HideInInspector] public float weakpointMult;
-    [HideInInspector] public LayerMask targetLayer;
-    [HideInInspector] public string weakpointTag;
-    [HideInInspector] public string blockedTag;
-    [HideInInspector] public IAttack attack;
-    [HideInInspector] public float knockbackFactor;
+    int baseDamage;
+    float weakpointMult;
+    LayerMask targetLayer;
+    string weakpointTag;
+    string blockedTag;
+    IAttack attack;
+    float knockbackFactor;
     
     private Vector3 baseKnockback;
     private Rage rage;
@@ -86,5 +86,16 @@ public class PunchHitbox : MonoBehaviour
             finalKnockback = baseKnockback * baseDamage;
             obj.OnHitWithKnockback(baseDamage, finalKnockback);
         }
+    }
+
+    public void Initialize(PunchSettings settings, float mult, LayerMask target)
+    {
+        baseDamage = settings.damage;
+        weakpointMult = mult;
+        targetLayer = target;
+        weakpointTag = settings.weakpointTag;
+        blockedTag = settings.blockTag;
+        attack = settings.punch;
+        knockbackFactor = settings.knockbackStrength;
     }
 }
