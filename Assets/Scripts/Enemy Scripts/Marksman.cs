@@ -37,7 +37,7 @@ public class Marksman : EnemyHealth
     private bool currentlyAiming;
     private LayerMask targetLayer;
     private bool isReloading;
-
+    private string[] animations = new string[3] { "isIdle", "isWalking", "isAiming" };
     private Renderer appearance; // Testing
     private Color baseColor; // Testing
 
@@ -66,6 +66,34 @@ public class Marksman : EnemyHealth
                 StartCoroutine(Aim());
             }
         }
+
+        if (animator != null) Animate();
+    }
+
+    void Animate()
+    {
+        switch (pathing.state)
+        {
+            case EnemyPathingState.Attacking:
+                if (currentlyAiming)
+                    ToggleAnimation("isAiming");
+                break;
+            case EnemyPathingState.Chasing:
+            case EnemyPathingState.Retreating:
+                ToggleAnimation("isWalking");
+                break;
+            default:
+                ToggleAnimation("isIdle");
+                break;
+        }
+    }
+
+    private void ToggleAnimation(string name)
+    {
+        foreach (string anim in animations)
+        {
+            animator.SetBool(name, anim.Equals(name));
+        }
     }
 
     IEnumerator Aim()
@@ -85,6 +113,7 @@ public class Marksman : EnemyHealth
     {
         StartCoroutine(ShotCooldown());
         currentAmmo--;
+        animator.SetTrigger("Shoot");
 
         // Cast a ray toward the player's position. If it hits an object with the Player layer, deal damage using the IDamageable component
         if (Physics.Raycast(firePoint.position, pathing.player.position - firePoint.position, out RaycastHit hit, shotRange, targetLayer))
