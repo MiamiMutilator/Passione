@@ -1413,10 +1413,11 @@ MonoBehaviour:
   maxHealth: 5
   health: 5
   targetable: 1
-  koStateTime: 5
+  koStateTime: 4
   hitCooldown: 1
   healthRecoveryDivisor: 1
   stunnedVFX: {fileID: 1970097135679159889}
+  KoCooldown: 3
   isInKOState: 0
   blocking: {fileID: 0}
 --- !u!95 &-1768697144799998958
@@ -1429,7 +1430,7 @@ Animator:
   m_GameObject: {fileID: 329505456730006476}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d8f32f7781ac770408021dc67559b0b8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4080e38c48d0cb549896c85fb4180f1b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
