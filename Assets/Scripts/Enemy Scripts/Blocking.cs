@@ -64,6 +64,7 @@ public class Blocking : MonoBehaviour
             if (pathing.state == EnemyPathingState.Idle)
             {
                 animator.SetBool("isWalking", false);
+                animator.SetBool("isIdle", true);
             }
             else if (pathing.state == EnemyPathingState.Chasing)
             {
