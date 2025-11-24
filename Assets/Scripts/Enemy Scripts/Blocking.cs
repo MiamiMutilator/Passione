@@ -331,10 +331,10 @@ public class Blocking : MonoBehaviour
         hook.enabled = false;
         jab.enabled = false;
         animator.SetBool("isBlockingBody", false);
-        animator.SetTrigger("HeadAttacked");
+        animator.SetTrigger("Attacked");
         yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(0.05f);
-        yield return StartCoroutine(WaitForAnimationToFinish("HeadAttacked"));
+        yield return StartCoroutine(WaitForAnimationToFinish("Attacked"));
         isInAction = false;
         actionChosen = Random.Range(1, 2);
         currentAction = StartCoroutine(ActionTaken());
@@ -352,10 +352,10 @@ public class Blocking : MonoBehaviour
         hook.enabled = false;
         jab.enabled = false;
         animator.SetBool("isBlockingHead", false);
-        animator.SetTrigger("BodyAttacked");
+        animator.SetTrigger("Attacked");
         yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(0.05f);
-        yield return StartCoroutine(WaitForAnimationToFinish("BodyAttacked"));
+        yield return StartCoroutine(WaitForAnimationToFinish("Attacked"));
         isInAction = false;
         actionChosen = Random.Range(1, 2);
         currentAction = StartCoroutine(ActionTaken());
