@@ -13,15 +13,20 @@ public class EnemyHealth : DamageableCharacter
     public int healthRecoveryDivisor = 1;
     public GameObject stunnedVFX;
 
+    public float KoCooldown = 3f;
+
     [HideInInspector] public bool isInKOState;
     private bool recentlyHit;
     private Animator animator;
+
+    public Blocking blocking;
     
     public override void Start()
     {
         base.Start();
 
         animator = GetComponent<Animator>();
+        blocking = GetComponent<Blocking>();
     }
 
     public virtual void Update()
@@ -36,8 +41,8 @@ public class EnemyHealth : DamageableCharacter
     {
         if (!recentlyHit)
         {
-            base.OnHit(damage);
             StartCoroutine(DamageCooldown());
+            base.OnHit(damage);
         }
     }
 
@@ -64,19 +69,24 @@ public class EnemyHealth : DamageableCharacter
 
     IEnumerator KOTimer()
     {
+        recentlyHit = true;
+        isInKOState = true;
         stunnedVFX.SetActive(true);
         animator.SetBool("isWalking", false);
         animator.SetBool("isBlockingBody", false);
         animator.SetBool("isBlockingHead", false);
         animator.SetBool("isKO", true);
-        isInKOState = true;
+        yield return new WaitForSeconds(KoCooldown);
+        recentlyHit = false;
         //isBlockingBody = false;
         //isBlockingHead = false;
         yield return new WaitForSeconds(koStateTime);
         RecoverHealth();
+        blocking.previousHealth = health;
         isInKOState = false;
         animator.SetBool("isKO", false);
         stunnedVFX.SetActive(false);
+
     }
 
     IEnumerator DamageCooldown()

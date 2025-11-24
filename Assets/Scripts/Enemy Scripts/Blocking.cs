@@ -24,7 +24,9 @@ public class Blocking : MonoBehaviour
 
     bool wasBlockingHead = false;
     bool wasBlockingBody = false;
-    int[] actionProbability = { 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3 }; 
+    int[] actionProbability = { 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3 };
+
+    public int previousHealth;
 
     void Start()
     {
@@ -39,7 +41,7 @@ public class Blocking : MonoBehaviour
 
         punchIndicator.SetActive(false);
 
-
+        previousHealth = healthComponent.health;
     }
 
     void Update()
@@ -109,14 +111,22 @@ public class Blocking : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("BodyJab") && isBlockingHead == true && healthComponent.health != 0)
+        if (other.CompareTag("BodyJab") && healthComponent.health != 0)
         {
-            StartCoroutine(TakenDamageToBody());
+            if (healthComponent.health < previousHealth)
+            {
+                StartCoroutine(TakenDamageToBody());
+                previousHealth = healthComponent.health;
+            }
         }
 
-        if (other.CompareTag("HeadHook") && isBlockingBody == true && healthComponent.health != 0)
+        if (other.CompareTag("HeadHook") && healthComponent.health != 0)
         {
-            StartCoroutine(TakenDamageToHead());
+            if (healthComponent.health < previousHealth)
+            {
+                StartCoroutine(TakenDamageToHead());
+                previousHealth = healthComponent.health;
+            }
         }
 
     }
@@ -155,7 +165,7 @@ public class Blocking : MonoBehaviour
                 break;
             case 2: //jab
                 punchIndicator.SetActive(true);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.2f);
                 punchIndicator.SetActive(false);
                 animator.SetTrigger("Jab");
                 animator.speed = 1.1f;
@@ -179,7 +189,7 @@ public class Blocking : MonoBehaviour
                 break;
             case 3: //hook
                 punchIndicator.SetActive(true);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.2f);
                 punchIndicator.SetActive(false);
                 animator.SetTrigger("Hook");
                 animator.speed = 1.2f;
@@ -213,7 +223,7 @@ public class Blocking : MonoBehaviour
                 headBlock.enabled = false;
                 animator.SetBool("isBlockingHead", false);
                 punchIndicator.SetActive(true);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.2f);
                 punchIndicator.SetActive(false);
                 animator.SetTrigger("Hook");
                 yield return new WaitForSeconds(0.3f);
@@ -245,7 +255,7 @@ public class Blocking : MonoBehaviour
                 bodyBlock.enabled = false;
                 animator.SetBool("isBlockingBody", false);
                 punchIndicator.SetActive(true);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.2f);
                 punchIndicator.SetActive(false);
                 animator.SetTrigger("Hook");
                 yield return new WaitForSeconds(0.3f);
@@ -311,18 +321,44 @@ public class Blocking : MonoBehaviour
 
     private IEnumerator TakenDamageToHead()
     {
+        if (currentAction != null)
+        {
+            StopCoroutine(currentAction);
+            currentAction = null;
+        }
+
         isInAction = true;
+        hook.enabled = false;
+        jab.enabled = false;
+        animator.SetBool("isBlockingBody", false);
         animator.SetTrigger("HeadAttacked");
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.05f);
         yield return StartCoroutine(WaitForAnimationToFinish("HeadAttacked"));
         isInAction = false;
+        actionChosen = Random.Range(1, 2);
+        currentAction = StartCoroutine(ActionTaken());
     }
 
     private IEnumerator TakenDamageToBody()
     {
+        if (currentAction != null)
+        {
+            StopCoroutine(currentAction);
+            currentAction = null;
+        }
+
         isInAction = true;
+        hook.enabled = false;
+        jab.enabled = false;
+        animator.SetBool("isBlockingHead", false);
         animator.SetTrigger("BodyAttacked");
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.05f);
         yield return StartCoroutine(WaitForAnimationToFinish("BodyAttacked"));
         isInAction = false;
+        actionChosen = Random.Range(1, 2);
+        currentAction = StartCoroutine(ActionTaken());
     }
 
 
@@ -330,5 +366,7 @@ public class Blocking : MonoBehaviour
     {
         animator.SetBool("isBlockingHead", boolean);
         animator.SetBool("isBlockingBody", boolean);
+        animator.SetBool("isWalking", boolean);
+        animator.SetBool("isIdle", boolean);
     }
 }

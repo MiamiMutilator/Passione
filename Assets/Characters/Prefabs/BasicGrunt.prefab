@@ -1304,10 +1304,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.039779574
+  m_Radius: 0.06329048
   m_Height: 0.46367
   m_Direction: 1
-  m_Center: {x: 0.0018774569, y: 0.20695548, z: -0.014822066}
+  m_Center: {x: -0.00019800663, y: 0.20695548, z: -0.014822066}
 --- !u!114 &-962051143559912045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1327,6 +1327,7 @@ MonoBehaviour:
   jab: {fileID: 8924653931100159508}
   hook: {fileID: 7039306513339026580}
   punchIndicator: {fileID: 1952044091699546443}
+  previousHealth: 0
 --- !u!195 &-1223888558065708103
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1372,7 +1373,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1413,10 +1414,11 @@ MonoBehaviour:
   health: 5
   targetable: 1
   koStateTime: 5
-  hitCooldown: 2
+  hitCooldown: 1
   healthRecoveryDivisor: 1
   stunnedVFX: {fileID: 1970097135679159889}
   isInKOState: 0
+  blocking: {fileID: 0}
 --- !u!95 &-1768697144799998958
 Animator:
   serializedVersion: 7
