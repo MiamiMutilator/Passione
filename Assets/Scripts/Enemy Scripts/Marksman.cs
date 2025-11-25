@@ -31,6 +31,8 @@ public class Marksman : EnemyHealth
     [Tooltip("Accuracy of a shot = 100 - (max[0, distance from player - falloff threshold] * falloff factor)")]
     public float accuracyFalloffFactor = 4f;
     public Transform firePoint;
+    public Color firelineAimColor = Color.yellow;
+    public Color firelineShootColor = Color.red;
 
     private EnemyPathing pathing;
     private int currentAmmo;
@@ -42,12 +44,14 @@ public class Marksman : EnemyHealth
     private readonly string[] animations = new string[3] { "isIdle", "isWalking", "isAiming" };
     private bool stunned = false;
     Coroutine currentAction;
+    LineRenderer lineRenderer;
 
     public override void Start()
     {
         base.Start(); // Gets the Animator and Rigidbody
 
         pathing = GetComponent<EnemyPathing>();
+        TryGetComponent<LineRenderer>(out lineRenderer);
         currentAmmo = maxAmmo;
         targetLayer = LayerMask.GetMask("Player"); // only hits the Player layer
     }
@@ -61,6 +65,10 @@ public class Marksman : EnemyHealth
             StopCoroutine(currentAction);
             return;
         }
+
+        if (isAiming && lineRenderer != null) DrawLineToPlayer(firelineAimColor);
+        else if (shotTriggered && lineRenderer != null) DrawLineToPlayer(firelineShootColor);
+        else lineRenderer.enabled = false;
 
         if (stunned || pathing == null || isReloading || isAiming) return;
 
@@ -116,9 +124,9 @@ public class Marksman : EnemyHealth
         {
             case EnemyPathingState.Attacking:
                 FacePlayer();
-                if (isAiming)
-                    ToggleAnimation("isAiming");
+                if (isAiming) ToggleAnimation("isAiming");
                 else ToggleAnimation("None");
+                
                 break;
             case EnemyPathingState.Chasing:
             case EnemyPathingState.Retreating:
@@ -155,6 +163,19 @@ public class Marksman : EnemyHealth
 
         isAiming = false;
         Shoot();
+    }
+
+    void DrawLineToPlayer(Color color)
+    {
+        if (lineRenderer == null || firePoint == null || pathing.player == null)
+            return;
+
+        lineRenderer.enabled = true;
+        lineRenderer.startColor = color;
+        lineRenderer.endColor = color;
+
+        lineRenderer.SetPosition(0, firePoint.position);
+        lineRenderer.SetPosition(1, pathing.player.position);
     }
 
     void Shoot()
@@ -222,6 +243,9 @@ public class Marksman : EnemyHealth
 
     IEnumerator ShotCooldown()
     {
+        lineRenderer.startColor = firelineShootColor;
+        lineRenderer.endColor = firelineShootColor;
+
         isFiring = true;
         animator.SetTrigger("Shoot");
         ToggleAnimation("None");
