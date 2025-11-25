@@ -27,6 +27,7 @@ public class EnemyHealth : DamageableCharacter
         base.Start();
 
         animator = GetComponent<Animator>();
+
         TryGetComponent<Blocking>(out blocking);
     }
 
