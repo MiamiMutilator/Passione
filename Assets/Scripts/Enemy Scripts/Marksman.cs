@@ -18,6 +18,7 @@ public class Marksman : EnemyHealth
      */
 
     public int damage = 1;
+    public float rotationSpeed = 5f;
     public int maxAmmo = 6;
     public float shotRange = 30f;
     [Tooltip("The time before a shot is fired. Used to give visual cues for an incoming shot")]
@@ -70,7 +71,7 @@ public class Marksman : EnemyHealth
         else if (shotTriggered && lineRenderer != null) DrawLineToPlayer(firelineShootColor);
         else lineRenderer.enabled = false;
 
-        if (stunned || pathing == null || isReloading || isAiming) return;
+        if (shotTriggered || stunned || pathing == null || isReloading || isAiming) return;
 
         if (currentAmmo <= 0) currentAction = StartCoroutine(Reload());
         else if (pathing.state == EnemyPathingState.Attacking)
@@ -149,9 +150,28 @@ public class Marksman : EnemyHealth
     private void FacePlayer()
     {
         Vector3 direction = pathing.player.position - transform.position;
+        direction.y = 0f;
 
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
+        Quaternion targetRot = Quaternion.LookRotation(direction);
+        float angle = Quaternion.Angle(transform.rotation, targetRot);
+
+        if (angle > 140f)
+        {
+            // Rotate faster to prevent awkward slow rotation
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRot,
+                rotationSpeed * Time.deltaTime * 100
+            );
+        }
+        else
+        {
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRot,
+                rotationSpeed * Time.deltaTime
+            );
+        }
     }
 
     IEnumerator Aim()
