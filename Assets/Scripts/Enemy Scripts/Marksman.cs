@@ -115,6 +115,7 @@ public class Marksman : EnemyHealth
         switch (pathing.state)
         {
             case EnemyPathingState.Attacking:
+                FacePlayer();
                 if (isAiming)
                     ToggleAnimation("isAiming");
                 else ToggleAnimation("None");
@@ -135,6 +136,14 @@ public class Marksman : EnemyHealth
         {
             animator.SetBool(anim, anim.Equals(name));
         }
+    }
+
+    private void FacePlayer()
+    {
+        Vector3 direction = pathing.player.position - transform.position;
+
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
     }
 
     IEnumerator Aim()
