@@ -32,7 +32,7 @@ public class Rage : ToggleableBehaviour
             enraged = false;
             Debug.Log("No longer enraged");
             StopCoroutine(RageDown());
-            StartCoroutine(RageUp());
+            //StartCoroutine(RageUp());
         }
 
         //rage buffs

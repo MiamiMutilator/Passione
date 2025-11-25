@@ -54,6 +54,7 @@ public class Blocking : MonoBehaviour
         }
 
         if (pathing == null) return;
+        
 
 
 
@@ -64,7 +65,6 @@ public class Blocking : MonoBehaviour
             if (pathing.state == EnemyPathingState.Idle)
             {
                 animator.SetBool("isWalking", false);
-                animator.SetBool("isIdle", true);
             }
             else if (pathing.state == EnemyPathingState.Chasing)
             {
@@ -76,8 +76,7 @@ public class Blocking : MonoBehaviour
                     isInAction = false;
                     SetBlockingAnimations(false);
                 }
-                animator.SetBool("isWalking", true);
-                
+                animator.SetBool("isWalking", pathing.state == EnemyPathingState.Chasing);
             }
             else 
             {
@@ -367,7 +366,5 @@ public class Blocking : MonoBehaviour
     {
         animator.SetBool("isBlockingHead", boolean);
         animator.SetBool("isBlockingBody", boolean);
-        animator.SetBool("isWalking", boolean);
-        animator.SetBool("isIdle", boolean);
     }
 }

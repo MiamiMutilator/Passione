@@ -20,6 +20,7 @@ public class EnemyHealth : DamageableCharacter
     protected Animator animator;
 
     public Blocking blocking;
+    public Rage rage;
     
     public override void Start()
     {
@@ -43,6 +44,10 @@ public class EnemyHealth : DamageableCharacter
         {
             StartCoroutine(DamageCooldown());
             base.OnHit(damage);
+            if (rage.enraged == false)
+            {
+                rage.RageMeter += 20;
+            }
         }
     }
 
