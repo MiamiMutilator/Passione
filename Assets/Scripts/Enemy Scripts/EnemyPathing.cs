@@ -24,6 +24,10 @@ public class EnemyPathing : MonoBehaviour
         {
             enemyHealth = GetComponent<EnemyHealth>();
         }
+        if (agent == null)
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
     }
 
     void Update()

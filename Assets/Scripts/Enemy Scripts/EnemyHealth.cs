@@ -16,7 +16,7 @@ public class EnemyHealth : DamageableCharacter
     public float KoCooldown = 3f;
 
     [HideInInspector] public bool isInKOState;
-    private bool recentlyHit;
+    protected bool recentlyHit;
     protected Animator animator;
 
     public Blocking blocking;

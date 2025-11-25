@@ -63,8 +63,8 @@ public class PunchHitbox : MonoBehaviour
                 {
                     finalDamage = baseDamage;
                 }
-                
-                if(damageable.TryGetComponent<EnemyHealth>(out var enemy))
+
+                if (damageable.TryGetComponent<EnemyHealth>(out var enemy))
                 {
                     // When hitting a stunned enemy, activate time slow
                     if (enemy.isInKOState) player.ActivateTimeSlow();

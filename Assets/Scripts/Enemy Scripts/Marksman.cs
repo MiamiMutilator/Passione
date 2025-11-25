@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyPathing))]
@@ -33,13 +34,14 @@ public class Marksman : EnemyHealth
 
     private EnemyPathing pathing;
     private int currentAmmo;
-    private bool currentlyFiring;
-    private bool currentlyAiming;
+    private bool isFiring;
+    private bool isAiming;
     private LayerMask targetLayer;
     private bool isReloading;
-    private string[] animations = new string[3] { "isIdle", "isWalking", "isAiming" };
-    private Renderer appearance; // Testing
-    private Color baseColor; // Testing
+    private bool shotTriggered;
+    private readonly string[] animations = new string[3] { "isIdle", "isWalking", "isAiming" };
+    private bool stunned = false;
+    Coroutine currentAction;
 
     public override void Start()
     {
@@ -48,35 +50,74 @@ public class Marksman : EnemyHealth
         pathing = GetComponent<EnemyPathing>();
         currentAmmo = maxAmmo;
         targetLayer = LayerMask.GetMask("Player"); // only hits the Player layer
-        appearance = GetComponent<Renderer>();
-        baseColor = appearance.material.color;
     }
 
     public override void Update()
     {
         base.Update(); // Handles KO state
 
-        if (pathing == null || isReloading || currentlyAiming) return;
+        if (isInKOState)
+        {
+            StopCoroutine(currentAction);
+            return;
+        }
 
-        if (currentAmmo <= 0) StartCoroutine(Reload());
+        if (stunned || pathing == null || isReloading || isAiming) return;
+
+        if (currentAmmo <= 0) currentAction = StartCoroutine(Reload());
         else if (pathing.state == EnemyPathingState.Attacking)
         {
-            if (currentAmmo > 0 && !currentlyFiring)
+            if (currentAmmo > 0 && !isFiring)
             {
-                StartCoroutine(Aim());
+                currentAction = StartCoroutine(Aim());
             }
         }
 
         if (animator != null) Animate();
     }
 
+    public override void OnHit(int damage)
+    {
+        if (!recentlyHit) StartCoroutine(Attacked());
+
+        base.OnHit(damage);
+    }
+
+    IEnumerator Attacked()
+    {
+        stunned = true;
+
+        // Stop all actions
+        isAiming = false;
+        isFiring = false;
+        isReloading = false;
+
+        StopCoroutine(currentAction);
+
+        // Force all animations off
+        ToggleAnimation("None");
+
+        // Trigger attacked
+        animator.ResetTrigger("Shoot"); // prevent competing trigger
+        animator.SetTrigger("Attacked");
+
+        yield return new WaitForEndOfFrame();
+        yield return WaitForAnimationToFinish("Attacked");
+
+        stunned = false;
+        shotTriggered = false;
+    }
+
     void Animate()
     {
+        if (shotTriggered || stunned) return;
+
         switch (pathing.state)
         {
             case EnemyPathingState.Attacking:
-                if (currentlyAiming)
+                if (isAiming)
                     ToggleAnimation("isAiming");
+                else ToggleAnimation("None");
                 break;
             case EnemyPathingState.Chasing:
             case EnemyPathingState.Retreating:
@@ -92,28 +133,25 @@ public class Marksman : EnemyHealth
     {
         foreach (string anim in animations)
         {
-            animator.SetBool(name, anim.Equals(name));
+            animator.SetBool(anim, anim.Equals(name));
         }
     }
 
     IEnumerator Aim()
     {
-        appearance.material.SetColor("_BaseColor", Color.red); // Testing
-        currentlyAiming = true;
+        isAiming = true;
         Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.white, aimingTime);
 
         yield return new WaitForSeconds(aimingTime);
 
-        appearance.material.SetColor("_BaseColor", baseColor); // Testing
-        currentlyAiming = false;
+        isAiming = false;
         Shoot();
     }
 
     void Shoot()
     {
-        StartCoroutine(ShotCooldown());
+        currentAction = StartCoroutine(ShotCooldown());
         currentAmmo--;
-        animator.SetTrigger("Shoot");
 
         // Cast a ray toward the player's position. If it hits an object with the Player layer, deal damage using the IDamageable component
         if (Physics.Raycast(firePoint.position, pathing.player.position - firePoint.position, out RaycastHit hit, shotRange, targetLayer))
@@ -137,13 +175,13 @@ public class Marksman : EnemyHealth
                 // Shot landed
 
                 var damageable = hit.collider.gameObject.GetComponentInParent<IDamageable>();
-                if (damageable != null)
+                if (damageable != null && !stunned)
                 {
                     Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.green, 0.5f);
                     //Debug.Log($"Shot successfully hit {hit.collider.gameObject.name} with {accuracy}% chance to hit and a roll of {chance}");
                     damageable.OnHit(damage);
                 }
-                else
+                else if (damageable == null)
                 {
                     Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.magenta, 0.5f);
                     Debug.LogError("IDamageable not found on gameObject " + hit.collider.gameObject.name);
@@ -175,8 +213,42 @@ public class Marksman : EnemyHealth
 
     IEnumerator ShotCooldown()
     {
-        currentlyFiring = true;
+        isFiring = true;
+        animator.SetTrigger("Shoot");
+        ToggleAnimation("None");
+        shotTriggered = true;
+
+        yield return WaitForAnimationToFinish("Shoot");
+
+        shotTriggered = false;
+        animator.ResetTrigger("Shoot");
+
         yield return new WaitForSeconds(shotCooldown);
-        currentlyFiring = false;
+        isFiring = false;
+    }
+
+    private IEnumerator WaitForAnimationToFinish(string animationName)
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        float timeout = 0.6f; //if animation gets locked, exit
+        float time = 0f;
+        while (!stateInfo.IsName(animationName))
+        {
+            if (time > timeout) yield break;
+            time += Time.deltaTime;
+
+            yield return null;
+            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        }
+
+        while (stateInfo.IsName(animationName) && stateInfo.normalizedTime < 1.0f)
+        {
+            if (time > timeout) yield break;
+            time += Time.deltaTime;
+
+            yield return null;
+            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        }
     }
 }
