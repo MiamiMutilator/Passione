@@ -65,9 +65,11 @@ public class Blocking : MonoBehaviour
             if (pathing.state == EnemyPathingState.Idle)
             {
                 animator.SetBool("isWalking", false);
+                animator.SetBool("isIdle", true);
             }
             else if (pathing.state == EnemyPathingState.Chasing)
             {
+                animator.SetBool("isIdle", false);
                 //Debug.Log("Chasing");
                 if (isBlockingBody || isBlockingHead)
                 {
@@ -80,6 +82,7 @@ public class Blocking : MonoBehaviour
             }
             else 
             {
+                animator.SetBool("isIdle", false);
                 //Debug.Log("In Attack Range");
                 animator.SetBool("isWalking", false);
                 if (!isInAction)
