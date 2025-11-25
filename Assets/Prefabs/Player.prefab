@@ -262,7 +262,7 @@ MonoBehaviour:
     m_Bits: 0
   weakpointTag: 
   blockedTag: 
-  baseKnockback: {x: 0, y: 0, z: 0}
+  knockbackFactor: 0
 --- !u!1 &2456276787219158868
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 3998035177492620065}
   - component: {fileID: 8904977615255522092}
   - component: {fileID: 4351866811838286478}
+  - component: {fileID: 296846698335910450}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -625,12 +626,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftJabAction: {fileID: 8194790677430557180, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   leftDamage: 1
+  leftKnockbackStrength: 3
   leftHitbox: {fileID: 8572402774751774585}
   leftWeakpointTag: EnemyBody
   leftBlockTag: BodyBlock
   leftPunchEndlag: 0
   rightHookAction: {fileID: -7803995681073658105, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rightDamage: 3
+  rightKnockbackStrength: 10
   rightHitbox: {fileID: 2188372657333629929}
   rightWeakpointTag: EnemyHead
   rightBlockTag: HeadBlock
@@ -639,7 +642,6 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  initialKnockback: {x: 0, y: 0, z: -5}
   comboResetTimer: 0.5
   maxCombo: 3
   armAnimator: {fileID: 7113303679745168467}
@@ -656,6 +658,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c152a7c6709ca439bbd33ee87cdd19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &296846698335910450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456276787219158868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db3046c8483a51247960ea86cfee9110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuBinding: {fileID: 6463923885532878480, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  pauseMenu: {fileID: 0}
+  playerToggleControl: {fileID: 4351866811838286478}
 --- !u!1 &3712297565560844490
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,7 +827,7 @@ MonoBehaviour:
     m_Bits: 0
   weakpointTag: 
   blockedTag: 
-  baseKnockback: {x: 0, y: 0, z: 0}
+  knockbackFactor: 0
 --- !u!1001 &7355432325084361735
 PrefabInstance:
   m_ObjectHideFlags: 0
