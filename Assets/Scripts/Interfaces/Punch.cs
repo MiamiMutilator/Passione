@@ -46,6 +46,11 @@ public class Punch : IAttack, IActivateable
         handler.RegisterHit();
 
         // logic for increasing rage
+        if (originator.TryGetComponent<Rage>(out var rage))
+        {
+            if (!rage.enraged)
+                rage.IncreaseRage(settings.rageIncrease);
+        }
         // anything else happening when a punch connects
     }
 }

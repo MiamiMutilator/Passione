@@ -15,10 +15,12 @@ public class PunchHitbox : MonoBehaviour
     private PlayerController player;
     private int finalDamage;
     private Vector3 finalKnockback;
+    private Collider coll;
 
     private void Awake()
     {
         rage = GetComponentInParent<Rage>();
+        coll = GetComponent<Collider>();
         player = GetComponentInParent<PlayerController>();
         if (rage == null) Debug.LogError("Rage Component not found");
     }
@@ -49,8 +51,8 @@ public class PunchHitbox : MonoBehaviour
                 // If hitbox collided with block, disable hitbox, unless enraged
                 if (rage && !rage.enraged && hurtbox.gameObject.CompareTag(blockedTag))
                 {
-                    GetComponent<Collider>().enabled = false;
-                    Debug.Log($"{gameObject.name} blocked by {blockedTag}. Punch Collider: {GetComponent<Collider>().enabled}");
+                    coll.enabled = false;
+                    Debug.Log($"{gameObject.name} blocked by {blockedTag}. Punch Collider: {coll.enabled}");
                     return;
                 }
 
@@ -63,8 +65,8 @@ public class PunchHitbox : MonoBehaviour
                 {
                     finalDamage = baseDamage;
                 }
-                
-                if(damageable.TryGetComponent<EnemyHealth>(out var enemy))
+
+                if (damageable.TryGetComponent<EnemyHealth>(out var enemy))
                 {
                     // When hitting a stunned enemy, activate time slow
                     if (enemy.isInKOState) player.ActivateTimeSlow();
@@ -73,6 +75,7 @@ public class PunchHitbox : MonoBehaviour
                 finalKnockback = baseKnockback * finalDamage;
                 damageable.OnHitWithKnockback(finalDamage, finalKnockback);
                 attack.OnSuccessfulHit();
+                coll.enabled = false;
             }
             else
             {

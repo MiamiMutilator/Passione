@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class Rage : ToggleableBehaviour
 {
-    public int RageMeter = 100;
+    [SerializeField] int maxRage = 100;
+    public int rageAmount = 100;
     public bool enraged;
     public InputActionReference rageInput;
     public Slider passionSlider;
+    public PlayerHealth playerHealth;
 
     private void OnEnable()
     {
@@ -21,18 +23,20 @@ public class Rage : ToggleableBehaviour
 
     void Update()
     {
-        if (rageInput.action.triggered && RageMeter == 100)
+        if (rageInput.action.triggered && rageAmount == 100)
         {
             Debug.Log("Enraged!");
             enraged = true;
+            playerHealth.health = 10;
+            Debug.Log("Healed up!");
             StartCoroutine(RageDown());
         }
-        if (RageMeter == 0)
+        if (rageAmount == 0)
         {
             enraged = false;
             Debug.Log("No longer enraged");
             StopCoroutine(RageDown());
-            StartCoroutine(RageUp());
+            //StartCoroutine(RageUp());
         }
 
         //rage buffs
@@ -46,24 +50,40 @@ public class Rage : ToggleableBehaviour
             //punches return to normal damage
             //punch animations return to previous normal animations
         }
-        if(passionSlider) passionSlider.value = RageMeter;
+        if(passionSlider) passionSlider.value = rageAmount;
     }
 
     private IEnumerator RageDown()
     {
-        while (enraged == true && RageMeter > 0)
+        while (enraged == true && rageAmount > 0)
         {
-            RageMeter--;
+            rageAmount--;
             yield return new WaitForSeconds(0.5f);
         }
     }
     private IEnumerator RageUp()
     {
-        while (enraged == false && RageMeter < 100f)
+        while (enraged == false && rageAmount < 100f)
         {
-            RageMeter++;
+            rageAmount++;
             yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    public void IncreaseRage(int amount)
+    {
+        // ensure rage doesn't go over maximum
+        if ((rageAmount + amount) > maxRage)
+        {
+            Debug.Log($"Rage increased by {maxRage - rageAmount}. Current rage: {maxRage}");
+            rageAmount = maxRage;
+        }
+        else
+        {
+            rageAmount += amount;
+            Debug.Log($"Rage increased by {amount}. Current rage: {rageAmount}");
+        }
+        
     }
 
 }

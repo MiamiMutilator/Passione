@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 public class EnemyPathing : MonoBehaviour
@@ -24,6 +23,10 @@ public class EnemyPathing : MonoBehaviour
         if (enemyHealth == null)
         {
             enemyHealth = GetComponent<EnemyHealth>();
+        }
+        if (agent == null)
+        {
+            agent = GetComponent<NavMeshAgent>();
         }
     }
 

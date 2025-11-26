@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyPathing))]
@@ -17,6 +18,7 @@ public class Marksman : EnemyHealth
      */
 
     public int damage = 1;
+    public float rotationSpeed = 5f;
     public int maxAmmo = 6;
     public float shotRange = 30f;
     [Tooltip("The time before a shot is fired. Used to give visual cues for an incoming shot")]
@@ -30,60 +32,198 @@ public class Marksman : EnemyHealth
     [Tooltip("Accuracy of a shot = 100 - (max[0, distance from player - falloff threshold] * falloff factor)")]
     public float accuracyFalloffFactor = 4f;
     public Transform firePoint;
+    public Color firelineAimColor = Color.yellow;
+    public Color firelineShootColor = Color.red;
 
     private EnemyPathing pathing;
     private int currentAmmo;
-    private bool currentlyFiring;
-    private bool currentlyAiming;
+    private bool isFiring;
+    private bool isAiming;
     private LayerMask targetLayer;
     private bool isReloading;
-
-    private Renderer appearance; // Testing
-    private Color baseColor; // Testing
+    private bool shotTriggered;
+    private readonly string[] animations = new string[3] { "isIdle", "isWalking", "isAiming" };
+    private bool stunned = false;
+    private Coroutine aimRoutine;
+    private Coroutine reloadRoutine;
+    private Coroutine shotRoutine;
+    LineRenderer lineRenderer;
 
     public override void Start()
     {
         base.Start(); // Gets the Animator and Rigidbody
 
         pathing = GetComponent<EnemyPathing>();
+        TryGetComponent<LineRenderer>(out lineRenderer);
         currentAmmo = maxAmmo;
         targetLayer = LayerMask.GetMask("Player"); // only hits the Player layer
-        appearance = GetComponent<Renderer>();
-        baseColor = appearance.material.color;
     }
 
     public override void Update()
     {
         base.Update(); // Handles KO state
 
-        if (pathing == null || isReloading || currentlyAiming) return;
+        if (isInKOState)
+        {
+            pathing.agent.isStopped = true;
+            ToggleAnimation("None");
+            StopAllActionCoroutines();
+            return;
+        }
+        else
+        {
+            pathing.agent.isStopped = false;
+        }
 
-        if (currentAmmo <= 0) StartCoroutine(Reload());
+        if (isAiming && lineRenderer != null) DrawLineToPlayer(firelineAimColor);
+        else if (shotTriggered && lineRenderer != null) DrawLineToPlayer(firelineShootColor);
+        else lineRenderer.enabled = false;
+
+        if (shotTriggered || stunned || pathing == null || isReloading || isAiming) return;
+
+        if (currentAmmo <= 0) reloadRoutine = StartCoroutine(Reload());
         else if (pathing.state == EnemyPathingState.Attacking)
         {
-            if (currentAmmo > 0 && !currentlyFiring)
+            if (currentAmmo > 0 && !isFiring)
             {
-                StartCoroutine(Aim());
+                aimRoutine = StartCoroutine(Aim());
             }
+        }
+
+        if (animator != null) Animate();
+    }
+
+    public override void OnHit(int damage)
+    {
+        if (!recentlyHit)
+        {
+            recentlyHit = true;
+            StartCoroutine(DamageCooldown());
+            StartCoroutine(Attacked());
+            Health -= damage;
+
+            Debug.Log(gameObject.name + " took " + damage + " damage. " + health + " health remaining.");
+        }
+    }
+
+    IEnumerator Attacked()
+    {
+        if (stunned) yield break;
+
+        stunned = true;
+
+        // Stop all actions
+        isAiming = false;
+        isFiring = false;
+        isReloading = false;
+
+        StopAllActionCoroutines();
+
+        // Force all animations off
+        ToggleAnimation("None");
+
+        // Trigger attacked
+        animator.ResetTrigger("Shoot"); // prevent competing trigger
+        animator.SetTrigger("Attacked");
+
+        yield return WaitForAnimationToFinish("Attacked");
+
+        animator.ResetTrigger("Attacked");
+        stunned = false;
+        shotTriggered = false;
+    }
+
+    void Animate()
+    {
+        if (shotTriggered || stunned) return;
+
+        switch (pathing.state)
+        {
+            case EnemyPathingState.Attacking:
+                FacePlayer();
+                if (isAiming) ToggleAnimation("isAiming");
+                else ToggleAnimation("None");
+                
+                break;
+            case EnemyPathingState.Chasing:
+            case EnemyPathingState.Retreating:
+                ToggleAnimation("isWalking");
+                break;
+            default:
+                ToggleAnimation("isIdle");
+                break;
+        }
+    }
+
+    private void ToggleAnimation(string name)
+    {
+        foreach (string anim in animations)
+        {
+            animator.SetBool(anim, anim.Equals(name));
+        }
+    }
+
+    private void FacePlayer()
+    {
+        Vector3 direction = pathing.player.position - transform.position;
+        direction.y = 0f;
+
+        Quaternion targetRot = Quaternion.LookRotation(direction);
+        float angle = Quaternion.Angle(transform.rotation, targetRot);
+
+        if (angle > 140f)
+        {
+            // Rotate faster to prevent awkward slow rotation
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRot,
+                rotationSpeed * Time.deltaTime * 100
+            );
+        }
+        else
+        {
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRot,
+                rotationSpeed * Time.deltaTime
+            );
         }
     }
 
     IEnumerator Aim()
     {
-        appearance.material.SetColor("_BaseColor", Color.red); // Testing
-        currentlyAiming = true;
+        isAiming = true;
         Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.white, aimingTime);
 
         yield return new WaitForSeconds(aimingTime);
 
-        appearance.material.SetColor("_BaseColor", baseColor); // Testing
-        currentlyAiming = false;
+        isAiming = false;
         Shoot();
+    }
+
+    void DrawLineToPlayer(Color color)
+    {
+        if (lineRenderer == null || firePoint == null || pathing.player == null)
+            return;
+
+        lineRenderer.enabled = true;
+        lineRenderer.startColor = color;
+        lineRenderer.endColor = color;
+
+        lineRenderer.SetPosition(0, firePoint.position);
+        lineRenderer.SetPosition(1, pathing.player.position);
     }
 
     void Shoot()
     {
-        StartCoroutine(ShotCooldown());
+        lineRenderer.startColor = firelineShootColor;
+        lineRenderer.endColor = firelineShootColor;
+
+        animator.SetTrigger("Shoot");
+        ToggleAnimation("None");
+        shotTriggered = true;
+
+        shotRoutine = StartCoroutine(ShotCooldown());
         currentAmmo--;
 
         // Cast a ray toward the player's position. If it hits an object with the Player layer, deal damage using the IDamageable component
@@ -108,13 +248,13 @@ public class Marksman : EnemyHealth
                 // Shot landed
 
                 var damageable = hit.collider.gameObject.GetComponentInParent<IDamageable>();
-                if (damageable != null)
+                if (damageable != null && !stunned)
                 {
                     Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.green, 0.5f);
                     //Debug.Log($"Shot successfully hit {hit.collider.gameObject.name} with {accuracy}% chance to hit and a roll of {chance}");
                     damageable.OnHit(damage);
                 }
-                else
+                else if (damageable == null)
                 {
                     Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.magenta, 0.5f);
                     Debug.LogError("IDamageable not found on gameObject " + hit.collider.gameObject.name);
@@ -131,6 +271,8 @@ public class Marksman : EnemyHealth
             //if (hit.collider.gameObject != null) Debug.Log("Wrong target. Shot hit " + hit.collider.gameObject.name);
             Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.red, 0.5f);
         }
+
+        
     }
 
     IEnumerator Reload()
@@ -146,8 +288,60 @@ public class Marksman : EnemyHealth
 
     IEnumerator ShotCooldown()
     {
-        currentlyFiring = true;
+        isFiring = true;
+
+        yield return WaitForAnimationToFinish("Shoot");
+
+        shotTriggered = false;
+        animator.ResetTrigger("Shoot");
+        
         yield return new WaitForSeconds(shotCooldown);
-        currentlyFiring = false;
+        isFiring = false;
+    }
+    private void StopAllActionCoroutines()
+    {
+        if (aimRoutine != null) StopCoroutine(aimRoutine);
+        if (reloadRoutine != null) StopCoroutine(reloadRoutine);
+        if (shotRoutine != null) StopCoroutine(shotRoutine);
+
+        aimRoutine = null;
+        reloadRoutine = null;
+        shotRoutine = null;
+    }
+
+    private IEnumerator WaitForAnimationToFinish(string animationName, float timeout = 2f)
+    {
+        float timer = 0f;
+
+        // Wait for the animation to start playing
+        while (true)
+        {
+            var state = animator.GetCurrentAnimatorStateInfo(0);
+
+            if (state.IsName(animationName))
+                break; // We are in the animation, continue below
+
+            if (timer > timeout)
+                yield break; // Give up after timeout
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        // Wait for the animation to finish playing
+        while (true)
+        {
+            var state = animator.GetCurrentAnimatorStateInfo(0);
+
+            // If finished
+            if (!state.IsName(animationName) || state.normalizedTime >= 1f)
+                break;
+
+            if (timer > timeout)
+                yield break;
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
     }
 }
