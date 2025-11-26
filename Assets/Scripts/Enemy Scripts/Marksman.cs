@@ -200,6 +200,13 @@ public class Marksman : EnemyHealth
 
     void Shoot()
     {
+        lineRenderer.startColor = firelineShootColor;
+        lineRenderer.endColor = firelineShootColor;
+
+        animator.SetTrigger("Shoot");
+        ToggleAnimation("None");
+        shotTriggered = true;
+
         currentAction = StartCoroutine(ShotCooldown());
         currentAmmo--;
 
@@ -248,6 +255,8 @@ public class Marksman : EnemyHealth
             //if (hit.collider.gameObject != null) Debug.Log("Wrong target. Shot hit " + hit.collider.gameObject.name);
             Debug.DrawRay(firePoint.position, pathing.player.position - firePoint.position, Color.red, 0.5f);
         }
+
+        
     }
 
     IEnumerator Reload()
@@ -263,19 +272,13 @@ public class Marksman : EnemyHealth
 
     IEnumerator ShotCooldown()
     {
-        lineRenderer.startColor = firelineShootColor;
-        lineRenderer.endColor = firelineShootColor;
-
         isFiring = true;
-        animator.SetTrigger("Shoot");
-        ToggleAnimation("None");
-        shotTriggered = true;
 
         yield return WaitForAnimationToFinish("Shoot");
 
         shotTriggered = false;
         animator.ResetTrigger("Shoot");
-
+        
         yield return new WaitForSeconds(shotCooldown);
         isFiring = false;
     }
