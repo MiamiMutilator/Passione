@@ -10,6 +10,7 @@ public class Rage : ToggleableBehaviour
     public bool enraged;
     public InputActionReference rageInput;
     public Slider passionSlider;
+    public PlayerHealth playerHealth;
 
     private void OnEnable()
     {
@@ -26,6 +27,8 @@ public class Rage : ToggleableBehaviour
         {
             Debug.Log("Enraged!");
             enraged = true;
+            playerHealth.health = 10;
+            Debug.Log("Healed up!");
             StartCoroutine(RageDown());
         }
         if (rageAmount == 0)

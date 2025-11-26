@@ -563,6 +563,7 @@ MonoBehaviour:
     animatorTrigger: LeftJab
     punchInput: {fileID: 8194790677430557180, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     damage: 1
+    rageIncrease: 20
     knockbackStrength: 3
     hitbox: {fileID: 8572402774751774585}
     weakpointTag: EnemyBody
@@ -574,6 +575,7 @@ MonoBehaviour:
     animatorTrigger: RightHook
     punchInput: {fileID: -7803995681073658105, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     damage: 3
+    rageIncrease: 20
     knockbackStrength: 10
     hitbox: {fileID: 2188372657333629929}
     weakpointTag: EnemyHead
@@ -600,10 +602,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8b0196bc2739b45b7273847f13f0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RageMeter: 100
+  maxRage: 100
+  rageAmount: 0
   enraged: 0
   rageInput: {fileID: -1900243378608015773, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   passionSlider: {fileID: 0}
+  playerHealth: {fileID: 6304140026036379539}
 --- !u!114 &4351866811838286478
 MonoBehaviour:
   m_ObjectHideFlags: 0
