@@ -11,6 +11,8 @@ public class PunchSettings
     public string animatorTrigger;
     public InputActionReference punchInput;
     public int damage;
+    [Tooltip("How much the Rage Meter increases by on a successful hit")]
+    public int rageIncrease = 20;
     public float knockbackStrength;
     public Collider hitbox;
     [Tooltip("Tag of the weakpoint hurtbox")]
