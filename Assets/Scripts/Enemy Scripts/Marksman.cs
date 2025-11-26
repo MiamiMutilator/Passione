@@ -44,7 +44,9 @@ public class Marksman : EnemyHealth
     private bool shotTriggered;
     private readonly string[] animations = new string[3] { "isIdle", "isWalking", "isAiming" };
     private bool stunned = false;
-    Coroutine currentAction;
+    private Coroutine aimRoutine;
+    private Coroutine reloadRoutine;
+    private Coroutine shotRoutine;
     LineRenderer lineRenderer;
 
     public override void Start()
@@ -63,8 +65,14 @@ public class Marksman : EnemyHealth
 
         if (isInKOState)
         {
-            StopCoroutine(currentAction);
+            pathing.agent.isStopped = true;
+            ToggleAnimation("None");
+            StopAllActionCoroutines();
             return;
+        }
+        else
+        {
+            pathing.agent.isStopped = false;
         }
 
         if (isAiming && lineRenderer != null) DrawLineToPlayer(firelineAimColor);
@@ -73,12 +81,12 @@ public class Marksman : EnemyHealth
 
         if (shotTriggered || stunned || pathing == null || isReloading || isAiming) return;
 
-        if (currentAmmo <= 0) currentAction = StartCoroutine(Reload());
+        if (currentAmmo <= 0) reloadRoutine = StartCoroutine(Reload());
         else if (pathing.state == EnemyPathingState.Attacking)
         {
             if (currentAmmo > 0 && !isFiring)
             {
-                currentAction = StartCoroutine(Aim());
+                aimRoutine = StartCoroutine(Aim());
             }
         }
 
@@ -87,13 +95,21 @@ public class Marksman : EnemyHealth
 
     public override void OnHit(int damage)
     {
-        if (!recentlyHit) StartCoroutine(Attacked());
+        if (!recentlyHit)
+        {
+            recentlyHit = true;
+            StartCoroutine(DamageCooldown());
+            StartCoroutine(Attacked());
+            Health -= damage;
 
-        base.OnHit(damage);
+            Debug.Log(gameObject.name + " took " + damage + " damage. " + health + " health remaining.");
+        }
     }
 
     IEnumerator Attacked()
     {
+        if (stunned) yield break;
+
         stunned = true;
 
         // Stop all actions
@@ -101,7 +117,7 @@ public class Marksman : EnemyHealth
         isFiring = false;
         isReloading = false;
 
-        StopCoroutine(currentAction);
+        StopAllActionCoroutines();
 
         // Force all animations off
         ToggleAnimation("None");
@@ -110,9 +126,9 @@ public class Marksman : EnemyHealth
         animator.ResetTrigger("Shoot"); // prevent competing trigger
         animator.SetTrigger("Attacked");
 
-        yield return new WaitForEndOfFrame();
         yield return WaitForAnimationToFinish("Attacked");
 
+        animator.ResetTrigger("Attacked");
         stunned = false;
         shotTriggered = false;
     }
@@ -207,7 +223,7 @@ public class Marksman : EnemyHealth
         ToggleAnimation("None");
         shotTriggered = true;
 
-        currentAction = StartCoroutine(ShotCooldown());
+        shotRoutine = StartCoroutine(ShotCooldown());
         currentAmmo--;
 
         // Cast a ray toward the player's position. If it hits an object with the Player layer, deal damage using the IDamageable component
@@ -282,29 +298,50 @@ public class Marksman : EnemyHealth
         yield return new WaitForSeconds(shotCooldown);
         isFiring = false;
     }
-
-    private IEnumerator WaitForAnimationToFinish(string animationName)
+    private void StopAllActionCoroutines()
     {
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (aimRoutine != null) StopCoroutine(aimRoutine);
+        if (reloadRoutine != null) StopCoroutine(reloadRoutine);
+        if (shotRoutine != null) StopCoroutine(shotRoutine);
 
-        float timeout = 0.6f; //if animation gets locked, exit
-        float time = 0f;
-        while (!stateInfo.IsName(animationName))
+        aimRoutine = null;
+        reloadRoutine = null;
+        shotRoutine = null;
+    }
+
+    private IEnumerator WaitForAnimationToFinish(string animationName, float timeout = 2f)
+    {
+        float timer = 0f;
+
+        // Wait for the animation to start playing
+        while (true)
         {
-            if (time > timeout) yield break;
-            time += Time.deltaTime;
+            var state = animator.GetCurrentAnimatorStateInfo(0);
 
+            if (state.IsName(animationName))
+                break; // We are in the animation, continue below
+
+            if (timer > timeout)
+                yield break; // Give up after timeout
+
+            timer += Time.deltaTime;
             yield return null;
-            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         }
 
-        while (stateInfo.IsName(animationName) && stateInfo.normalizedTime < 1.0f)
+        // Wait for the animation to finish playing
+        while (true)
         {
-            if (time > timeout) yield break;
-            time += Time.deltaTime;
+            var state = animator.GetCurrentAnimatorStateInfo(0);
 
+            // If finished
+            if (!state.IsName(animationName) || state.normalizedTime >= 1f)
+                break;
+
+            if (timer > timeout)
+                yield break;
+
+            timer += Time.deltaTime;
             yield return null;
-            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         }
     }
 }

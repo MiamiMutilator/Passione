@@ -96,7 +96,7 @@ public class EnemyHealth : DamageableCharacter
 
     }
 
-    IEnumerator DamageCooldown()
+    protected IEnumerator DamageCooldown()
     {
         recentlyHit = true;
         yield return new WaitForSeconds(hitCooldown);
