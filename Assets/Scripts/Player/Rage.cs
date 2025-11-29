@@ -34,7 +34,7 @@ public class Rage : ToggleableBehaviour
         if (rageAmount == 0)
         {
             enraged = false;
-            Debug.Log("No longer enraged");
+            //Debug.Log("No longer enraged");
             StopCoroutine(RageDown());
             //StartCoroutine(RageUp());
         }

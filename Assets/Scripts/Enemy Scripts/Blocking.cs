@@ -172,6 +172,7 @@ public class Blocking : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
                 punchIndicator.SetActive(false);
 
+                Debug.Log("Jabbing!");
                 animator.SetTrigger("Jab");
                 animator.speed = 1.1f;
                 jab.enabled = true;
@@ -196,6 +197,7 @@ public class Blocking : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
                 punchIndicator.SetActive(false);
 
+                Debug.Log("Hooking!");
                 animator.SetTrigger("Hook");
                 animator.speed = 1.2f;
 
