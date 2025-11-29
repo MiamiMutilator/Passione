@@ -174219,8 +174219,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 175541295}
     - target: {fileID: 6304140026036379539, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: smoothness
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304140026036379539, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: shakeAmount
-      value: 0.001
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304140026036379539, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
+      propertyPath: shakeDuration
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6304140026036379539, guid: b4fb8f1da41d80c4f80cb152ce993421, type: 3}
       propertyPath: decreaseFactor
