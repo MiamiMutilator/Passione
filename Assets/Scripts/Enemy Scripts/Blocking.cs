@@ -136,6 +136,8 @@ public class Blocking : MonoBehaviour
 
     private IEnumerator ActionTaken()
     {
+        wasBlockingHead = false;
+        wasBlockingBody = false;
 
         isBlockingHead = false;
         isBlockingBody = false;
@@ -143,28 +145,11 @@ public class Blocking : MonoBehaviour
         switch (actionChosen)
         {
             case 0: // Block body
-                actionTimer = Random.Range(1, 2);
-                isBlockingBody = true;
-                bodyBlock.enabled = true;
-                animator.SetBool("isBlockingBody", true);
-                yield return new WaitForSeconds(actionTimer);
-                isBlockingBody = false;
-                bodyBlock.enabled = false;
-                animator.SetBool("isBlockingBody", false);
-                wasBlockingBody = true;
-                wasBlockingHead = false;
+                actionTimer = Random.Range(1, 3);
+                StartCoroutine(BlockBody(actionTimer));
                 break;
             case 1: // Block head
-                actionTimer = Random.Range(1, 2);
-                isBlockingHead = true;
-                headBlock.enabled = true;
-                animator.SetBool("isBlockingHead", true);
-                yield return new WaitForSeconds(actionTimer);
-                isBlockingHead = false;
-                headBlock.enabled = false;
-                animator.SetBool("isBlockingHead", false);
-                wasBlockingHead = true;
-                wasBlockingBody = false;
+                StartCoroutine(BlockHead(actionTimer));
                 break;
             case 2: //jab
                 punchIndicator.SetActive(true);
@@ -320,6 +305,33 @@ public class Blocking : MonoBehaviour
             yield return null;
             stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         }
+    }
+
+    private IEnumerator BlockBody(int action)
+    {
+        isBlockingBody = true;
+        bodyBlock.enabled = true;
+        animator.SetBool("isBlockingBody", true);
+        yield return new WaitForSeconds(action);
+        isBlockingBody = false;
+        bodyBlock.enabled = false;
+        animator.SetBool("isBlockingBody", false);
+        wasBlockingBody = true;
+        wasBlockingHead = false;
+    }
+
+    private IEnumerator BlockHead(int action)
+    {
+        isBlockingHead = true;
+        headBlock.enabled = true;
+        animator.SetBool("isBlockingHead", true);
+        yield return new WaitForSeconds(action);
+        isBlockingHead = false;
+        headBlock.enabled = false;
+        animator.SetBool("isBlockingHead", false);
+        wasBlockingHead = true;
+        wasBlockingBody = false;
+
     }
 
     private IEnumerator TakenDamageToHead()
