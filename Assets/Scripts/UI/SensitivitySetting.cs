@@ -3,7 +3,8 @@ using UnityEngine.UI;
 
 public class SensitivitySettings : MonoBehaviour
 {
-    public Slider MouseSensitivitySlider; 
+    public Slider MouseSensitivitySlider;
+    public Slider ControllerSensitivitySlider;
     private void OnEnable()
     {
         float sensitivityH = PlayerPrefs.GetFloat("MouseSensitivityHorizontal");
@@ -13,7 +14,13 @@ public class SensitivitySettings : MonoBehaviour
             MouseSensitivitySlider.SetValueWithoutNotify(sensitivityH);
             MouseSensitivitySlider.SetValueWithoutNotify(sensitivityV);
         }
+        float sensitivityC = PlayerPrefs.GetFloat("ControllerSensitivity");
+        if (ControllerSensitivitySlider != null)
+        {
+            ControllerSensitivitySlider.SetValueWithoutNotify(sensitivityC);
+        }
     }
+    
     public void SetMouseSensitivity(float value)
     {
         PlayerPrefs.SetFloat("MouseSensitivityHorizontal", value);

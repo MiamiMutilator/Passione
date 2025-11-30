@@ -29025,8 +29025,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3046c8483a51247960ea86cfee9110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuBinding: {fileID: 6463923885532878480, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   pauseMenu: {fileID: 5395843422924511480}
   playerToggleControl: {fileID: 2033900665}
+  firstSelectedButton: {fileID: 954503056}
 --- !u!4 &191499213
 Transform:
   m_ObjectHideFlags: 0
@@ -31018,6 +31020,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 54.817642, y: 105.4362, z: 54.73639}
   m_Center: {x: 0.000061035156, y: -0.000015258789, z: 0.00024414062}
+--- !u!1 &210536301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2511395440700883620, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
+  m_PrefabInstance: {fileID: 7720390737190439898}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &213768417
 GameObject:
   m_ObjectHideFlags: 0
@@ -135940,6 +135947,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c6dfe1c4667895a42baee1861ea5eaf8, type: 3}
   m_PrefabInstance: {fileID: 736748450}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &737957127 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3230839268131547504, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
+  m_PrefabInstance: {fileID: 7720390737190439898}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &739430912
 Mesh:
   m_ObjectHideFlags: 0
@@ -173230,6 +173248,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &954503056 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7354439657747511896, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
+  m_PrefabInstance: {fileID: 7720390737190439898}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &956784561
 GameObject:
   m_ObjectHideFlags: 0
@@ -194468,6 +194491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MouseSensitivitySlider: {fileID: 2038064937}
+  ControllerSensitivitySlider: {fileID: 737957127}
 --- !u!4 &1055262341
 Transform:
   m_ObjectHideFlags: 0
@@ -272322,7 +272346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 954503056}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1608063009
@@ -375554,6 +375578,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006041604}
   m_Mesh: {fileID: 207101564}
+--- !u!1 &2010485080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2010485082}
+  - component: {fileID: 2010485081}
+  m_Layer: 0
+  m_Name: SettingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2010485081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010485080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a024af2d89cc7964f8d6797ff7734560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 5395843422924511480}
+  settingsMenu: {fileID: 210536301}
+  firstSelectedSetting: {fileID: 954503056}
+  menuBinding: {fileID: 6463923885532878480, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!4 &2010485082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010485080}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2002.9381, y: 1102.911, z: 15.081549}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &2013906785
 Mesh:
   m_ObjectHideFlags: 0
@@ -401546,18 +401618,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3230839268131547504, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
-      propertyPath: m_Value
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3230839268131547504, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
-      propertyPath: m_MaxValue
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3230839268131547504, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
-      propertyPath: m_MinValue
-      value: 5
-      objectReference: {fileID: 0}
+    - target: {fileID: 2388264775356774389, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1608063008}
     - target: {fileID: 3230839268131547504, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -401578,10 +401642,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 191499212}
-    - target: {fileID: 5936107895525886735, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitGame
-      objectReference: {fileID: 0}
+    - target: {fileID: 6356520785943042933, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1608063008}
     - target: {fileID: 7198052648772224517, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
       propertyPath: m_Name
       value: PauseMenuCanvas
@@ -401619,6 +401683,7 @@ SceneRoots:
   - {fileID: 1102132147}
   - {fileID: 1925296963}
   - {fileID: 191499213}
+  - {fileID: 2010485082}
   - {fileID: 1055262341}
   - {fileID: 7720390737190439898}
   - {fileID: 81525725}
