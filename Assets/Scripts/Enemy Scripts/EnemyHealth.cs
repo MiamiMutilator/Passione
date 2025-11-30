@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(EnemyPathing))]
@@ -58,7 +59,11 @@ public class EnemyHealth : DamageableCharacter
         {
             //base.OnHitWithKnockback(damage, knockback);
             // For now, just destroy the enemy when hit in the KO state
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            this.gameObject.GetComponent<RagdollEnabler>().StartRagdoll = true;
+            //this.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+            //this.gameObject.GetComponent<EnemyPathing>().enabled = false;
+            //this.gameObject.GetComponent<Blocking>().enabled = false;
         }
     }
 
