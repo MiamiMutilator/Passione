@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
@@ -45,6 +48,15 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public float shakeFrequency = 15f;
     public float shakeDuration = 0.4f;
 
+    //Blur
+    [Header("Hit Blur")]
+    public Volume postProcessVolume;
+    private DepthOfField dof;
+    public float blurDuration = 0.4f;
+    private float remainingBlur = 0f;
+    private bool blurring = false;
+
+
     float remainingShake = 0;
     bool isShaking = false;
     Vector3 originalCameraPosition;
@@ -54,11 +66,21 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         Targetable = targetable;
         health = maxHealth;
         originalCameraPosition = playerCam.transform.localPosition;
+
+        if (postProcessVolume != null)
+        {
+            postProcessVolume.profile.TryGet(out dof);
+            dof.gaussianStart.value = 0f;
+            dof.gaussianEnd.value = 2f;
+            //dof.gaussianMaxRadius.value = 10f;
+            dof.active = false;
+        }
     }
 
     void Update()
     {
         if (cameraShakeOn) CameraShake();
+        HitBlur();
     }
 
     void CameraShake()
@@ -90,9 +112,41 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         }
     }
 
+    void HitBlur()
+    {
+        if (dof == null) return;
+
+        if (remainingBlur > 0f && !blurring)
+        {
+            blurring = true;
+            dof.active = true;
+        }
+
+        if (blurring && remainingBlur > 0f)
+        {
+            float t = remainingBlur / blurDuration;
+
+            dof.gaussianStart.value = Mathf.Lerp(0.1f, 0.5f, t);
+            dof.gaussianEnd.value = Mathf.Lerp(1f, 3f, t);
+            dof.gaussianMaxRadius.value = Mathf.Lerp(0.1f, 2f, t);
+
+            remainingBlur -= Time.deltaTime;
+        }
+        else if (blurring)
+        {
+            blurring = false;
+            remainingBlur = 0f;
+
+            dof.active = false;
+        }
+    }
+
+
     public void OnHit(int damage)
     {
         Health -= damage;
+
+        remainingBlur = blurDuration;
 
         Debug.Log(gameObject.name + " took " + damage + " damage. " + health + " health remaining.");
     }

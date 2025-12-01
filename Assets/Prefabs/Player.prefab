@@ -517,6 +517,8 @@ MonoBehaviour:
   smoothness: 0.2
   shakeFrequency: 15
   shakeDuration: 0.1
+  postProcessVolume: {fileID: 0}
+  blurDuration: 0.4
 --- !u!114 &8033357727186760322
 MonoBehaviour:
   m_ObjectHideFlags: 0
