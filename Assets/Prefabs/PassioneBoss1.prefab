@@ -494,6 +494,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   punchIndicator: {fileID: 3436404698338519450}
+  Cane: {fileID: 2271063400664165619}
+  Bottle: {fileID: 6690725742084730797}
 --- !u!1 &864292965893056449
 GameObject:
   m_ObjectHideFlags: 0
@@ -1812,6 +1814,8 @@ GameObject:
   - component: {fileID: 4114654107612269710}
   - component: {fileID: 5837272621162334492}
   - component: {fileID: 5579939018857641067}
+  - component: {fileID: 2271063400664165619}
+  - component: {fileID: 5749682178210133815}
   m_Layer: 7
   m_Name: cane
   m_TagString: Untagged
@@ -1887,6 +1891,47 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2271063400664165619
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3609716019765900991}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.12000066, y: 4.761497, z: 1.2284148}
+  m_Center: {x: 0.14709303, y: -2.7273414, z: 0.037293963}
+--- !u!114 &5749682178210133815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3609716019765900991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2ebfafbe918ea408f5e442c5f475bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jab: {fileID: 0}
+  hook: {fileID: 0}
+  Cane: {fileID: 2271063400664165619}
+  Bottle: {fileID: 0}
+  hasBeenHit: 0
+  damage: 2
+  isGrunt: 0
+  isLacrimare: 1
 --- !u!1 &3787510593145445175
 GameObject:
   m_ObjectHideFlags: 0
@@ -3795,6 +3840,8 @@ GameObject:
   - component: {fileID: 6834447061264900953}
   - component: {fileID: 7311231645305659570}
   - component: {fileID: 8091039161051588340}
+  - component: {fileID: 6690725742084730797}
+  - component: {fileID: 5384704975050570320}
   m_Layer: 7
   m_Name: Bottle
   m_TagString: Untagged
@@ -3870,6 +3917,47 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6690725742084730797
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6249411838706210896}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.000002, y: 11.128721, z: 2.0000033}
+  m_Center: {x: 1.1572442, y: 4.990186, z: 2.0669355}
+--- !u!114 &5384704975050570320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6249411838706210896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc2ebfafbe918ea408f5e442c5f475bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jab: {fileID: 0}
+  hook: {fileID: 0}
+  Cane: {fileID: 0}
+  Bottle: {fileID: 6690725742084730797}
+  hasBeenHit: 0
+  damage: 1
+  isGrunt: 0
+  isLacrimare: 1
 --- !u!1 &6266902454878883639
 GameObject:
   m_ObjectHideFlags: 0

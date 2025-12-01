@@ -4,14 +4,32 @@ public class EnemyPunchHitbox : MonoBehaviour
 {
     public BoxCollider jab;
     public BoxCollider hook;
+    public BoxCollider Cane;
+    public BoxCollider Bottle;
     public bool hasBeenHit;
     public int damage;
+    public bool isGrunt;
+    public bool isLacrimare;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //hasBeenHit = false;
-        jab.enabled = false;
-        hook.enabled = false;
+        if (isGrunt == true)
+        {
+            jab.enabled = false;
+            hook.enabled = false;
+        }
+        if (isLacrimare == true)
+        {
+            if (Cane != null)
+            {
+                Cane.enabled = false;
+            }
+            if (Bottle != null)
+            {
+                Bottle.enabled = false;
+            }
+        }
 
     }
 
@@ -32,8 +50,22 @@ public class EnemyPunchHitbox : MonoBehaviour
                 //Debug.Log("test");
                 playerHealth.OnHit(damage);
                 //hasBeenHit = true;
-                jab.enabled = false;
-                hook.enabled = false;
+                if (isGrunt == true)
+                {
+                    jab.enabled = false;
+                    hook.enabled = false;
+                }
+                if (isLacrimare == true)
+                {
+                    if (Cane != null)
+                    {
+                        Cane.enabled = false;
+                    }
+                    if (Bottle != null)
+                    {
+                        Bottle.enabled = false;
+                    }
+                }
             }
 
         }

@@ -16,9 +16,13 @@ public class Lacrimare : MonoBehaviour
     private Animator animator;
     private Coroutine currentAction;
 
+    public BoxCollider Cane;
+    public BoxCollider Bottle;
+
+
     bool wasBlockingHead = false;
     bool wasBlockingBody = false;
-    int[] actionProbability = { 0, 1, 2};
+    int[] actionProbability = { 0, 1};
 
     void Start()
     {
@@ -129,8 +133,11 @@ public class Lacrimare : MonoBehaviour
                 punchIndicator.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
                 punchIndicator.SetActive(false);
+                Cane.enabled = true;
                 animator.SetTrigger("Attack");
                 yield return StartCoroutine(WaitForAnimationToFinish("Attack"));
+                yield return new WaitForSeconds(0.1f);
+                Cane.enabled = false;
                 //animator set trigger Cane attack
                 //hitbox enabled
                 //yield return wait for animation to finish
@@ -140,8 +147,11 @@ public class Lacrimare : MonoBehaviour
                 punchIndicator.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
                 punchIndicator.SetActive(false);
+                Bottle.enabled = true;
                 animator.SetTrigger("Splash");
                 yield return StartCoroutine(WaitForAnimationToFinish("Splash"));
+                yield return new WaitForSeconds(0.1f);
+                Bottle.enabled = false;
                 break;
             case 2: //jab
                 break;

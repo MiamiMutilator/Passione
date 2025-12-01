@@ -178,6 +178,9 @@ public class Blocking : MonoBehaviour
                 jab.enabled = true;
 
                 yield return StartCoroutine(WaitForAnimationToFinish("Jab"));
+                yield return new WaitForSeconds(0.01f);
+                jab.enabled = false;
+
                 animator.speed = 1f;
 
                 if (wasBlockingHead)
@@ -205,6 +208,8 @@ public class Blocking : MonoBehaviour
                 hook.enabled = true;
 
                 yield return StartCoroutine(WaitForAnimationToFinish("Hook"));
+                yield return new WaitForSeconds(0.01f);
+                hook.enabled = false;
                 animator.speed = 1f;
 
                 if (wasBlockingHead)
@@ -239,6 +244,9 @@ public class Blocking : MonoBehaviour
 
                 hook.enabled = true;
                 yield return StartCoroutine(WaitForAnimationToFinish("Hook"));
+                yield return new WaitForSeconds(0.01f);
+                hook.enabled = false;
+
 
                 if (wasBlockingHead)
                 {
@@ -272,6 +280,9 @@ public class Blocking : MonoBehaviour
 
                 hook.enabled = true;
                 yield return StartCoroutine(WaitForAnimationToFinish("Hook"));
+                yield return new WaitForSeconds(0.3f);
+                hook.enabled = false;
+
 
                 if (wasBlockingHead)
                 {

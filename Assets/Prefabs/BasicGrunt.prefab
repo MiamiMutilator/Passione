@@ -1251,8 +1251,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jab: {fileID: 8924653931100159508}
   hook: {fileID: 7039306513339026580}
+  Cane: {fileID: 0}
   hasBeenHit: 0
   damage: 1
+  isGrunt: 1
+  isLacrimare: 0
 --- !u!54 &6222305842034591978
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1500,8 +1503,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jab: {fileID: 8924653931100159508}
   hook: {fileID: 7039306513339026580}
+  Cane: {fileID: 0}
   hasBeenHit: 0
   damage: 1
+  isGrunt: 1
+  isLacrimare: 0
 --- !u!54 &6330469126433755657
 Rigidbody:
   m_ObjectHideFlags: 0
