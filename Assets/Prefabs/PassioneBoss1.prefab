@@ -417,10 +417,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: -7455566622298982766}
   player: {fileID: 0}
-  distanceKeptAway: 2
-  fightingDistance: 3
+  distanceKeptAway: 3
+  fightingDistance: 4
   awarenessDistance: 15
-  speed: 5
+  speed: 4
   isRanged: 0
   enemyHealth: {fileID: 0}
   state: 0

@@ -8,7 +8,7 @@ public class Lacrimare : MonoBehaviour
 
 
     private int actionChosen;
-    private int actionTimer;
+    private int actionCooldown;
     private bool isInAction;
     private EnemyHealth healthComponent;
     private EnemyPathing pathing;
@@ -108,6 +108,10 @@ public class Lacrimare : MonoBehaviour
         {
             StartCoroutine(TakenDamage());
         }
+        if (other.CompareTag("HeadHook") && healthComponent.health != 0)
+        {
+            StartCoroutine(TakenDamage());
+        }
         //DAMAGE TAKEN ANIMATIONS
         //if (other.CompareTag("BodyJab") && isBlockingHead == true && healthComponent.health != 0)
         //{
@@ -127,9 +131,11 @@ public class Lacrimare : MonoBehaviour
         //isBlockingHead = false;
         //isBlockingBody = false;
         //SetBlockingAnimations(false);
+        yield return new WaitForSeconds(actionCooldown);
         switch (actionChosen)
         {
             case 0: // Cane Attack
+                actionCooldown = Random.Range(1, 4);
                 punchIndicator.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
                 punchIndicator.SetActive(false);
@@ -144,6 +150,7 @@ public class Lacrimare : MonoBehaviour
                 //return to previous animation
                 break;
             case 1: // Splash Attack if too close
+                actionCooldown = Random.Range(1, 4);
                 punchIndicator.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
                 punchIndicator.SetActive(false);
