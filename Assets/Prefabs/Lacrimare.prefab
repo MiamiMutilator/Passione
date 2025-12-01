@@ -126,14 +126,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd26b7f8d12b4894d91a40735c1a6982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: -2310853307937436281}
   player: {fileID: 0}
   distanceKeptAway: 2
   fightingDistance: 3
   awarenessDistance: 15
   speed: 5
   isRanged: 0
-  enemyHealth: {fileID: 0}
+  enemyHealth: {fileID: -2443488720510268699}
   state: 0
 --- !u!54 &6337848700964376924
 Rigidbody:
@@ -181,7 +181,9 @@ MonoBehaviour:
   hitCooldown: 2
   healthRecoveryDivisor: 1
   stunnedVFX: {fileID: 0}
+  KoCooldown: 3
   isInKOState: 0
+  blocking: {fileID: 0}
 --- !u!195 &-2310853307937436281
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -34,11 +34,11 @@ public class Lacrimare : MonoBehaviour
 
     void Update()
     {
-        if (healthComponent.isInKOState) SetBlockingAnimations(false);
-        else
-        {
-            //blocking anims
-        }
+        //if (healthComponent.isInKOState) SetBlockingAnimations(false);
+        //else
+        //{
+        //    //blocking anims
+        //}
 
         if (pathing == null) return;
 
@@ -85,7 +85,7 @@ public class Lacrimare : MonoBehaviour
         }
         else
         {
-            SetBlockingAnimations(false);
+            //SetBlockingAnimations(false);
         }
 
         Vector3 direction = pathing.player.position - transform.position; //when enemy is blocking
@@ -100,6 +100,10 @@ public class Lacrimare : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("BodyJab") && healthComponent.health != 0)
+        {
+            StartCoroutine(TakenDamage());
+        }
         //DAMAGE TAKEN ANIMATIONS
         //if (other.CompareTag("BodyJab") && isBlockingHead == true && healthComponent.health != 0)
         //{
@@ -118,19 +122,26 @@ public class Lacrimare : MonoBehaviour
 
         //isBlockingHead = false;
         //isBlockingBody = false;
-        SetBlockingAnimations(false);
+        //SetBlockingAnimations(false);
         switch (actionChosen)
         {
             case 0: // Cane Attack
                 punchIndicator.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
                 punchIndicator.SetActive(false);
+                animator.SetTrigger("Attack");
+                yield return StartCoroutine(WaitForAnimationToFinish("Attack"));
                 //animator set trigger Cane attack
                 //hitbox enabled
                 //yield return wait for animation to finish
                 //return to previous animation
                 break;
             case 1: // Splash Attack if too close
+                punchIndicator.SetActive(true);
+                yield return new WaitForSeconds(0.5f);
+                punchIndicator.SetActive(false);
+                animator.SetTrigger("Splash");
+                yield return StartCoroutine(WaitForAnimationToFinish("Splash"));
                 break;
             case 2: //jab
                 break;
@@ -178,26 +189,19 @@ public class Lacrimare : MonoBehaviour
         }
     }
 
-    private IEnumerator TakenDamageToHead()
+    private IEnumerator TakenDamage()
     {
         isInAction = true;
-        animator.SetTrigger("HeadAttacked");
-        yield return StartCoroutine(WaitForAnimationToFinish("HeadAttacked"));
-        isInAction = false;
-    }
-
-    private IEnumerator TakenDamageToBody()
-    {
-        isInAction = true;
-        animator.SetTrigger("BodyAttacked");
-        yield return StartCoroutine(WaitForAnimationToFinish("BodyAttacked"));
+        animator.SetTrigger("Attacked");
+        yield return StartCoroutine(WaitForAnimationToFinish("Attacked"));
         isInAction = false;
     }
 
 
-    void SetBlockingAnimations(bool boolean)
-    {
-        animator.SetBool("isBlockingHead", boolean);
-        animator.SetBool("isBlockingBody", boolean);
-    }
+
+    //void SetBlockingAnimations(bool boolean)
+    //{
+    //    animator.SetBool("isBlockingHead", boolean);
+    //    animator.SetBool("isBlockingBody", boolean);
+    //}
 }

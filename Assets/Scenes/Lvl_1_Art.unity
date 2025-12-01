@@ -79835,6 +79835,63 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &306351866
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 58288403541919141, guid: 3b3d9f450996f2647afa35827378c8d1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 30.764826
+      objectReference: {fileID: 0}
+    - target: {fileID: 58288403541919141, guid: 3b3d9f450996f2647afa35827378c8d1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 58288403541919141, guid: 3b3d9f450996f2647afa35827378c8d1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 58288403541919141, guid: 3b3d9f450996f2647afa35827378c8d1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 58288403541919141, guid: 3b3d9f450996f2647afa35827378c8d1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58288403541919141, guid: 3b3d9f450996f2647afa35827378c8d1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58288403541919141, guid: 3b3d9f450996f2647afa35827378c8d1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58288403541919141, guid: 3b3d9f450996f2647afa35827378c8d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58288403541919141, guid: 3b3d9f450996f2647afa35827378c8d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58288403541919141, guid: 3b3d9f450996f2647afa35827378c8d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 830004088230141727, guid: 3b3d9f450996f2647afa35827378c8d1, type: 3}
+      propertyPath: m_Name
+      value: PassioneBoss1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3b3d9f450996f2647afa35827378c8d1, type: 3}
 --- !u!43 &307141673
 Mesh:
   m_ObjectHideFlags: 0
@@ -384615,3 +384672,4 @@ SceneRoots:
   - {fileID: 2116260936}
   - {fileID: 123837324}
   - {fileID: 89793298}
+  - {fileID: 306351866}
