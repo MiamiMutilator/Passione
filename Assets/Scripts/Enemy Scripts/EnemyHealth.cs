@@ -13,7 +13,7 @@ public class EnemyHealth : DamageableCharacter
     [Tooltip("After the enemy recovers from the KO state, their health is set to (Max Health / Health Recovery Divisor)")]
     public int healthRecoveryDivisor = 1;
     public GameObject stunnedVFX;
-
+    public RagdollEnabler ragdoll;
     public float KoCooldown = 3f;
 
     [HideInInspector] public bool isInKOState;
@@ -58,9 +58,12 @@ public class EnemyHealth : DamageableCharacter
         else
         {
             //base.OnHitWithKnockback(damage, knockback);
-            // For now, just destroy the enemy when hit in the KO state
-            //Destroy(gameObject);
-            this.gameObject.GetComponent<RagdollEnabler>().StartRagdoll = true;
+
+            if (ragdoll != null)
+                ragdoll.StartRagdoll = true;
+            else
+                Destroy(gameObject);
+
             //this.gameObject.GetComponent<NavMeshAgent>().enabled = false;
             //this.gameObject.GetComponent<EnemyPathing>().enabled = false;
             //this.gameObject.GetComponent<Blocking>().enabled = false;
