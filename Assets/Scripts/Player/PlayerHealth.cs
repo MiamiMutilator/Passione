@@ -144,10 +144,17 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void OnHit(int damage)
     {
-        Health -= damage;
+        if (targetable)
+        {
+            Health -= damage;
 
-        remainingBlur = blurDuration;
+            remainingBlur = blurDuration;
 
-        Debug.Log(gameObject.name + " took " + damage + " damage. " + health + " health remaining.");
+            Debug.Log(gameObject.name + " took " + damage + " damage. " + health + " health remaining.");
+        }
+        else if (!targetable)
+        {
+            Debug.Log("Hit but Invincible!");
+        }
     }
 }

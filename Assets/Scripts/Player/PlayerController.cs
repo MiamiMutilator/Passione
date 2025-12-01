@@ -61,6 +61,9 @@ public class PlayerController : ToggleableBehaviour
     private const float Gravity = -9.81f;
     private Vector3 playerVelocity;
 
+    PlayerHealth playerHealth;
+
+
     private void OnEnable()
     {
         moveAction.action.Enable();
@@ -79,6 +82,7 @@ public class PlayerController : ToggleableBehaviour
         timeSlow = new TimeSlow(slowedTimeScale);
         TimeScale = Time.timeScale;
         punchHandler = GetComponent<PunchHandler>();
+        playerHealth = GetComponent<PlayerHealth>();
 
         if (!gameObject.CompareTag("Player")) Debug.LogWarning($"Give the Player tag to {gameObject.name}!");
     }
@@ -164,6 +168,7 @@ public class PlayerController : ToggleableBehaviour
                 // Start Dashing when input and can dash
                 dashing = true;
                 totalDodgeTime += (dashDuration + evadeBuffer); // Evade enemy attacks for the duration
+                StartCoroutine(InvincibilityFrames());
                 dashTimer = 0;
             }
 
@@ -216,6 +221,15 @@ public class PlayerController : ToggleableBehaviour
         Debug.Log("Dash Cooldown finished");
         canDash = true;
         currentDashes = 0;
+    }
+
+    IEnumerator InvincibilityFrames()
+    {
+        Debug.Log("Invincible!");
+        playerHealth.targetable = false;
+        yield return new WaitForSeconds(2);
+        playerHealth.targetable = true;
+        Debug.Log("No longer invincible!");
     }
 
     void ApplyTimeSlow()

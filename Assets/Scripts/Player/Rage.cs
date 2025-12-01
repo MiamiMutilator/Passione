@@ -29,6 +29,7 @@ public class Rage : ToggleableBehaviour
             enraged = true;
             playerHealth.health = 10;
             Debug.Log("Healed up!");
+            StartCoroutine(InvincibilityFrames());
             StartCoroutine(RageDown());
         }
         if (rageAmount == 0)
@@ -85,5 +86,15 @@ public class Rage : ToggleableBehaviour
         }
         
     }
+
+    IEnumerator InvincibilityFrames()
+    {
+        Debug.Log("Invincible!");
+        playerHealth.targetable = false;
+        yield return new WaitForSeconds(2);
+        playerHealth.targetable = true;
+        Debug.Log("No longer invincible!");
+    }
+
 
 }
