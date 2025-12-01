@@ -211,6 +211,7 @@ public class Lacrimare : MonoBehaviour
         isInAction = true;
         animator.SetTrigger("Attacked");
         yield return StartCoroutine(WaitForAnimationToFinish("Attacked"));
+        yield return new WaitForSeconds(1f);
         isInAction = false;
     }
 
