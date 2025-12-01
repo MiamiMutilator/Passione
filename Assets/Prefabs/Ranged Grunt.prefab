@@ -21441,13 +21441,15 @@ MonoBehaviour:
   health: 5
   targetable: 1
   koStateTime: 5
-  hitCooldown: 1
+  hitCooldown: 0.5
   healthRecoveryDivisor: 1
   stunnedVFX: {fileID: 2716583543548328286}
+  ragdoll: {fileID: 0}
   KoCooldown: 3
   isInKOState: 0
   blocking: {fileID: 0}
   damage: 1
+  rotationSpeed: 5
   maxAmmo: 6
   shotRange: 30
   aimingTime: 0.6
@@ -21663,7 +21665,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.0592418
+        value: 0.018958598
         inSlope: 0
         outSlope: 0
         tangentMode: 0
