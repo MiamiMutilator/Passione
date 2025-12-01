@@ -1,8 +1,8 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(PlayerHealth))]
 public class PunchHandler : ToggleableBehaviour
 {
     #region Variables
@@ -15,6 +15,7 @@ public class PunchHandler : ToggleableBehaviour
     public Animator armAnimator;
 
     private bool isPunching;
+    PlayerHealth playerHealth;
     private float baseAnimatorSpeed;
     [HideInInspector] public int combo = 0;
     private bool timerActive;
@@ -40,8 +41,10 @@ public class PunchHandler : ToggleableBehaviour
     private void Start()
     {
         controller = GetComponent<PlayerController>();
+        playerHealth = GetComponent<PlayerHealth>();
 
         InitializePunches();
+        playerHealth.OnDamaged += CancelPunch;
 
         if (!armAnimator) Debug.LogError("Arm Animator is null");
         else
@@ -74,6 +77,16 @@ public class PunchHandler : ToggleableBehaviour
         armAnimator.speed = baseAnimatorSpeed * controller.TimeScale;
     }
 
+    void CancelPunch()
+    {
+        if (isPunching)
+        {
+            isPunching = false;
+            armAnimator.SetBool("isIdle", true);
+            Debug.Log("Punch canceled");
+        }
+    }
+ 
     void CheckPunching()
     {
         // Trigger a punch based on the input

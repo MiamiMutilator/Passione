@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
+public delegate void PlayerDamaged();
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
@@ -47,6 +48,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public float smoothness = 0.5f;
     public float shakeFrequency = 15f;
     public float shakeDuration = 0.4f;
+
+    public event PlayerDamaged OnDamaged;
 
     //Blur
     [Header("Hit Blur")]
@@ -147,6 +150,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (targetable)
         {
             Health -= damage;
+            OnDamaged?.Invoke();
 
             remainingBlur = blurDuration;
 
