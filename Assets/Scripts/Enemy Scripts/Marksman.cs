@@ -102,6 +102,8 @@ public class Marksman : EnemyHealth
             StartCoroutine(Attacked());
             Health -= damage;
 
+            if (Health <= 0) stunnedVFX.transform.position = transform.position + new Vector3(0, 2.4f);
+
             Debug.Log(gameObject.name + " took " + damage + " damage. " + health + " health remaining.");
         }
     }
