@@ -152,8 +152,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if (targetable)
         {
-            hit.Play();
-            earRing.Play();
+            //hit.Play();
+            //earRing.Play();
             Health -= damage;
             OnDamaged?.Invoke();
 

@@ -254,6 +254,11 @@ MonoBehaviour:
     vertical: 70
     invertHorizontal: 1
     invertVertical: 0
+  controllerSensitivity:
+    horizontal: 0
+    vertical: 0
+    invertHorizontal: 0
+    invertVertical: 0
   cameraAngle:
     min: -15
     max: 30
@@ -515,10 +520,12 @@ MonoBehaviour:
       m_Calls: []
   cameraShakeOn: 1
   playerCam: {fileID: 1287892965639580066}
-  shakeAmount: 0.2
+  shakeAmount: 3
   smoothness: 0.2
   shakeFrequency: 15
-  shakeDuration: 0.1
+  shakeDuration: 1
+  hit: {fileID: 0}
+  earRing: {fileID: 0}
   postProcessVolume: {fileID: 0}
   blurDuration: 0.4
 --- !u!114 &8033357727186760322
