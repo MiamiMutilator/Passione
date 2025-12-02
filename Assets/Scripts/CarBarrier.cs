@@ -33,14 +33,14 @@ public class CarBarrier : MonoBehaviour
         // Store original movement directions (matching your original script)
         directions = new Vector3[]
         {
-            Vector3.left,  // Car1
+            Vector3.right,  // Car1
             Vector3.right, // Car2
             Vector3.left,  // Car3
             Vector3.right, // Car4
             Vector3.left,  // Car5
-            Vector3.right, // Car6
+            Vector3.left, // Car6
             Vector3.left,  // Car7
-            Vector3.right  // Car8
+            Vector3.left  // Car8
         };
     }
 
@@ -78,6 +78,9 @@ public class CarBarrier : MonoBehaviour
             for (int i = 0; i < cars.Length; i++)
             {
                 cars[i].linearVelocity = Vector3.zero;
+                cars[i].angularVelocity = Vector3.zero;
+                cars[i].Sleep(); // stops physics immediately
+
                 cars[i].transform.position = startPositions[i];
             }
 
