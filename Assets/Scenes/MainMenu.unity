@@ -2755,6 +2755,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2641095730727023165, guid: e4850492ebc44fc49b7fbe2a38c6d936, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641095730727023165, guid: e4850492ebc44fc49b7fbe2a38c6d936, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641095730727023165, guid: e4850492ebc44fc49b7fbe2a38c6d936, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3174104090946693244, guid: e4850492ebc44fc49b7fbe2a38c6d936, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2827,6 +2839,42 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5276051040200729803, guid: e4850492ebc44fc49b7fbe2a38c6d936, type: 3}
+      propertyPath: m_text
+      value: 'Ralfo Manzur - Producer
+
+        Andres Lopez - Programmer
+
+        Jaylon
+        Cox - Programmer
+
+        Jakeb Greig -  2D Artist
+
+        Hannah Geuss
+        - 3D Artist
+
+        Shyanne Murdock - VFX + 3D Artist
+
+        Ronan Chumbanyang
+        - 3D Artist
+
+        Jake Hitzges - 3D Artist + Animator
+
+        Jonathan
+        Carrasquer - Level Designer
+
+        Jaheim Clarke - Level Designer
+
+        Howard
+        De Ausen - UI Designer
+
+
+        Music by Matthew Pablo - opengameart'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5276051040200729803, guid: e4850492ebc44fc49b7fbe2a38c6d936, type: 3}
+      propertyPath: m_margin.w
+      value: -132.40877
+      objectReference: {fileID: 0}
     - target: {fileID: 5316738133518839377, guid: e4850492ebc44fc49b7fbe2a38c6d936, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2867,6 +2915,10 @@ PrefabInstance:
       propertyPath: m_SpriteState.m_HighlightedSprite
       value: 
       objectReference: {fileID: 2135465665, guid: 54a8009bae5c9014ca3b4a3a4c0f1b52, type: 3}
+    - target: {fileID: 7635138913650017446, guid: e4850492ebc44fc49b7fbe2a38c6d936, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7655483669479182937, guid: e4850492ebc44fc49b7fbe2a38c6d936, type: 3}
       propertyPath: m_Transition
       value: 2
@@ -2927,6 +2979,10 @@ PrefabInstance:
       propertyPath: firstSelectedButton
       value: 
       objectReference: {fileID: 1102514135031096278}
+    - target: {fileID: 8666897906803787699, guid: e4850492ebc44fc49b7fbe2a38c6d936, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8928572509052022790, guid: e4850492ebc44fc49b7fbe2a38c6d936, type: 3}
       propertyPath: m_Sprite
       value: 
