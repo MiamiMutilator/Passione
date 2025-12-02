@@ -61,8 +61,8 @@ public class EnemyHealth : DamageableCharacter
 
             if (ragdoll != null)
                 ragdoll.StartRagdoll = true;
-            else
-                Destroy(gameObject);
+            //else
+                //Destroy(gameObject);
 
             //this.gameObject.GetComponent<NavMeshAgent>().enabled = false;
             //this.gameObject.GetComponent<EnemyPathing>().enabled = false;

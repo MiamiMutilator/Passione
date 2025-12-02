@@ -443,6 +443,7 @@ MonoBehaviour:
   hitCooldown: 2
   healthRecoveryDivisor: 1
   stunnedVFX: {fileID: 0}
+  ragdoll: {fileID: 0}
   KoCooldown: 3
   isInKOState: 0
   blocking: {fileID: 0}
@@ -5566,6 +5567,10 @@ PrefabInstance:
     - target: {fileID: 1344983232878354772, guid: 42a14284a6dc5cf4ca2ab0a7c012d3e0, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344983232878354772, guid: 42a14284a6dc5cf4ca2ab0a7c012d3e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3935230445018497764, guid: 42a14284a6dc5cf4ca2ab0a7c012d3e0, type: 3}
       propertyPath: m_Layer

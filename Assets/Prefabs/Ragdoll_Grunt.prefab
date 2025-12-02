@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 6862024503652339815}
     - target: {fileID: 329505456730006476, guid: 2cfd3ad11e8693b458c72dc853a18bdf, type: 3}
       propertyPath: m_Name
-      value: BasicGrunt (2) Variant
+      value: Ragdoll_Grunt
       objectReference: {fileID: 0}
     - target: {fileID: 1142071365105465718, guid: 2cfd3ad11e8693b458c72dc853a18bdf, type: 3}
       propertyPath: m_LocalScale.x
@@ -79,6 +79,18 @@ PrefabInstance:
     - target: {fileID: 2904934774609384136, guid: 2cfd3ad11e8693b458c72dc853a18bdf, type: 3}
       propertyPath: hook
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525643195027478113, guid: 2cfd3ad11e8693b458c72dc853a18bdf, type: 3}
+      propertyPath: health
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525643195027478113, guid: 2cfd3ad11e8693b458c72dc853a18bdf, type: 3}
+      propertyPath: ragdoll
+      value: 
+      objectReference: {fileID: 96033506463557684}
+    - target: {fileID: 4525643195027478113, guid: 2cfd3ad11e8693b458c72dc853a18bdf, type: 3}
+      propertyPath: maxHealth
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7653543709266941280, guid: 2cfd3ad11e8693b458c72dc853a18bdf, type: 3}
       propertyPath: awarenessDistance

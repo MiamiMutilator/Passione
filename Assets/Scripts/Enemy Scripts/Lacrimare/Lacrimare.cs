@@ -131,7 +131,7 @@ public class Lacrimare : MonoBehaviour
         //isBlockingHead = false;
         //isBlockingBody = false;
         //SetBlockingAnimations(false);
-        yield return new WaitForSeconds(actionCooldown);
+        //yield return new WaitForSeconds(actionCooldown);
         switch (actionChosen)
         {
             case 0: // Cane Attack
@@ -211,7 +211,7 @@ public class Lacrimare : MonoBehaviour
         isInAction = true;
         animator.SetTrigger("Attacked");
         yield return StartCoroutine(WaitForAnimationToFinish("Attacked"));
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
         isInAction = false;
     }
 

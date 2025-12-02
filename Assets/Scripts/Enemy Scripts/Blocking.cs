@@ -28,7 +28,7 @@ public class Blocking : MonoBehaviour
     bool wasBlockingHead = false;
     bool wasBlockingBody = false;
 
-    int[] actionProbability = { 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3 };
+    int[] actionProbability = { 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 5};
 
     public int previousHealth;
 

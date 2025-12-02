@@ -58,7 +58,7 @@ public class Rage : ToggleableBehaviour
     {
         while (enraged == true && rageAmount > 0)
         {
-            rageAmount--;
+            rageAmount -= 5;
             yield return new WaitForSeconds(0.5f);
         }
     }
