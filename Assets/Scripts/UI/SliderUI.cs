@@ -8,7 +8,7 @@ public class SliderUI : MonoBehaviour
     [SerializeField] private Animator animator;  // Background 
 
     [Header("Animator state names (full → empty)")]
-    [SerializeField] private string[] stateNames = { "SliderFull", "SliderMid", "SliderLow" };
+    [SerializeField] private string[] stateNames = { "SliderFull", "SliderSemiFull", "SliderMid", "SliderLow" };
 
     [Header("Tuning")]
     [SerializeField] private float fadeDuration = 0.10f;

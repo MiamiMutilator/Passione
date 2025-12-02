@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class MenuSFXAndLoad : MonoBehaviour
 {
@@ -8,6 +9,16 @@ public class MenuSFXAndLoad : MonoBehaviour
     public AudioClip clickSfx;
     public AudioClip backSfx;
     public float sceneLoadDelay = .5f; //Loading Scene Delay
+
+        [SerializeField] private GameObject firstSelectedButton;
+    private void OnEnable()
+    {
+        if (firstSelectedButton != null && EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstSelectedButton);
+        }
+    }
 
     public void PlayClickAndLoad(string sceneName)
     {

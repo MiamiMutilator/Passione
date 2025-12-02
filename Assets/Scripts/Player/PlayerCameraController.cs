@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class PlayerCameraController : MonoBehaviour
 {
     public InputActionReference lookAction;
     [SerializeField] private Transform player;
     [SerializeField] private MouseSensitivity mouseSensitivity;
+    [SerializeField] private MouseSensitivity controllerSensitivity;
     [SerializeField] private CameraAngle cameraAngle;
 
     private CameraRotation cameraRotation;
@@ -15,6 +17,8 @@ public class PlayerCameraController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        UpdateMouseSensitivity(); //
+        controllerSensitivity.invertHorizontal = true; //
     }
 
     private void OnEnable()
@@ -29,9 +33,18 @@ public class PlayerCameraController : MonoBehaviour
     private void Update()
     {
         Vector2 lookInput = lookAction.action.ReadValue<Vector2>();
+        
+        MouseSensitivity currentSensitivity = controllerSensitivity; //
+        if (lookAction.action.activeControl != null)
+        {
 
-        cameraRotation.Yaw += lookInput.x * mouseSensitivity.horizontal * BoolToInt(mouseSensitivity.invertHorizontal) * Time.deltaTime;
-        cameraRotation.Pitch += lookInput.y * mouseSensitivity.vertical * BoolToInt(mouseSensitivity.invertVertical) * Time.deltaTime;
+            if (lookAction.action.activeControl.device.name.Equals("Mouse"))
+            {
+                currentSensitivity = mouseSensitivity;
+            }
+        }
+        cameraRotation.Yaw += lookInput.x * currentSensitivity.horizontal * BoolToInt(currentSensitivity.invertHorizontal) * Time.deltaTime;
+        cameraRotation.Pitch += lookInput.y * currentSensitivity.vertical * BoolToInt(currentSensitivity.invertVertical) * Time.deltaTime;
         cameraRotation.Pitch = Mathf.Clamp(cameraRotation.Pitch, cameraAngle.min, cameraAngle.max);
     }
 
@@ -39,7 +52,16 @@ public class PlayerCameraController : MonoBehaviour
     {
         transform.eulerAngles = new Vector3(cameraRotation.Pitch, cameraRotation.Yaw, 0.0f);
     }
-
+    //
+    public void UpdateMouseSensitivity()
+    {
+        mouseSensitivity.vertical = PlayerPrefs.GetFloat("MouseSensitivityVertical");
+        mouseSensitivity.horizontal = PlayerPrefs.GetFloat("MouseSensitivityHorizontal");
+        controllerSensitivity.vertical = PlayerPrefs.GetFloat("ControllerSensitivity");
+        controllerSensitivity.horizontal = PlayerPrefs.GetFloat("ControllerSensitivity");
+        
+    }
+    //
     private static int BoolToInt(bool b) => b ? 1 : -1;
 }
 

@@ -1,12 +1,34 @@
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
+    [SerializeField] private InputActionReference menuBinding;
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private ToggleControl playerToggleControl; //drag Player
+    [SerializeField] private ToggleControl playerToggleControl; // drag Player
+    [SerializeField] public GameObject firstSelectedButton;    // drag Resume Button
     public static bool isPaused;
+
+    private void OnEnable()
+    {
+        menuBinding.action.Enable();
+        menuBinding.action.performed += OnMenuPressed;
+
+        
+        if (firstSelectedButton != null && EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstSelectedButton);
+        }
+    }
+
+    private void OnDisable()
+    {
+        menuBinding.action.Disable();
+        menuBinding.action.performed -= OnMenuPressed;
+    }
 
     void Start()
     {
@@ -15,9 +37,9 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    void OnMenuPressed(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (context.action.triggered)
         {
             if (isPaused) ResumeGame();
             else PauseGame();
@@ -36,8 +58,15 @@ public class PauseMenu : MonoBehaviour
         if (playerToggleControl)
             playerToggleControl.Toggle(false);
 
+        
         if (EventSystem.current)
             EventSystem.current.SetSelectedGameObject(null);
+
+        
+        if (firstSelectedButton != null && EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(firstSelectedButton);
+        }
     }
 
     public void ResumeGame()
@@ -65,5 +94,10 @@ public class PauseMenu : MonoBehaviour
             playerToggleControl.Toggle(true);
 
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
