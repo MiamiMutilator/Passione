@@ -8700,6 +8700,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90.946
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5159625c9df85434796334502b78581d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4359925acb6a2354f8bfad91709c060f, type: 2}
     - target: {fileID: 919132149155446097, guid: 5159625c9df85434796334502b78581d, type: 3}
       propertyPath: m_Name
       value: Clutter_FlaskBottle
@@ -9180,6 +9184,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3566c5d6b21c0684cbac4471cf65bb83, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4e21a3845bcf62b4ea3c12f6a32b34e8, type: 2}
     - target: {fileID: 919132149155446097, guid: 3566c5d6b21c0684cbac4471cf65bb83, type: 3}
       propertyPath: m_Name
       value: Clutter_SquareBottle (1)
@@ -9653,6 +9661,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 660849981}
     m_Modifications:
+    - target: {fileID: 3350179070290389619, guid: 187fd7dc31fdc104790fddf6d60e6ef6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f52d282e79ee9e748b9bcb95a4c3e3cf, type: 2}
     - target: {fileID: 3854736504613292966, guid: 187fd7dc31fdc104790fddf6d60e6ef6, type: 3}
       propertyPath: m_Name
       value: FrontBar
@@ -35256,6 +35268,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorFourUWall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5812478369155122275, guid: c7757b8f603ebd241a48536d30345e1b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d9aa2a2b09d15ab4ba5f4753a8a3318d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -40507,6 +40523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorFourUWall
       objectReference: {fileID: 0}
+    - target: {fileID: 5812478369155122275, guid: c7757b8f603ebd241a48536d30345e1b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d9aa2a2b09d15ab4ba5f4753a8a3318d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -99044,6 +99064,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6922233771399668986, guid: d5104fd0ffd8fac41815a3f26b96876f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c7f64b90e9a756e458afc9b6e7de415e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -106360,6 +106384,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3566c5d6b21c0684cbac4471cf65bb83, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4e21a3845bcf62b4ea3c12f6a32b34e8, type: 2}
     - target: {fileID: 919132149155446097, guid: 3566c5d6b21c0684cbac4471cf65bb83, type: 3}
       propertyPath: m_Name
       value: Clutter_SquareBottle (2)
@@ -121170,7 +121198,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 5d751a23a0092c6428f1e2a8813bbea0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 088696e5001512648864e819af6e081d, type: 2}
     - target: {fileID: 919132149155446097, guid: 5d751a23a0092c6428f1e2a8813bbea0, type: 3}
       propertyPath: m_Name
       value: SideBar
@@ -163929,7 +163957,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: cf03a72e25e7e5c4f89da0154c8f3c81, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: f52d282e79ee9e748b9bcb95a4c3e3cf, type: 2}
     - target: {fileID: 919132149155446097, guid: cf03a72e25e7e5c4f89da0154c8f3c81, type: 3}
       propertyPath: m_Name
       value: FrontBar
@@ -225821,6 +225849,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3566c5d6b21c0684cbac4471cf65bb83, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4e21a3845bcf62b4ea3c12f6a32b34e8, type: 2}
     - target: {fileID: 919132149155446097, guid: 3566c5d6b21c0684cbac4471cf65bb83, type: 3}
       propertyPath: m_Name
       value: Clutter_SquareBottle
@@ -246872,6 +246904,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorFourUWall (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5812478369155122275, guid: c7757b8f603ebd241a48536d30345e1b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d9aa2a2b09d15ab4ba5f4753a8a3318d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
