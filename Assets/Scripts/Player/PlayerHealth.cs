@@ -51,6 +51,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public event PlayerDamaged OnDamaged;
 
+    public AudioSource hit;
+    public AudioSource earRing;
+
     //Blur
     [Header("Hit Blur")]
     public Volume postProcessVolume;
@@ -149,6 +152,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if (targetable)
         {
+            hit.Play();
+            earRing.Play();
             Health -= damage;
             OnDamaged?.Invoke();
 
