@@ -11123,7 +11123,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 23d658560906289439d10b20f1a8a7a3, type: 2}
     - target: {fileID: 919132149155446097, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: m_Name
       value: CeilingLight (2)
@@ -26646,7 +26646,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7791486788655378091, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
+  - {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33472,6 +33472,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6295634728187061892, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
+    - target: {fileID: -3637973632467366589, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: -3122506244516261037, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1315.7
@@ -33487,7 +33495,7 @@ PrefabInstance:
     - target: {fileID: 1071263576227792899, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: 2744550742377205209, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1313.8
@@ -33671,6 +33679,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd19948e06bb89f49b8418bd7fe33de8, type: 2}
     - target: {fileID: 919132149155446097, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
       propertyPath: m_Name
       value: Clutter_CylinderBottle (1)
@@ -34270,7 +34282,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 23d658560906289439d10b20f1a8a7a3, type: 2}
     - target: {fileID: 919132149155446097, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: m_Name
       value: CeilingLight (10)
@@ -35966,7 +35978,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+  - {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -38169,7 +38181,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 57ae8d1256973ea43ad199b8c05eb2b5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 44f61f82e1c732a43b158252db06d378, type: 2}
     - target: {fileID: 919132149155446097, guid: 57ae8d1256973ea43ad199b8c05eb2b5, type: 3}
       propertyPath: m_Name
       value: BarStool (2)
@@ -39334,6 +39346,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd19948e06bb89f49b8418bd7fe33de8, type: 2}
     - target: {fileID: 919132149155446097, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
       propertyPath: m_Name
       value: Clutter_CylinderBottle (3)
@@ -40228,6 +40244,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -12.9
       objectReference: {fileID: 0}
+    - target: {fileID: -4820434456077156757, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 919132149155446097, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Supports (2)
@@ -40235,11 +40255,11 @@ PrefabInstance:
     - target: {fileID: 1394090480080607283, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 3425154271408171258, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 8101137597693777970, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_LocalPosition.y
       value: 372
@@ -41225,6 +41245,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -12.9
       objectReference: {fileID: 0}
+    - target: {fileID: -4820434456077156757, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 919132149155446097, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Supports (5)
@@ -41232,11 +41256,11 @@ PrefabInstance:
     - target: {fileID: 1394090480080607283, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 3425154271408171258, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 8101137597693777970, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1650
@@ -42599,6 +42623,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6295634728187061892, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
+    - target: {fileID: -3637973632467366589, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: -3122506244516261037, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1315.7
@@ -42611,6 +42643,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bar_Balcony_Fence (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1071263576227792899, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: 2744550742377205209, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1313.8
@@ -42733,7 +42769,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 23d658560906289439d10b20f1a8a7a3, type: 2}
     - target: {fileID: 919132149155446097, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: m_Name
       value: CeilingLight (9)
@@ -64965,6 +65001,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd19948e06bb89f49b8418bd7fe33de8, type: 2}
     - target: {fileID: 919132149155446097, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
       propertyPath: m_Name
       value: Clutter_CylinderBottle (5)
@@ -66307,7 +66347,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 23d658560906289439d10b20f1a8a7a3, type: 2}
     - target: {fileID: 919132149155446097, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: m_Name
       value: CeilingLight (7)
@@ -66557,6 +66597,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd19948e06bb89f49b8418bd7fe33de8, type: 2}
     - target: {fileID: 919132149155446097, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
       propertyPath: m_Name
       value: Clutter_CylinderBottle (11)
@@ -66913,7 +66957,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 23d658560906289439d10b20f1a8a7a3, type: 2}
     - target: {fileID: 919132149155446097, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: m_Name
       value: CeilingLight (8)
@@ -67248,7 +67292,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7791486788655378091, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
+  - {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -67597,7 +67641,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 2afa88b60db49854192c44510425e68b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 9e7c61d650b3bb4408093f6bb11d5726, type: 2}
     - target: {fileID: 919132149155446097, guid: 2afa88b60db49854192c44510425e68b, type: 3}
       propertyPath: m_Name
       value: BarTable (2)
@@ -68388,7 +68432,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 23d658560906289439d10b20f1a8a7a3, type: 2}
     - target: {fileID: 919132149155446097, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: m_Name
       value: CeilingLight (3)
@@ -68524,6 +68568,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6295634728187061892, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
+    - target: {fileID: -3637973632467366589, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: -3122506244516261037, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1315.7
@@ -68539,7 +68591,7 @@ PrefabInstance:
     - target: {fileID: 1071263576227792899, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: 2744550742377205209, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1313.8
@@ -69016,6 +69068,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BarTable (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8393815829162185920, guid: c4fdc8763e33b0549bf73ef9ab1275dd, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e7c61d650b3bb4408093f6bb11d5726, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -83706,6 +83762,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BarTable (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8393815829162185920, guid: c4fdc8763e33b0549bf73ef9ab1275dd, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e7c61d650b3bb4408093f6bb11d5726, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -83977,7 +84037,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7791486788655378091, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
+  - {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91640,7 +91700,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 2afa88b60db49854192c44510425e68b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 9e7c61d650b3bb4408093f6bb11d5726, type: 2}
     - target: {fileID: 919132149155446097, guid: 2afa88b60db49854192c44510425e68b, type: 3}
       propertyPath: m_Name
       value: BarTable (3)
@@ -92435,6 +92495,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -12.9
       objectReference: {fileID: 0}
+    - target: {fileID: -4820434456077156757, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 919132149155446097, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Supports (7)
@@ -92442,11 +92506,11 @@ PrefabInstance:
     - target: {fileID: 1394090480080607283, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 3425154271408171258, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 8101137597693777970, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1655.1
@@ -106466,6 +106530,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd19948e06bb89f49b8418bd7fe33de8, type: 2}
     - target: {fileID: 919132149155446097, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
       propertyPath: m_Name
       value: Clutter_CylinderBottle (9)
@@ -112911,14 +112979,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6295634728187061892, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: -3637973632467366589, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: 919132149155446097, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Fence (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1071263576227792899, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -113370,7 +113446,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+  - {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113559,6 +113635,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -12.9
       objectReference: {fileID: 0}
+    - target: {fileID: -4820434456077156757, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 919132149155446097, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Supports
@@ -113566,11 +113646,11 @@ PrefabInstance:
     - target: {fileID: 1394090480080607283, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 3425154271408171258, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 8101137597693777970, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_LocalPosition.y
       value: 372
@@ -121320,7 +121400,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+  - {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129115,6 +129195,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -12.9
       objectReference: {fileID: 0}
+    - target: {fileID: -4820434456077156757, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 919132149155446097, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Supports (6)
@@ -129122,11 +129206,11 @@ PrefabInstance:
     - target: {fileID: 1394090480080607283, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 3425154271408171258, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 8101137597693777970, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_LocalPosition.y
       value: 372
@@ -129838,6 +129922,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd19948e06bb89f49b8418bd7fe33de8, type: 2}
     - target: {fileID: 919132149155446097, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
       propertyPath: m_Name
       value: Clutter_CylinderBottle (8)
@@ -131269,6 +131357,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -12.9
       objectReference: {fileID: 0}
+    - target: {fileID: -4820434456077156757, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 919132149155446097, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Supports (3)
@@ -131276,11 +131368,11 @@ PrefabInstance:
     - target: {fileID: 1394090480080607283, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 3425154271408171258, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 8101137597693777970, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1651.6
@@ -138527,7 +138619,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7791486788655378091, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
+  - {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -148822,6 +148914,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd19948e06bb89f49b8418bd7fe33de8, type: 2}
     - target: {fileID: 919132149155446097, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
       propertyPath: m_Name
       value: Clutter_CylinderBottle (6)
@@ -148965,11 +149061,19 @@ PrefabInstance:
     - target: {fileID: -6295634728187061892, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
+    - target: {fileID: -3637973632467366589, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: 919132149155446097, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Fence (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1071263576227792899, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -156293,7 +156397,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 2afa88b60db49854192c44510425e68b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 9e7c61d650b3bb4408093f6bb11d5726, type: 2}
     - target: {fileID: 919132149155446097, guid: 2afa88b60db49854192c44510425e68b, type: 3}
       propertyPath: m_Name
       value: BarTable (1)
@@ -156402,6 +156506,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd19948e06bb89f49b8418bd7fe33de8, type: 2}
     - target: {fileID: 919132149155446097, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
       propertyPath: m_Name
       value: Clutter_CylinderBottle (2)
@@ -164783,7 +164891,11 @@ PrefabInstance:
     - target: {fileID: -6295634728187061892, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
+    - target: {fileID: -3637973632467366589, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: -3122506244516261037, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1315.7
@@ -164796,6 +164908,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bar_Balcony_Fence (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1071263576227792899, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: 2744550742377205209, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1313.8
@@ -165126,6 +165242,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -12.9
       objectReference: {fileID: 0}
+    - target: {fileID: -4820434456077156757, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 919132149155446097, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Supports (1)
@@ -165133,11 +165253,11 @@ PrefabInstance:
     - target: {fileID: 1394090480080607283, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 3425154271408171258, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 8101137597693777970, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_LocalPosition.y
       value: 372
@@ -166231,11 +166351,19 @@ PrefabInstance:
     - target: {fileID: -6295634728187061892, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
+    - target: {fileID: -3637973632467366589, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: 919132149155446097, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Fence (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1071263576227792899, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -166555,14 +166683,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6295634728187061892, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: -3637973632467366589, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: 919132149155446097, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Fence (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1071263576227792899, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -173165,11 +173301,19 @@ PrefabInstance:
     - target: {fileID: -6295634728187061892, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
+    - target: {fileID: -3637973632467366589, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: 919132149155446097, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Fence (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1071263576227792899, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -173554,6 +173698,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BarTable
       objectReference: {fileID: 0}
+    - target: {fileID: 8393815829162185920, guid: c4fdc8763e33b0549bf73ef9ab1275dd, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e7c61d650b3bb4408093f6bb11d5726, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -173909,6 +174057,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 660849981}
     m_Modifications:
+    - target: {fileID: 5291547066841982195, guid: 3cb89bdfedd5ed6449834195f0e22af8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 44f61f82e1c732a43b158252db06d378, type: 2}
     - target: {fileID: 5940149456204711206, guid: 3cb89bdfedd5ed6449834195f0e22af8, type: 3}
       propertyPath: m_Name
       value: BarStool
@@ -181398,11 +181550,19 @@ PrefabInstance:
     - target: {fileID: -6295634728187061892, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
+    - target: {fileID: -3637973632467366589, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: 919132149155446097, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Fence (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1071263576227792899, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -181545,6 +181705,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 660849981}
     m_Modifications:
+    - target: {fileID: 5291547066841982195, guid: 3cb89bdfedd5ed6449834195f0e22af8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 44f61f82e1c732a43b158252db06d378, type: 2}
     - target: {fileID: 5940149456204711206, guid: 3cb89bdfedd5ed6449834195f0e22af8, type: 3}
       propertyPath: m_Name
       value: BarStool (3)
@@ -182499,6 +182663,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BarTable (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8393815829162185920, guid: c4fdc8763e33b0549bf73ef9ab1275dd, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e7c61d650b3bb4408093f6bb11d5726, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -182926,6 +183094,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BarTable (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8393815829162185920, guid: c4fdc8763e33b0549bf73ef9ab1275dd, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e7c61d650b3bb4408093f6bb11d5726, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -183666,7 +183838,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 2afa88b60db49854192c44510425e68b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 9e7c61d650b3bb4408093f6bb11d5726, type: 2}
     - target: {fileID: 919132149155446097, guid: 2afa88b60db49854192c44510425e68b, type: 3}
       propertyPath: m_Name
       value: BarTable (5)
@@ -185644,6 +185816,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd19948e06bb89f49b8418bd7fe33de8, type: 2}
     - target: {fileID: 919132149155446097, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
       propertyPath: m_Name
       value: Clutter_CylinderBottle (10)
@@ -207085,6 +207261,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd19948e06bb89f49b8418bd7fe33de8, type: 2}
     - target: {fileID: 919132149155446097, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
       propertyPath: m_Name
       value: Clutter_CylinderBottle
@@ -215449,7 +215629,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 57ae8d1256973ea43ad199b8c05eb2b5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 44f61f82e1c732a43b158252db06d378, type: 2}
     - target: {fileID: 919132149155446097, guid: 57ae8d1256973ea43ad199b8c05eb2b5, type: 3}
       propertyPath: m_Name
       value: BarStool
@@ -232871,6 +233051,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BarTable (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8393815829162185920, guid: c4fdc8763e33b0549bf73ef9ab1275dd, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e7c61d650b3bb4408093f6bb11d5726, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -233565,6 +233749,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6295634728187061892, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
+    - target: {fileID: -3637973632467366589, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: 919132149155446097, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Fence
@@ -233572,7 +233764,7 @@ PrefabInstance:
     - target: {fileID: 1071263576227792899, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -233676,6 +233868,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd19948e06bb89f49b8418bd7fe33de8, type: 2}
     - target: {fileID: 919132149155446097, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
       propertyPath: m_Name
       value: Clutter_CylinderBottle (4)
@@ -233749,7 +233945,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 2afa88b60db49854192c44510425e68b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 9e7c61d650b3bb4408093f6bb11d5726, type: 2}
     - target: {fileID: 919132149155446097, guid: 2afa88b60db49854192c44510425e68b, type: 3}
       propertyPath: m_Name
       value: BarTable (4)
@@ -233963,6 +234159,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 660849981}
     m_Modifications:
+    - target: {fileID: 5291547066841982195, guid: 3cb89bdfedd5ed6449834195f0e22af8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 44f61f82e1c732a43b158252db06d378, type: 2}
     - target: {fileID: 5940149456204711206, guid: 3cb89bdfedd5ed6449834195f0e22af8, type: 3}
       propertyPath: m_Name
       value: BarStool (1)
@@ -234126,7 +234326,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+  - {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -235034,6 +235234,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd19948e06bb89f49b8418bd7fe33de8, type: 2}
     - target: {fileID: 919132149155446097, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
       propertyPath: m_Name
       value: Clutter_CylinderBottle (12)
@@ -243419,6 +243623,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd19948e06bb89f49b8418bd7fe33de8, type: 2}
     - target: {fileID: 919132149155446097, guid: 004590a31dd594546bc3d4fb5f8665be, type: 3}
       propertyPath: m_Name
       value: Clutter_CylinderBottle (7)
@@ -244362,7 +244570,11 @@ PrefabInstance:
     - target: {fileID: -6295634728187061892, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
+    - target: {fileID: -3637973632467366589, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: -3122506244516261037, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1315.7
@@ -244375,6 +244587,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bar_Balcony_Fence (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1071263576227792899, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: 2744550742377205209, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1313.8
@@ -244579,7 +244795,11 @@ PrefabInstance:
     - target: {fileID: -6295634728187061892, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
+    - target: {fileID: -3637973632467366589, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: -3122506244516261037, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1315.7
@@ -244592,6 +244812,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bar_Balcony_Fence (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1071263576227792899, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b5189c0d43560e499d68633d5512f00, type: 2}
     - target: {fileID: 2744550742377205209, guid: 391f16ae10bda1b45b8e0e286b596423, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1313.8
@@ -246387,7 +246611,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 57ae8d1256973ea43ad199b8c05eb2b5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 44f61f82e1c732a43b158252db06d378, type: 2}
     - target: {fileID: 919132149155446097, guid: 57ae8d1256973ea43ad199b8c05eb2b5, type: 3}
       propertyPath: m_Name
       value: BarStool (1)
@@ -248248,6 +248472,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 660849981}
     m_Modifications:
+    - target: {fileID: 5291547066841982195, guid: 3cb89bdfedd5ed6449834195f0e22af8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 44f61f82e1c732a43b158252db06d378, type: 2}
     - target: {fileID: 5940149456204711206, guid: 3cb89bdfedd5ed6449834195f0e22af8, type: 3}
       propertyPath: m_Name
       value: BarStool (2)
@@ -248502,6 +248730,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2793d1c20a5043348bfe7221c2151784, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4140a86859cd9b84d9850165ad02169c, type: 2}
     - target: {fileID: 919132149155446097, guid: 2793d1c20a5043348bfe7221c2151784, type: 3}
       propertyPath: m_Name
       value: Clutter_DrinkingGlass
@@ -248645,7 +248877,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 23d658560906289439d10b20f1a8a7a3, type: 2}
     - target: {fileID: 919132149155446097, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: m_Name
       value: CeilingLight (1)
@@ -256927,7 +257159,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 23d658560906289439d10b20f1a8a7a3, type: 2}
     - target: {fileID: 919132149155446097, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: m_Name
       value: CeilingLight
@@ -265570,7 +265802,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 23d658560906289439d10b20f1a8a7a3, type: 2}
     - target: {fileID: 919132149155446097, guid: dd67d88267f2ff44f8ac0b4b4ba2acac, type: 3}
       propertyPath: m_Name
       value: CeilingLight (6)
@@ -265631,7 +265863,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 57ae8d1256973ea43ad199b8c05eb2b5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a08c123e36c33e24f9a55e4abd476b30, type: 2}
+      objectReference: {fileID: 2100000, guid: 44f61f82e1c732a43b158252db06d378, type: 2}
     - target: {fileID: 919132149155446097, guid: 57ae8d1256973ea43ad199b8c05eb2b5, type: 3}
       propertyPath: m_Name
       value: BarStool (3)
@@ -266821,6 +267053,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -12.9
       objectReference: {fileID: 0}
+    - target: {fileID: -4820434456077156757, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 919132149155446097, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_Name
       value: Bar_Balcony_Supports (4)
@@ -266828,11 +267064,11 @@ PrefabInstance:
     - target: {fileID: 1394090480080607283, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 3425154271408171258, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b9b8fa1d75f1af54e818cd989a1a3a6c, type: 2}
+      objectReference: {fileID: 2100000, guid: fc20c1e4ed71b934a907bf97ddb8ec6d, type: 2}
     - target: {fileID: 8101137597693777970, guid: 88305f152090ea9479d573c5c5b438f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1651
