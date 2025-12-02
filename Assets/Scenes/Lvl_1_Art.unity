@@ -186636,6 +186636,18 @@ PrefabInstance:
       value: UpdateMouseSensitivity
       objectReference: {fileID: 0}
     - target: {fileID: 4463826347094382395, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
+      propertyPath: m_Value
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463826347094382395, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
+      propertyPath: m_MaxValue
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463826347094382395, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
+      propertyPath: m_MinValue
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463826347094382395, guid: 199fd69e0d98e5b4f8b31b510d69785b, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 886673461}
